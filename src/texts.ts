@@ -10,7 +10,7 @@
     subtitle: 'Entra con tu cliente y código para usar el tarifario asignado.',
     client: 'Cliente',
     code: 'Código',
-    clientPlaceholder: 'Onus, Meteor o Districenter',
+    clientPlaceholder: 'Nombre de cliente',
     codePlaceholder: 'Código de acceso',
     submit: 'Entrar',
     error: 'Cliente o código no válido.',
