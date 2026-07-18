@@ -1,0 +1,2095 @@
+{
+  "metadata": {
+    "generatedAt": "2026-03-30T14:00:00.941Z",
+    "sourceWorkbook": "tarifario_onus.xlsx",
+    "currency": "EUR"
+  },
+  "rules": {
+    "pricingCore": {
+      "source": "Tarifario Oficial ONUS",
+      "minimumPriceEnforced": true,
+      "distanceCalculatedFromRoute": true,
+      "familyOutput": {
+        "mensajeria": "range_plus_recommended",
+        "ultima_milla": "recommended_price",
+        "distribucion": "reference_price"
+      }
+    },
+    "lifecycleStates": [
+      "creado",
+      "publicado",
+      "asignado",
+      "en_servicio",
+      "completado",
+      "facturado",
+      "cerrado"
+    ]
+  },
+  "ultima_milla": {
+    "schedules": [
+      "media_jornada",
+      "jornada_completa",
+      "refuerzo_max_3h"
+    ],
+    "vehicles": {
+      "seco": {
+        "tipo_a_3_m_1_pallet": {
+          "label": "Tipo A (3 m³ – 1 pallet)",
+          "pricesBySchedule": {
+            "media_jornada": 90,
+            "jornada_completa": 160,
+            "refuerzo_max_3h": 80
+          }
+        },
+        "tipo_b_6_m_2_pallets": {
+          "label": "Tipo B (6 m³ – 2 pallets)",
+          "pricesBySchedule": {
+            "media_jornada": 95,
+            "jornada_completa": 170,
+            "refuerzo_max_3h": 90
+          }
+        },
+        "tipo_c_12_m": {
+          "label": "Tipo C (12 m³)",
+          "pricesBySchedule": {
+            "media_jornada": 100,
+            "jornada_completa": 180,
+            "refuerzo_max_3h": 103
+          }
+        },
+        "tipo_d_carrozado": {
+          "label": "Tipo D (Carrozado)",
+          "pricesBySchedule": {
+            "media_jornada": 120,
+            "jornada_completa": 220,
+            "refuerzo_max_3h": 110
+          }
+        },
+        "tipo_e_moto": {
+          "label": "Tipo E (Moto)",
+          "pricesBySchedule": {
+            "media_jornada": 65,
+            "jornada_completa": 110,
+            "refuerzo_max_3h": 50
+          }
+        },
+        "tipo_f_bici": {
+          "label": "Tipo F (Bici)",
+          "pricesBySchedule": {
+            "media_jornada": 55,
+            "jornada_completa": 90,
+            "refuerzo_max_3h": 40
+          }
+        }
+      },
+      "refrigerado": {
+        "tipo_a_3_m_1_pallet": {
+          "label": "Tipo A (3 m³ – 1 pallet)",
+          "pricesBySchedule": {
+            "media_jornada": 112.5,
+            "jornada_completa": 200,
+            "refuerzo_max_3h": 100
+          }
+        },
+        "tipo_b_6_m_2_pallets": {
+          "label": "Tipo B (6 m³ – 2 pallets)",
+          "pricesBySchedule": {
+            "media_jornada": 118.75,
+            "jornada_completa": 212.5,
+            "refuerzo_max_3h": 112.5
+          }
+        },
+        "tipo_c_12_m": {
+          "label": "Tipo C (12 m³)",
+          "pricesBySchedule": {
+            "media_jornada": 125,
+            "jornada_completa": 225,
+            "refuerzo_max_3h": 128.75
+          }
+        },
+        "tipo_d_carrozado": {
+          "label": "Tipo D (Carrozado)",
+          "pricesBySchedule": {
+            "media_jornada": 150,
+            "jornada_completa": 275,
+            "refuerzo_max_3h": 137.5
+          }
+        }
+      }
+    },
+    "distanceTranches": {
+      "seco": [
+        {
+          "min": 0,
+          "max": 100,
+          "raw": "Tramo 1 (0–100)",
+          "price": 0
+        },
+        {
+          "min": 101,
+          "max": 200,
+          "raw": "Tramo 2 (101–200)",
+          "price": 10
+        },
+        {
+          "min": 201,
+          "max": 300,
+          "raw": "Tramo 3 (201-300)",
+          "price": 15
+        },
+        {
+          "min": 301,
+          "max": null,
+          "raw": "Tramo 4 (+301)",
+          "price": 20
+        }
+      ],
+      "refrigerado": [
+        {
+          "min": 0,
+          "max": 100,
+          "raw": "Tramo 1 (0–100)",
+          "price": 0
+        },
+        {
+          "min": 101,
+          "max": 200,
+          "raw": "Tramo 2 (101–200)",
+          "price": 12.5
+        },
+        {
+          "min": 201,
+          "max": 300,
+          "raw": "Tramo 3 (201-300)",
+          "price": 18.75
+        },
+        {
+          "min": 301,
+          "max": null,
+          "raw": "Tramo 4 (+301)",
+          "price": 25
+        }
+      ]
+    },
+    "qualifiedStaff": [
+      {
+        "key": "mozo_de_almacen_dia",
+        "concept": "Mozo de almacén - día",
+        "unit": "Día",
+        "price": 140,
+        "rawPrice": "140"
+      },
+      {
+        "key": "jefe_de_trafico_dia",
+        "concept": "Jefe de tráfico - día",
+        "unit": "Día",
+        "price": 165,
+        "rawPrice": "165"
+      },
+      {
+        "key": "otros_servicios_logististicos",
+        "concept": "Otros servicios logistísticos",
+        "unit": "Día",
+        "price": null,
+        "rawPrice": "Consultar"
+      }
+    ],
+    "extras": [
+      {
+        "key": "hora_extra",
+        "concept": "Hora extra",
+        "unit": "Hora",
+        "price": 20,
+        "rawPrice": "20"
+      },
+      {
+        "key": "hora_nocturna",
+        "concept": "Hora nocturna",
+        "unit": "Hora",
+        "price": 5,
+        "rawPrice": "5"
+      }
+    ],
+    "specialServices": [
+      "Festivos y domingos",
+      "Servicios urgentes",
+      "Esperas prolongadas",
+      "Segunda persona",
+      "Cambios de ruta"
+    ]
+  },
+  "mensajeria_distribucion": {
+    "paqueteria": {
+      "48h": {
+        "label": "48h",
+        "upto2Kg": 5.5,
+        "upto5Kg": 6.5,
+        "upto10Kg": 8.5,
+        "additionalKg": 0.5,
+        "isManualQuote": false
+      },
+      "19h": {
+        "label": "19h",
+        "upto2Kg": 9.87,
+        "upto5Kg": 10.17,
+        "upto10Kg": 13.08,
+        "additionalKg": 0.81,
+        "isManualQuote": false
+      },
+      "14h": {
+        "label": "14h",
+        "upto2Kg": 14.04,
+        "upto5Kg": 15.42,
+        "upto10Kg": 24.03,
+        "additionalKg": 1.68,
+        "isManualQuote": false
+      },
+      "12h": {
+        "label": "12h",
+        "upto2Kg": 15.66,
+        "upto5Kg": 17.73,
+        "upto10Kg": 29.08,
+        "additionalKg": 1.86,
+        "isManualQuote": false
+      },
+      "10h": {
+        "label": "10h",
+        "upto2Kg": 29.59,
+        "upto5Kg": 32.63,
+        "upto10Kg": 49,
+        "additionalKg": 2.62,
+        "isManualQuote": false
+      },
+      "08_30h": {
+        "label": "08:30h",
+        "upto2Kg": 56.62,
+        "upto5Kg": 62.11,
+        "upto10Kg": 86.5,
+        "additionalKg": 3.86,
+        "isManualQuote": false
+      },
+      "hoy": {
+        "label": "HOY",
+        "upto2Kg": null,
+        "upto5Kg": null,
+        "upto10Kg": null,
+        "additionalKg": null,
+        "isManualQuote": true
+      }
+    },
+    "palletSecoByWeight": [
+      {
+        "maxWeightKg": 25,
+        "ratesPerKg": {
+          "provincia": 0.4727625,
+          "nacional": 0.64614375,
+          "baleares": 1.159725,
+          "andorra": 0.699825,
+          "gibraltar": 2.36775,
+          "canarias": 1.743
+        }
+      },
+      {
+        "maxWeightKg": 100,
+        "ratesPerKg": {
+          "provincia": 0.33768750000000003,
+          "nacional": 0.46153125000000006,
+          "baleares": 0.828375,
+          "andorra": 0.49987499999999996,
+          "gibraltar": 1.69125,
+          "canarias": 1.245
+        }
+      },
+      {
+        "maxWeightKg": 300,
+        "ratesPerKg": {
+          "provincia": 0.2625,
+          "nacional": 0.36374999999999996,
+          "baleares": 0.6925000000000001,
+          "andorra": 0.40125,
+          "gibraltar": 1.2506249999999999,
+          "canarias": 1.2075
+        }
+      },
+      {
+        "maxWeightKg": 500,
+        "ratesPerKg": {
+          "provincia": 0.24,
+          "nacional": 0.33875,
+          "baleares": 0.599375,
+          "andorra": 0.313125,
+          "gibraltar": 0.76875,
+          "canarias": 1.1287500000000001
+        }
+      },
+      {
+        "maxWeightKg": 750,
+        "ratesPerKg": {
+          "provincia": 0.234375,
+          "nacional": 0.3315625,
+          "baleares": 0.583125,
+          "andorra": 0.298125,
+          "gibraltar": 0.73125,
+          "canarias": 1.05375
+        }
+      },
+      {
+        "maxWeightKg": 1000,
+        "ratesPerKg": {
+          "provincia": 0.226875,
+          "nacional": 0.3203125,
+          "baleares": 0.5650000000000001,
+          "andorra": 0.283125,
+          "gibraltar": 0.6937500000000001,
+          "canarias": 1.0875
+        }
+      },
+      {
+        "maxWeightKg": 1500,
+        "ratesPerKg": {
+          "provincia": 0.211875,
+          "nacional": 0.3096875,
+          "baleares": 0.55,
+          "andorra": 0.2775,
+          "gibraltar": 0.66,
+          "canarias": 1.119375
+        }
+      },
+      {
+        "maxWeightKg": 2000,
+        "ratesPerKg": {
+          "provincia": 0.20625000000000002,
+          "nacional": 0.3028125,
+          "baleares": 0.5375,
+          "andorra": 0.271875,
+          "gibraltar": 0.66,
+          "canarias": 1.0387499999999998
+        }
+      },
+      {
+        "maxWeightKg": 2500,
+        "ratesPerKg": {
+          "provincia": 0.200625,
+          "nacional": 0.2965625,
+          "baleares": 0.51625,
+          "andorra": 0.26625,
+          "gibraltar": 0.66,
+          "canarias": 1.0050000000000001
+        }
+      },
+      {
+        "maxWeightKg": 3000,
+        "ratesPerKg": {
+          "provincia": 0.193125,
+          "nacional": 0.2859375,
+          "baleares": 0.49562500000000004,
+          "andorra": 0.260625,
+          "gibraltar": 0.66,
+          "canarias": 0.984375
+        }
+      },
+      {
+        "maxWeightKg": 10000,
+        "ratesPerKg": {
+          "provincia": 0.18375,
+          "nacional": 0.2746875,
+          "baleares": 0.49562500000000004,
+          "andorra": 0.255,
+          "gibraltar": 0.66,
+          "canarias": 0.965625
+        }
+      }
+    ]
+  },
+  "frio_distribucion": {
+    "onus_13_30": {
+      "brackets": [
+        {
+          "maxWeightKg": 1,
+          "prices": {
+            "provincial": 8.0055,
+            "nacional": 9.747,
+            "portugal": 9.747,
+            "baleares": 12.15
+          }
+        },
+        {
+          "maxWeightKg": 2,
+          "prices": {
+            "provincial": 9.5715,
+            "nacional": 13.284,
+            "portugal": 13.284,
+            "baleares": 18.643500000000003
+          }
+        },
+        {
+          "maxWeightKg": 3,
+          "prices": {
+            "provincial": 13.0815,
+            "nacional": 14.9985,
+            "portugal": 14.9985,
+            "baleares": 25.8525
+          }
+        },
+        {
+          "maxWeightKg": 4,
+          "prices": {
+            "provincial": 13.810500000000001,
+            "nacional": 17.577,
+            "portugal": 17.577,
+            "baleares": 27.553500000000003
+          }
+        },
+        {
+          "maxWeightKg": 5,
+          "prices": {
+            "provincial": 14.5395,
+            "nacional": 18.846000000000004,
+            "portugal": 18.846000000000004,
+            "baleares": 33.291000000000004
+          }
+        },
+        {
+          "maxWeightKg": 6,
+          "prices": {
+            "provincial": 15.4305,
+            "nacional": 21.0465,
+            "portugal": 21.0465,
+            "baleares": 37.50300000000001
+          }
+        },
+        {
+          "maxWeightKg": 7,
+          "prices": {
+            "provincial": 17.5635,
+            "nacional": 22.005000000000003,
+            "portugal": 22.005000000000003,
+            "baleares": 40.999500000000005
+          }
+        },
+        {
+          "maxWeightKg": 8,
+          "prices": {
+            "provincial": 18.3195,
+            "nacional": 23.314500000000002,
+            "portugal": 23.314500000000002,
+            "baleares": 44.5095
+          }
+        },
+        {
+          "maxWeightKg": 9,
+          "prices": {
+            "provincial": 20.439000000000004,
+            "nacional": 26.203500000000002,
+            "portugal": 26.203500000000002,
+            "baleares": 48.0195
+          }
+        },
+        {
+          "maxWeightKg": 10,
+          "prices": {
+            "provincial": 21.060000000000002,
+            "nacional": 27.567000000000004,
+            "portugal": 27.567000000000004,
+            "baleares": 52.569
+          }
+        },
+        {
+          "maxWeightKg": 15,
+          "prices": {
+            "provincial": 32.3325,
+            "nacional": 42.7005,
+            "portugal": 42.7005,
+            "baleares": 72.3465
+          }
+        },
+        {
+          "maxWeightKg": 20,
+          "prices": {
+            "provincial": 39.096000000000004,
+            "nacional": 51.948,
+            "portugal": 51.948,
+            "baleares": 91.4085
+          }
+        },
+        {
+          "maxWeightKg": 25,
+          "prices": {
+            "provincial": 45.83250000000001,
+            "nacional": 61.398,
+            "portugal": 61.398,
+            "baleares": 112.19850000000001
+          }
+        },
+        {
+          "maxWeightKg": 30,
+          "prices": {
+            "provincial": 52.569,
+            "nacional": 70.82100000000001,
+            "portugal": 70.82100000000001,
+            "baleares": 132.97500000000002
+          }
+        }
+      ],
+      "additionalKg": {
+        "provincial": 1.539,
+        "nacional": 1.701,
+        "portugal": 2.0925000000000002,
+        "baleares": 4.293
+      }
+    },
+    "onus_10": {
+      "brackets": [
+        {
+          "maxWeightKg": 1,
+          "prices": {
+            "provincial": 13.297500000000001,
+            "nacional": 15.309000000000001,
+            "portugal": 15.309000000000001
+          }
+        },
+        {
+          "maxWeightKg": 2,
+          "prices": {
+            "provincial": 15.700500000000002,
+            "nacional": 18.5895,
+            "portugal": 18.5895
+          }
+        },
+        {
+          "maxWeightKg": 3,
+          "prices": {
+            "provincial": 18.333000000000002,
+            "nacional": 21.006000000000004,
+            "portugal": 21.006000000000004
+          }
+        },
+        {
+          "maxWeightKg": 4,
+          "prices": {
+            "provincial": 19.359,
+            "nacional": 24.610500000000002,
+            "portugal": 24.610500000000002
+          }
+        },
+        {
+          "maxWeightKg": 5,
+          "prices": {
+            "provincial": 20.3715,
+            "nacional": 26.365500000000004,
+            "portugal": 26.365500000000004
+          }
+        },
+        {
+          "maxWeightKg": 6,
+          "prices": {
+            "provincial": 24.462000000000003,
+            "nacional": 30.847500000000004,
+            "portugal": 30.847500000000004
+          }
+        },
+        {
+          "maxWeightKg": 7,
+          "prices": {
+            "provincial": 27.094500000000004,
+            "nacional": 34.722,
+            "portugal": 34.722
+          }
+        },
+        {
+          "maxWeightKg": 8,
+          "prices": {
+            "provincial": 31.212000000000003,
+            "nacional": 41.526,
+            "portugal": 41.526
+          }
+        },
+        {
+          "maxWeightKg": 9,
+          "prices": {
+            "provincial": 36.9765,
+            "nacional": 49.0995,
+            "portugal": 49.0995
+          }
+        },
+        {
+          "maxWeightKg": 10,
+          "prices": {
+            "provincial": 44.3745,
+            "nacional": 57.969,
+            "portugal": 57.969
+          }
+        },
+        {
+          "maxWeightKg": 15,
+          "prices": {
+            "provincial": 50.301,
+            "nacional": 66.177,
+            "portugal": 66.177
+          }
+        },
+        {
+          "maxWeightKg": 20,
+          "prices": {
+            "provincial": 66.2715,
+            "nacional": 88.33050000000001,
+            "portugal": 88.33050000000001
+          }
+        },
+        {
+          "maxWeightKg": 25,
+          "prices": {
+            "provincial": 81.47250000000001,
+            "nacional": 105.732,
+            "portugal": 105.732
+          }
+        },
+        {
+          "maxWeightKg": 30,
+          "prices": {
+            "provincial": 93.5145,
+            "nacional": 119.367,
+            "portugal": 119.367
+          }
+        }
+      ],
+      "additionalKg": {
+        "provincial": 2.2275,
+        "nacional": 3.0240000000000005,
+        "portugal": 3.0240000000000005
+      }
+    },
+    "devoluciones": {
+      "brackets": [
+        {
+          "maxWeightKg": 1,
+          "prices": {
+            "provincial": 8.0055,
+            "largo_espana": 9.747,
+            "portugal": 9.747,
+            "baleares": 12.15
+          }
+        },
+        {
+          "maxWeightKg": 2,
+          "prices": {
+            "provincial": 9.5715,
+            "largo_espana": 13.284,
+            "portugal": 13.284,
+            "baleares": 18.643500000000003
+          }
+        },
+        {
+          "maxWeightKg": 3,
+          "prices": {
+            "provincial": 13.0815,
+            "largo_espana": 14.9985,
+            "portugal": 14.9985,
+            "baleares": 25.8525
+          }
+        },
+        {
+          "maxWeightKg": 4,
+          "prices": {
+            "provincial": 13.810500000000001,
+            "largo_espana": 17.577,
+            "portugal": 17.577,
+            "baleares": 27.553500000000003
+          }
+        },
+        {
+          "maxWeightKg": 5,
+          "prices": {
+            "provincial": 14.5395,
+            "largo_espana": 18.846000000000004,
+            "portugal": 18.846000000000004,
+            "baleares": 33.291000000000004
+          }
+        },
+        {
+          "maxWeightKg": 6,
+          "prices": {
+            "provincial": 15.4305,
+            "largo_espana": 21.0465,
+            "portugal": 21.0465,
+            "baleares": 37.50300000000001
+          }
+        },
+        {
+          "maxWeightKg": 7,
+          "prices": {
+            "provincial": 17.5635,
+            "largo_espana": 22.005000000000003,
+            "portugal": 22.005000000000003,
+            "baleares": 40.999500000000005
+          }
+        },
+        {
+          "maxWeightKg": 8,
+          "prices": {
+            "provincial": 18.3195,
+            "largo_espana": 23.314500000000002,
+            "portugal": 23.314500000000002,
+            "baleares": 44.5095
+          }
+        },
+        {
+          "maxWeightKg": 9,
+          "prices": {
+            "provincial": 20.439000000000004,
+            "largo_espana": 26.203500000000002,
+            "portugal": 26.203500000000002,
+            "baleares": 48.0195
+          }
+        },
+        {
+          "maxWeightKg": 10,
+          "prices": {
+            "provincial": 21.060000000000002,
+            "largo_espana": 27.567000000000004,
+            "portugal": 27.567000000000004,
+            "baleares": 52.569
+          }
+        },
+        {
+          "maxWeightKg": 15,
+          "prices": {
+            "provincial": 32.3325,
+            "largo_espana": 42.7005,
+            "portugal": 42.7005,
+            "baleares": 72.3465
+          }
+        },
+        {
+          "maxWeightKg": 20,
+          "prices": {
+            "provincial": 39.096000000000004,
+            "largo_espana": 51.948,
+            "portugal": 51.948,
+            "baleares": 91.4085
+          }
+        },
+        {
+          "maxWeightKg": 25,
+          "prices": {
+            "provincial": 45.83250000000001,
+            "largo_espana": 61.398,
+            "portugal": 61.398,
+            "baleares": 112.19850000000001
+          }
+        },
+        {
+          "maxWeightKg": 30,
+          "prices": {
+            "provincial": 52.569,
+            "largo_espana": 70.82100000000001,
+            "portugal": 70.82100000000001,
+            "baleares": 132.97500000000002
+          }
+        }
+      ],
+      "additionalKg": {
+        "provincial": 1.539,
+        "largo_espana": 1.701,
+        "portugal": 2.0925000000000002,
+        "baleares": 4.293
+      }
+    },
+    "bulkByKilo": [
+      {
+        "maxWeightKg": 100,
+        "ratesPerKg": {
+          "provincia": 0.4558781250000001,
+          "nacional": 0.6230671875000001,
+          "baleares": 1.11830625,
+          "andorra": 0.67483125,
+          "gibraltar": 2.2831875,
+          "canarias": 1.6807500000000002
+        }
+      },
+      {
+        "maxWeightKg": 300,
+        "ratesPerKg": {
+          "provincia": 0.35437500000000005,
+          "nacional": 0.49106249999999996,
+          "baleares": 0.9348750000000002,
+          "andorra": 0.5416875,
+          "gibraltar": 1.68834375,
+          "canarias": 1.630125
+        }
+      },
+      {
+        "maxWeightKg": 500,
+        "ratesPerKg": {
+          "provincia": 0.324,
+          "nacional": 0.4573125,
+          "baleares": 0.80915625,
+          "andorra": 0.42271875000000003,
+          "gibraltar": 1.0378125,
+          "canarias": 1.5238125000000002
+        }
+      },
+      {
+        "maxWeightKg": 750,
+        "ratesPerKg": {
+          "provincia": 0.31640625,
+          "nacional": 0.44760937500000003,
+          "baleares": 0.7872187500000001,
+          "andorra": 0.40246875,
+          "gibraltar": 0.9871875,
+          "canarias": 1.4225625
+        }
+      },
+      {
+        "maxWeightKg": 1000,
+        "ratesPerKg": {
+          "provincia": 0.30628125,
+          "nacional": 0.432421875,
+          "baleares": 0.7627500000000002,
+          "andorra": 0.38221875000000005,
+          "gibraltar": 0.9365625000000002,
+          "canarias": 1.468125
+        }
+      },
+      {
+        "maxWeightKg": 1500,
+        "ratesPerKg": {
+          "provincia": 0.28603125,
+          "nacional": 0.418078125,
+          "baleares": 0.7425000000000002,
+          "andorra": 0.37462500000000004,
+          "gibraltar": 0.8910000000000001,
+          "canarias": 1.5111562500000002
+        }
+      },
+      {
+        "maxWeightKg": 2000,
+        "ratesPerKg": {
+          "provincia": 0.27843750000000006,
+          "nacional": 0.408796875,
+          "baleares": 0.725625,
+          "andorra": 0.36703125,
+          "gibraltar": 0.8910000000000001,
+          "canarias": 1.4023124999999999
+        }
+      },
+      {
+        "maxWeightKg": 2500,
+        "ratesPerKg": {
+          "provincia": 0.27084375,
+          "nacional": 0.400359375,
+          "baleares": 0.6969375,
+          "andorra": 0.3594375,
+          "gibraltar": 0.8910000000000001,
+          "canarias": 1.3567500000000003
+        }
+      },
+      {
+        "maxWeightKg": 3000,
+        "ratesPerKg": {
+          "provincia": 0.26071875,
+          "nacional": 0.38601562500000003,
+          "baleares": 0.66909375,
+          "andorra": 0.35184375,
+          "gibraltar": 0.8910000000000001,
+          "canarias": 1.3289062500000002
+        }
+      },
+      {
+        "maxWeightKg": 10000,
+        "ratesPerKg": {
+          "provincia": 0.24806250000000002,
+          "nacional": 0.370828125,
+          "baleares": 0.66909375,
+          "andorra": 0.34425000000000006,
+          "gibraltar": 0.8910000000000001,
+          "canarias": 1.30359375
+        }
+      }
+    ]
+  },
+  "directos": {
+    "moto": {
+      "maxDistanceKm": 40,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 10,
+          "raw": "0–10 km",
+          "price": 18,
+          "label": "0–10 km"
+        },
+        {
+          "min": 11,
+          "max": 20,
+          "raw": "11–20 km",
+          "price": 24,
+          "label": "11–20 km"
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "raw": "21–40 km",
+          "price": 34,
+          "label": "21–40 km"
+        }
+      ]
+    },
+    "byTemperature": {
+      "seco": {
+        "furgoneta_ligera": {
+          "label": "Furgoneta (ligera)",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 65
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 120
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 230
+            }
+          ],
+          "additionalKmPrice": 0.9
+        },
+        "furgon_l2h2": {
+          "label": "Furgón L2H2",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 90
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 165
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 275
+            }
+          ],
+          "additionalKmPrice": 1.25
+        },
+        "carrozado": {
+          "label": "Carrozado",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 150
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 225
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 360
+            }
+          ],
+          "additionalKmPrice": 1.5
+        },
+        "rigido_12t": {
+          "label": "Rígido 12T",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 220
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 315
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 510
+            }
+          ],
+          "additionalKmPrice": 2.25
+        }
+      },
+      "frio": {
+        "furgoneta_ligera": {
+          "label": "Furgoneta (ligera)",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 78
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 138
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 264.5
+            }
+          ],
+          "additionalKmPrice": 1.19025
+        },
+        "furgon_l2h2": {
+          "label": "Furgón L2H2",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 108
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 189.75
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 316.25
+            }
+          ],
+          "additionalKmPrice": 1.423125
+        },
+        "carrozado": {
+          "label": "Carrozado",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 180
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 258.75
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 414
+            }
+          ],
+          "additionalKmPrice": 1.863
+        },
+        "rigido_12t": {
+          "label": "Rígido 12T",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 264
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 362.25
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 586.5
+            }
+          ],
+          "additionalKmPrice": 2.63925
+        }
+      },
+      "congelado": {
+        "furgoneta_ligera": {
+          "label": "Furgoneta (ligera)",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 93.6
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 158.7
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 304.175
+            }
+          ],
+          "additionalKmPrice": 1.520875
+        },
+        "furgon_l2h2": {
+          "label": "Furgón L2H2",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 129.6
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 218.2125
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 363.6875
+            }
+          ],
+          "additionalKmPrice": 1.8184375
+        },
+        "carrozado": {
+          "label": "Carrozado",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 216
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 297.5625
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 476.1
+            }
+          ],
+          "additionalKmPrice": 2.3805
+        },
+        "rigido_12t": {
+          "label": "Rígido 12T",
+          "zones": [
+            {
+              "min": 0,
+              "max": 50,
+              "price": 316.8
+            },
+            {
+              "min": 51,
+              "max": 100,
+              "price": 416.5875
+            },
+            {
+              "min": 101,
+              "max": 200,
+              "price": 674.475
+            }
+          ],
+          "additionalKmPrice": 3.372375
+        }
+      }
+    },
+    "modalities": {
+      "express_salida_90_min": {
+        "label": "Express (salida < 90 min)",
+        "multiplier": 0.2
+      },
+      "nocturno_22_00_06_00_o_festivo": {
+        "label": "Nocturno (22:00–06:00) o festivo",
+        "multiplier": 0.3
+      },
+      "sabado": {
+        "label": "Sábado",
+        "multiplier": 0.15
+      }
+    },
+    "supplements": {
+      "espera_extra_tras_60_min_incluidos": {
+        "label": "Espera extra (tras 60 min incluidos)",
+        "amount": {
+          "type": "per_hour",
+          "value": 20,
+          "raw": "20 €/hora"
+        }
+      },
+      "punto_adicional_ligero": {
+        "label": "Punto adicional (Ligero)",
+        "amount": {
+          "type": "fixed",
+          "value": 20,
+          "raw": "20"
+        }
+      },
+      "punto_adicional_carrozado_rigido": {
+        "label": "Punto adicional ( Carrozado/ Rigido)",
+        "amount": {
+          "type": "fixed",
+          "value": 30,
+          "raw": "30"
+        }
+      },
+      "franja_horaria_cerrada": {
+        "label": "Franja horaria cerrada",
+        "amount": {
+          "type": "fixed",
+          "value": 25,
+          "raw": "25"
+        }
+      },
+      "plataforma_elevadora": {
+        "label": "Plataforma elevadora",
+        "amount": {
+          "type": "fixed",
+          "value": 30,
+          "raw": "30"
+        }
+      },
+      "peajes_ferries_parkings": {
+        "label": "Peajes / ferries / parkings",
+        "amount": {
+          "type": "ticket",
+          "value": null,
+          "raw": "Según ticket"
+        }
+      },
+      "segundo_intento_de_entrega": {
+        "label": "Segundo intento de entrega",
+        "amount": {
+          "type": "fixed",
+          "value": 40,
+          "raw": "40"
+        }
+      },
+      "retorno_no_recepcion_rechazo": {
+        "label": "Retorno / no recepción / rechazo",
+        "amount": {
+          "type": "percentage",
+          "value": 0.8,
+          "raw": "80% del porte"
+        }
+      },
+      "adr_alto_valor_documentacion_extra": {
+        "label": "ADR / alto valor / documentación extra",
+        "amount": {
+          "type": "quote",
+          "value": null,
+          "raw": "A cotizar"
+        }
+      }
+    }
+  },
+  "almacenaje": {
+    "sections": {
+      "almacenaje": {
+        "seco": [
+          {
+            "key": "pallet",
+            "concept": "Pallet",
+            "unit": "Mes",
+            "price": 14.6,
+            "rawPrice": "14.6"
+          },
+          {
+            "key": "caja_unidad_tecnica",
+            "concept": "Caja/unidad técnica",
+            "unit": "Mes",
+            "price": 1.5,
+            "rawPrice": "1.5"
+          },
+          {
+            "key": "pallet_dias_puntuales",
+            "concept": "Pallet ( dias puntuales)",
+            "unit": "Día",
+            "price": 0.9,
+            "rawPrice": "0.9"
+          },
+          {
+            "key": "unidad_dias_puntuales",
+            "concept": "Unidad  ( dias puntuales)",
+            "unit": "Día",
+            "price": 0.12,
+            "rawPrice": "0.12"
+          },
+          {
+            "key": "pallet_fuera_de_medida",
+            "concept": "Pallet fuera de medida",
+            "unit": "Día",
+            "price": 3.2,
+            "rawPrice": "3.2"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "pallet",
+            "concept": "Pallet",
+            "unit": "Mes",
+            "price": 36.5,
+            "rawPrice": "36.5"
+          },
+          {
+            "key": "caja_unidad_tecnica",
+            "concept": "Caja/unidad técnica",
+            "unit": "Mes",
+            "price": 3.75,
+            "rawPrice": "3.75"
+          },
+          {
+            "key": "pallet_dias_puntuales",
+            "concept": "Pallet ( dias puntuales)",
+            "unit": "Día",
+            "price": 2.25,
+            "rawPrice": "2.25"
+          },
+          {
+            "key": "unidad_dias_puntuales",
+            "concept": "Unidad  ( dias puntuales)",
+            "unit": "Día",
+            "price": 0.3,
+            "rawPrice": "0.3"
+          },
+          {
+            "key": "pallet_fuera_de_medida",
+            "concept": "Pallet fuera de medida",
+            "unit": "Día",
+            "price": 8,
+            "rawPrice": "8"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "pallet",
+            "concept": "Pallet",
+            "unit": "Mes",
+            "price": 51.1,
+            "rawPrice": "51.1"
+          },
+          {
+            "key": "caja_unidad_tecnica",
+            "concept": "Caja/unidad técnica",
+            "unit": "Mes",
+            "price": 5.25,
+            "rawPrice": "5.25"
+          },
+          {
+            "key": "pallet_dias_puntuales",
+            "concept": "Pallet ( dias puntuales)",
+            "unit": "Día",
+            "price": 3.15,
+            "rawPrice": "3.15"
+          },
+          {
+            "key": "unidad_dias_puntuales",
+            "concept": "Unidad  ( dias puntuales)",
+            "unit": "Día",
+            "price": 0.42,
+            "rawPrice": "0.42"
+          },
+          {
+            "key": "pallet_fuera_de_medida",
+            "concept": "Pallet fuera de medida",
+            "unit": "Día",
+            "price": 11.2,
+            "rawPrice": "11.2"
+          }
+        ]
+      },
+      "recepcion": {
+        "seco": [
+          {
+            "key": "recepcion_pallet_completo",
+            "concept": "Recepción pallet completo",
+            "unit": "Pallet",
+            "price": 5.5,
+            "rawPrice": "5.5"
+          },
+          {
+            "key": "recepcion_bulto_hasta_5_und",
+            "concept": "Recepción bulto (hasta 5 Und)",
+            "unit": "Bulto",
+            "price": 1,
+            "rawPrice": "1"
+          },
+          {
+            "key": "recepcion_bulto_5_und_30und",
+            "concept": "Recepción bulto ( >5 Und. < 30Und.)",
+            "unit": "Bulto",
+            "price": 0.5,
+            "rawPrice": "0.5"
+          },
+          {
+            "key": "recepcion_bulto_30und",
+            "concept": "Recepción bulto ( > 30Und.)",
+            "unit": "Bulto",
+            "price": 0.25,
+            "rawPrice": "0.25"
+          },
+          {
+            "key": "recepcion_pieza_tecnica",
+            "concept": "Recepción pieza técnica",
+            "unit": "Pieza",
+            "price": 1,
+            "rawPrice": "1"
+          },
+          {
+            "key": "recepcion_con_incidencias",
+            "concept": "Recepción con incidencias",
+            "unit": null,
+            "price": null,
+            "rawPrice": "Consultar"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "recepcion_pallet_completo",
+            "concept": "Recepción pallet completo",
+            "unit": "Pallet",
+            "price": 7.15,
+            "rawPrice": "7.15"
+          },
+          {
+            "key": "recepcion_bulto_hasta_5_und",
+            "concept": "Recepción bulto (hasta 5 Und)",
+            "unit": "Bulto",
+            "price": 1.3,
+            "rawPrice": "1.3"
+          },
+          {
+            "key": "recepcion_bulto_5_und_30und",
+            "concept": "Recepción bulto ( >5 Und. < 30Und.)",
+            "unit": "Bulto",
+            "price": 0.65,
+            "rawPrice": "0.65"
+          },
+          {
+            "key": "recepcion_bulto_30und",
+            "concept": "Recepción bulto ( > 30Und.)",
+            "unit": "Bulto",
+            "price": 0.325,
+            "rawPrice": "0.325"
+          },
+          {
+            "key": "recepcion_pieza_tecnica",
+            "concept": "Recepción pieza técnica",
+            "unit": "Pieza",
+            "price": 1.3,
+            "rawPrice": "1.3"
+          },
+          {
+            "key": "recepcion_con_incidencias",
+            "concept": "Recepción con incidencias",
+            "unit": null,
+            "price": null,
+            "rawPrice": "Consultar"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "recepcion_pallet_completo",
+            "concept": "Recepción pallet completo",
+            "unit": "Pallet",
+            "price": 9.295,
+            "rawPrice": "9.295"
+          },
+          {
+            "key": "recepcion_bulto_hasta_5_und",
+            "concept": "Recepción bulto (hasta 5 Und)",
+            "unit": "Bulto",
+            "price": 1.69,
+            "rawPrice": "1.69"
+          },
+          {
+            "key": "recepcion_bulto_5_und_30und",
+            "concept": "Recepción bulto ( >5 Und. < 30Und.)",
+            "unit": "Bulto",
+            "price": 0.845,
+            "rawPrice": "0.845"
+          },
+          {
+            "key": "recepcion_bulto_30und",
+            "concept": "Recepción bulto ( > 30Und.)",
+            "unit": "Bulto",
+            "price": 0.4225,
+            "rawPrice": "0.4225"
+          },
+          {
+            "key": "recepcion_pieza_tecnica",
+            "concept": "Recepción pieza técnica",
+            "unit": "Pieza",
+            "price": 1.69,
+            "rawPrice": "1.69"
+          },
+          {
+            "key": "recepcion_con_incidencias",
+            "concept": "Recepción con incidencias",
+            "unit": null,
+            "price": null,
+            "rawPrice": "Consultar"
+          }
+        ]
+      },
+      "picking": {
+        "seco": [
+          {
+            "key": "picking_pallet_completo",
+            "concept": "Picking pallet completo",
+            "unit": "Und.",
+            "price": 5.5,
+            "rawPrice": "5.5"
+          },
+          {
+            "key": "picking_por_caja",
+            "concept": "Picking por caja",
+            "unit": "Und.",
+            "price": 1.5,
+            "rawPrice": "1.5"
+          },
+          {
+            "key": "picking_por_unidad_e_commerce",
+            "concept": "Picking por unidad (e-commerce)",
+            "unit": "Und.",
+            "price": 0.3,
+            "rawPrice": "0.3"
+          },
+          {
+            "key": "picking_por_unidad_tecnica",
+            "concept": "Picking por unidad técnica",
+            "unit": "Und.",
+            "price": 0.4,
+            "rawPrice": "0.4"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "picking_pallet_completo",
+            "concept": "Picking pallet completo",
+            "unit": "Und.",
+            "price": 6.6,
+            "rawPrice": "6.6"
+          },
+          {
+            "key": "picking_por_caja",
+            "concept": "Picking por caja",
+            "unit": "Und.",
+            "price": 1.8,
+            "rawPrice": "1.8"
+          },
+          {
+            "key": "picking_por_unidad_e_commerce",
+            "concept": "Picking por unidad (e-commerce)",
+            "unit": "Und.",
+            "price": 0.36,
+            "rawPrice": "0.36"
+          },
+          {
+            "key": "picking_por_unidad_tecnica",
+            "concept": "Picking por unidad técnica",
+            "unit": "Und.",
+            "price": 0.48,
+            "rawPrice": "0.48"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "picking_pallet_completo",
+            "concept": "Picking pallet completo",
+            "unit": "Und.",
+            "price": 7.92,
+            "rawPrice": "7.92"
+          },
+          {
+            "key": "picking_por_caja",
+            "concept": "Picking por caja",
+            "unit": "Und.",
+            "price": 2.16,
+            "rawPrice": "2.16"
+          },
+          {
+            "key": "picking_por_unidad_e_commerce",
+            "concept": "Picking por unidad (e-commerce)",
+            "unit": "Und.",
+            "price": 0.432,
+            "rawPrice": "0.432"
+          },
+          {
+            "key": "picking_por_unidad_tecnica",
+            "concept": "Picking por unidad técnica",
+            "unit": "Und.",
+            "price": 0.576,
+            "rawPrice": "0.576"
+          }
+        ]
+      },
+      "packing": {
+        "seco": [
+          {
+            "key": "packing_estandar_pedido",
+            "concept": "Packing estándar ( Pedido)",
+            "unit": "Und.",
+            "price": 1.5,
+            "rawPrice": "1.5"
+          },
+          {
+            "key": "packing_con_etiquetado",
+            "concept": "Packing con etiquetado",
+            "unit": "Und.",
+            "price": 1.7,
+            "rawPrice": "1.7"
+          },
+          {
+            "key": "packing_tecnico_especial",
+            "concept": "Packing técnico especial",
+            "unit": "Und.",
+            "price": 2,
+            "rawPrice": "2"
+          },
+          {
+            "key": "retractilado_pallet",
+            "concept": "Retractilado pallet",
+            "unit": "Und.",
+            "price": 7,
+            "rawPrice": "7"
+          },
+          {
+            "key": "reempaquetado",
+            "concept": "Reempaquetado",
+            "unit": "Und.",
+            "price": 2.5,
+            "rawPrice": "2.5"
+          },
+          {
+            "key": "etiquetado",
+            "concept": "Etiquetado",
+            "unit": "Und.",
+            "price": 0.3,
+            "rawPrice": "0.3"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "packing_estandar",
+            "concept": "Packing estándar",
+            "unit": "Und.",
+            "price": 1.95,
+            "rawPrice": "1.95"
+          },
+          {
+            "key": "packing_con_etiquetado",
+            "concept": "Packing con etiquetado",
+            "unit": "Und.",
+            "price": 2.21,
+            "rawPrice": "2.21"
+          },
+          {
+            "key": "packing_tecnico_especial",
+            "concept": "Packing técnico especial",
+            "unit": "Und.",
+            "price": 2.6,
+            "rawPrice": "2.6"
+          },
+          {
+            "key": "retractilado_pallet",
+            "concept": "Retractilado pallet",
+            "unit": "Und.",
+            "price": 9.1,
+            "rawPrice": "9.1"
+          },
+          {
+            "key": "reempaquetado",
+            "concept": "Reempaquetado",
+            "unit": "Und.",
+            "price": 3.25,
+            "rawPrice": "3.25"
+          },
+          {
+            "key": "etiquetado",
+            "concept": "Etiquetado",
+            "unit": "Und.",
+            "price": 0.39,
+            "rawPrice": "0.39"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "packing_estandar",
+            "concept": "Packing estándar",
+            "unit": "Und.",
+            "price": 2.535,
+            "rawPrice": "2.535"
+          },
+          {
+            "key": "packing_con_etiquetado",
+            "concept": "Packing con etiquetado",
+            "unit": "Und.",
+            "price": 2.873,
+            "rawPrice": "2.873"
+          },
+          {
+            "key": "packing_tecnico_especial",
+            "concept": "Packing técnico especial",
+            "unit": "Und.",
+            "price": 3.38,
+            "rawPrice": "3.38"
+          },
+          {
+            "key": "retractilado_pallet",
+            "concept": "Retractilado pallet",
+            "unit": "Und.",
+            "price": 11.83,
+            "rawPrice": "11.83"
+          },
+          {
+            "key": "reempaquetado",
+            "concept": "Reempaquetado",
+            "unit": "Und.",
+            "price": 4.225,
+            "rawPrice": "4.225"
+          },
+          {
+            "key": "etiquetado",
+            "concept": "Etiquetado",
+            "unit": "Und.",
+            "price": 0.507,
+            "rawPrice": "0.507"
+          }
+        ]
+      },
+      "despacho": {
+        "seco": [
+          {
+            "key": "despacho_pallet",
+            "concept": "Despacho pallet",
+            "unit": "Pallet",
+            "price": 5.5,
+            "rawPrice": "5.5"
+          },
+          {
+            "key": "despacho_bulto_hasta_5u",
+            "concept": "Despacho bulto ( hasta 5U)",
+            "unit": "Bulto",
+            "price": 1,
+            "rawPrice": "1"
+          },
+          {
+            "key": "despacho_bulto_5_und_30_und",
+            "concept": "Despacho bulto ( >5 Und. <30 Und.)",
+            "unit": "Bulto",
+            "price": 0.5,
+            "rawPrice": "0.5"
+          },
+          {
+            "key": "despacho_bulto_30_und",
+            "concept": "Despacho bulto (>30 Und.)",
+            "unit": "Bulto",
+            "price": 0.25,
+            "rawPrice": "0.25"
+          },
+          {
+            "key": "despacho_tecnico",
+            "concept": "Despacho técnico",
+            "unit": "Pieza",
+            "price": 1,
+            "rawPrice": "1"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "despacho_pallet",
+            "concept": "Despacho pallet",
+            "unit": "Pallet",
+            "price": 7.15,
+            "rawPrice": "7.15"
+          },
+          {
+            "key": "despacho_bulto_hasta_5u",
+            "concept": "Despacho bulto ( hasta 5U)",
+            "unit": "Bulto",
+            "price": 1.3,
+            "rawPrice": "1.3"
+          },
+          {
+            "key": "despacho_bulto_5_und_30_und",
+            "concept": "Despacho bulto ( >5 Und. <30 Und.)",
+            "unit": "Bulto",
+            "price": 0.65,
+            "rawPrice": "0.65"
+          },
+          {
+            "key": "despacho_bulto_30_und",
+            "concept": "Despacho bulto (>30 Und.)",
+            "unit": "Bulto",
+            "price": 0.325,
+            "rawPrice": "0.325"
+          },
+          {
+            "key": "despacho_tecnico",
+            "concept": "Despacho técnico",
+            "unit": "Pieza",
+            "price": 1.3,
+            "rawPrice": "1.3"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "despacho_pallet",
+            "concept": "Despacho pallet",
+            "unit": "Pallet",
+            "price": 9.295,
+            "rawPrice": "9.295"
+          },
+          {
+            "key": "despacho_bulto_hasta_5u",
+            "concept": "Despacho bulto ( hasta 5U)",
+            "unit": "Bulto",
+            "price": 1.69,
+            "rawPrice": "1.69"
+          },
+          {
+            "key": "despacho_bulto_5_und_30_und",
+            "concept": "Despacho bulto ( >5 Und. <30 Und.)",
+            "unit": "Bulto",
+            "price": 0.845,
+            "rawPrice": "0.845"
+          },
+          {
+            "key": "despacho_bulto_30_und",
+            "concept": "Despacho bulto (>30 Und.)",
+            "unit": "Bulto",
+            "price": 0.4225,
+            "rawPrice": "0.4225"
+          },
+          {
+            "key": "despacho_tecnico",
+            "concept": "Despacho técnico",
+            "unit": "Pieza",
+            "price": 1.69,
+            "rawPrice": "1.69"
+          }
+        ]
+      },
+      "servicios_extras": {
+        "seco": [
+          {
+            "key": "gestion_de_incidencias_hora",
+            "concept": "Gestión de incidencias ( Hora)",
+            "unit": "Hora",
+            "price": 25,
+            "rawPrice": "25"
+          },
+          {
+            "key": "reportes_personalizados_hora",
+            "concept": "Reportes personalizados (Hora)",
+            "unit": "Hora",
+            "price": 35,
+            "rawPrice": "35"
+          },
+          {
+            "key": "gestion_devoluciones_e_commerce",
+            "concept": "Gestión devoluciones e-commerce",
+            "unit": "Por envío",
+            "price": 2.5,
+            "rawPrice": "2.5"
+          },
+          {
+            "key": "control_de_lote_serie",
+            "concept": "Control de lote/serie",
+            "unit": null,
+            "price": 0.1,
+            "rawPrice": "0.1"
+          }
+        ],
+        "refrigerado": [
+          {
+            "key": "gestion_de_incidencias",
+            "concept": "Gestión de incidencias",
+            "unit": "Hora",
+            "price": 25,
+            "rawPrice": "25"
+          },
+          {
+            "key": "reportes_personalizados",
+            "concept": "Reportes personalizados",
+            "unit": "Hora",
+            "price": 35,
+            "rawPrice": "35"
+          },
+          {
+            "key": "gestion_devoluciones_e_commerce",
+            "concept": "Gestión devoluciones e-commerce",
+            "unit": "Por envío",
+            "price": 2.5,
+            "rawPrice": "2.5"
+          },
+          {
+            "key": "control_de_lote_serie",
+            "concept": "Control de lote/serie",
+            "unit": null,
+            "price": 0.13,
+            "rawPrice": "0.13"
+          }
+        ],
+        "congelado": [
+          {
+            "key": "gestion_de_incidencias",
+            "concept": "Gestión de incidencias",
+            "unit": "Hora",
+            "price": 25,
+            "rawPrice": "25"
+          },
+          {
+            "key": "reportes_personalizados",
+            "concept": "Reportes personalizados",
+            "unit": "Hora",
+            "price": 35,
+            "rawPrice": "35"
+          },
+          {
+            "key": "gestion_devoluciones_e_commerce",
+            "concept": "Gestión devoluciones e-commerce",
+            "unit": "Por envío",
+            "price": 2.5,
+            "rawPrice": "2.5"
+          },
+          {
+            "key": "control_de_lote_serie",
+            "concept": "Control de lote/serie",
+            "unit": null,
+            "price": 0.169,
+            "rawPrice": "0.169"
+          }
+        ]
+      }
+    },
+    "inventory": [
+      {
+        "key": "inventario_manual_basico",
+        "service": "Inventario manual básico",
+        "unit": "por hora / operario",
+        "price": 20,
+        "rawPrice": "20"
+      },
+      {
+        "key": "inventario_con_pda_digital",
+        "service": "Inventario con PDA / digital",
+        "unit": "por hora / operario",
+        "price": 23,
+        "rawPrice": "23"
+      },
+      {
+        "key": "inventario_nocturno_manual_basico",
+        "service": "Inventario nocturno manual básico",
+        "unit": "por hora / operario",
+        "price": 24,
+        "rawPrice": "24"
+      },
+      {
+        "key": "inventario_nocturno_con_pda_digital",
+        "service": "Inventario nocturno con PDA / digital",
+        "unit": "por hora / operario",
+        "price": 27,
+        "rawPrice": "27"
+      },
+      {
+        "key": "coordinador_inventario",
+        "service": "Coordinador inventario",
+        "unit": "por hora",
+        "price": 35,
+        "rawPrice": "35"
+      },
+      {
+        "key": "inventario_urgente_24h",
+        "service": "Inventario urgente (<24h)",
+        "unit": "recargo",
+        "price": 0.15,
+        "rawPrice": "0.15"
+      },
+      {
+        "key": "inventario_fin_de_semana",
+        "service": "Inventario fin de semana",
+        "unit": "recargo",
+        "price": 0.15,
+        "rawPrice": "0.15"
+      }
+    ]
+  },
+  "operational_supplements": {
+    "salida_sin_mercancia_no_cargar": {
+      "label": "Salida sin mercancía (no cargar)",
+      "appliesWhen": "Se solicita el mensajero/vehículo y no se entrega mercancía por causas externas",
+      "surchargeText": "50% +",
+      "billing": "50% de la Tarifa Base",
+      "percentages": [
+        0.5
+      ]
+    },
+    "solicitud_con_48h": {
+      "label": "Solicitud con < 48h",
+      "appliesWhen": "Servicio solicitado con menos de 48h de antelación",
+      "surchargeText": "25% +",
+      "billing": "% sobre Tarifa Base",
+      "percentages": [
+        0.25
+      ]
+    },
+    "solicitud_con_24h_o_menos": {
+      "label": "Solicitud con ~24h o menos",
+      "appliesWhen": "Servicio solicitado con 24h o menos",
+      "surchargeText": "50% +",
+      "billing": "% sobre Tarifa Base",
+      "percentages": [
+        0.5
+      ]
+    },
+    "ruta_esporadica_1_semana": {
+      "label": "Ruta esporádica (< 1 semana)",
+      "appliesWhen": "Servicio con >48h pero duración <7 días",
+      "surchargeText": "30% +",
+      "billing": "% sobre Tarifa Base",
+      "percentages": [
+        0.3
+      ]
+    },
+    "espera_en_carga_descarga": {
+      "label": "Espera en carga/descarga",
+      "appliesWhen": "Tiempo parado por causas del cliente (muelle, colas, documentación, etc.)",
+      "surchargeText": "10%  + cada 30 min (tras 30 min incluidos)",
+      "billing": "Tramos de 30 min sobre Tarifa Base",
+      "percentages": [
+        0.1
+      ]
+    },
+    "cancelacion_tardia": {
+      "label": "Cancelación tardía",
+      "appliesWhen": "Cancelación tras asignación del recurso",
+      "surchargeText": "<24h: +50% / 24–48h: +25%",
+      "billing": "% sobre Tarifa Base",
+      "percentages": [
+        0.5,
+        0.25
+      ]
+    },
+    "cambio_de_punto_condiciones": {
+      "label": "Cambio de punto / condiciones",
+      "appliesWhen": "Cambio de destino, franja o requisitos tras asignación",
+      "surchargeText": "25% +",
+      "billing": "% sobre Tarifa Base",
+      "percentages": [
+        0.25
+      ]
+    },
+    "segundo_intento_por_ausencia_rechazo": {
+      "label": "Segundo intento por ausencia/rechazo",
+      "appliesWhen": "Entrega fallida por cliente/receptor",
+      "surchargeText": "25%  + o nuevo servicio",
+      "billing": "Según acuerdo",
+      "percentages": [
+        0.25
+      ]
+    }
+  }
+}

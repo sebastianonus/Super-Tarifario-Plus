@@ -1,0 +1,4425 @@
+{
+  "id": "onus-express-julio27",
+  "name": "Onus Express 2026",
+  "description": "Tarifario Onus Express 2026 cargado desde VS Code.",
+  "criteriaColumns": [],
+  "items": [
+    {
+      "id": "onus-julio27-ultima-milla-1",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "ÚLTIMA MILLA",
+      "originalValues": [
+        "ÚLTIMA MILLA"
+      ],
+      "code": "",
+      "name": "ÚLTIMA MILLA",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-2",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tarifas de Vehículos\nTarifas de Vehículos frigorificos",
+      "originalValues": [
+        "Tarifas de Vehículos",
+        "Tarifas de Vehículos frigorificos"
+      ],
+      "code": "",
+      "name": "Tarifas de Vehículos\nTarifas de Vehículos frigorificos",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-3",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo de Vehículo\nMedia Jornada\nJornada Completa\nRefuerzo (max-3h)\nTipo de Vehículo\nMedia Jornada\nJornada Completa\nRefuerzo (max-3h)",
+      "originalValues": [
+        "Tipo de Vehículo",
+        "Media Jornada",
+        "Jornada Completa",
+        "Refuerzo (max-3h)",
+        "Tipo de Vehículo",
+        "Media Jornada",
+        "Jornada Completa",
+        "Refuerzo (max-3h)"
+      ],
+      "code": "",
+      "name": "Tipo de Vehículo\nMedia Jornada\nJornada Completa\nRefuerzo (max-3h)\nTipo de Vehículo\nMedia Jornada\nJornada Completa\nRefuerzo (max-3h)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-4",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo A (3 m³ – 1 pallet)\n90\n160\n80\nTipo A (3 m³ – 1 pallet)\n112.5\n200\n100",
+      "originalValues": [
+        "Tipo A (3 m³ – 1 pallet)",
+        "90",
+        "160",
+        "80",
+        "Tipo A (3 m³ – 1 pallet)",
+        "112.5",
+        "200",
+        "100"
+      ],
+      "code": "",
+      "name": "Tipo A (3 m³ – 1 pallet)\n90\n160\n80\nTipo A (3 m³ – 1 pallet)\n112.5\n200\n100",
+      "unit": "",
+      "unitPrice": 31,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-5",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo B (6 m³ – 2 pallets)\n95\n170\n90\nTipo B (6 m³ – 2 pallets)\n118.75\n212.5\n112.5",
+      "originalValues": [
+        "Tipo B (6 m³ – 2 pallets)",
+        "95",
+        "170",
+        "90",
+        "Tipo B (6 m³ – 2 pallets)",
+        "118.75",
+        "212.5",
+        "112.5"
+      ],
+      "code": "",
+      "name": "Tipo B (6 m³ – 2 pallets)\n95\n170\n90\nTipo B (6 m³ – 2 pallets)\n118.75\n212.5\n112.5",
+      "unit": "",
+      "unitPrice": 62,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-6",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo C (12 m³)\n100\n180\n103\nTipo C (12 m³)\n125\n225\n128.75",
+      "originalValues": [
+        "Tipo C (12 m³)",
+        "100",
+        "180",
+        "103",
+        "Tipo C (12 m³)",
+        "125",
+        "225",
+        "128.75"
+      ],
+      "code": "",
+      "name": "Tipo C (12 m³)\n100\n180\n103\nTipo C (12 m³)\n125\n225\n128.75",
+      "unit": "",
+      "unitPrice": 12,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-7",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo D (Carrozado)\n120\n220\n110\nTipo D (Carrozado)\n150\n275\n137.5",
+      "originalValues": [
+        "Tipo D (Carrozado)",
+        "120",
+        "220",
+        "110",
+        "Tipo D (Carrozado)",
+        "150",
+        "275",
+        "137.5"
+      ],
+      "code": "",
+      "name": "Tipo D (Carrozado)\n120\n220\n110\nTipo D (Carrozado)\n150\n275\n137.5",
+      "unit": "",
+      "unitPrice": 120,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-8",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo E (Moto)\n65\n110\n50",
+      "originalValues": [
+        "Tipo E (Moto)",
+        "65",
+        "110",
+        "50"
+      ],
+      "code": "",
+      "name": "Tipo E (Moto)\n65\n110\n50",
+      "unit": "",
+      "unitPrice": 65,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-9",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tipo F (Bici)\n55\n90\n40",
+      "originalValues": [
+        "Tipo F (Bici)",
+        "55",
+        "90",
+        "40"
+      ],
+      "code": "",
+      "name": "Tipo F (Bici)\n55\n90\n40",
+      "unit": "",
+      "unitPrice": 55,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-10",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramos por Kilómetros\nTramos por Kilómetros",
+      "originalValues": [
+        "Tramos por Kilómetros",
+        "Tramos por Kilómetros"
+      ],
+      "code": "",
+      "name": "Tramos por Kilómetros\nTramos por Kilómetros",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-11",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramo\nUnidad\nPrecio\nTramo\nUnidad\nPrecio",
+      "originalValues": [
+        "Tramo",
+        "Unidad",
+        "Precio",
+        "Tramo",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Tramo\nUnidad\nPrecio\nTramo\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-12",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramo 1 (0–100)\n0\nTramo 1 (0–100)\nKm\nIncluido",
+      "originalValues": [
+        "Tramo 1 (0–100)",
+        "0",
+        "Tramo 1 (0–100)",
+        "Km",
+        "Incluido"
+      ],
+      "code": "",
+      "name": "Tramo 1 (0–100)\n0\nTramo 1 (0–100)\nKm\nIncluido",
+      "unit": "",
+      "unitPrice": 10100,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-13",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramo 2 (101–200)\n10\nTramo 2 (101–200)\nKm\n12.5",
+      "originalValues": [
+        "Tramo 2 (101–200)",
+        "10",
+        "Tramo 2 (101–200)",
+        "Km",
+        "12.5"
+      ],
+      "code": "",
+      "name": "Tramo 2 (101–200)\n10\nTramo 2 (101–200)\nKm\n12.5",
+      "unit": "",
+      "unitPrice": 2101200,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-14",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramo 3 (201-300)\n15\nTramo 3 (201-300)\nKm\n18.75",
+      "originalValues": [
+        "Tramo 3 (201-300)",
+        "15",
+        "Tramo 3 (201-300)",
+        "Km",
+        "18.75"
+      ],
+      "code": "",
+      "name": "Tramo 3 (201-300)\n15\nTramo 3 (201-300)\nKm\n18.75",
+      "unit": "",
+      "unitPrice": 15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-15",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Tramo 4 (+301)\n20\nTramo 4 (+301)\nKm\n25",
+      "originalValues": [
+        "Tramo 4 (+301)",
+        "20",
+        "Tramo 4 (+301)",
+        "Km",
+        "25"
+      ],
+      "code": "",
+      "name": "Tramo 4 (+301)\n20\nTramo 4 (+301)\nKm\n25",
+      "unit": "",
+      "unitPrice": 4301,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-16",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Personal Cualificado",
+      "originalValues": [
+        "Personal Cualificado"
+      ],
+      "code": "",
+      "name": "Personal Cualificado",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-17",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Concepto\nUnidad\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-18",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Mozo de almacén - día\nDía\n140",
+      "originalValues": [
+        "Mozo de almacén - día",
+        "Día",
+        "140"
+      ],
+      "code": "",
+      "name": "Mozo de almacén - día\nDía\n140",
+      "unit": "",
+      "unitPrice": 140,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-19",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Jefe de tráfico - día\nDía\n165",
+      "originalValues": [
+        "Jefe de tráfico - día",
+        "Día",
+        "165"
+      ],
+      "code": "",
+      "name": "Jefe de tráfico - día\nDía\n165",
+      "unit": "",
+      "unitPrice": 165,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-20",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Otros servicios logistísticos\nDía\nConsultar",
+      "originalValues": [
+        "Otros servicios logistísticos",
+        "Día",
+        "Consultar"
+      ],
+      "code": "",
+      "name": "Otros servicios logistísticos\nDía\nConsultar",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-21",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Extras",
+      "originalValues": [
+        "Extras"
+      ],
+      "code": "",
+      "name": "Extras",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-22",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Concepto\nUnidad\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-23",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Hora extra\nHora\n20",
+      "originalValues": [
+        "Hora extra",
+        "Hora",
+        "20"
+      ],
+      "code": "",
+      "name": "Hora extra\nHora\n20",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-24",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Hora nocturna\nHora\n5",
+      "originalValues": [
+        "Hora nocturna",
+        "Hora",
+        "5"
+      ],
+      "code": "",
+      "name": "Hora nocturna\nHora\n5",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-25",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Ruta esporádica (< 1 semana)\n%\n30%+ sobre Tarifa Base",
+      "originalValues": [
+        "Ruta esporádica (< 1 semana)",
+        "%",
+        "30%+ sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Ruta esporádica (< 1 semana)\n%\n30%+ sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-26",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "1 día\n%\n50%+ sobre Tarifa Base",
+      "originalValues": [
+        "1 día",
+        "%",
+        "50%+ sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "1 día\n%\n50%+ sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-27",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Campaña\n%\n25%+ sobre Tarifa Base",
+      "originalValues": [
+        "Campaña",
+        "%",
+        "25%+ sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Campaña\n%\n25%+ sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-28",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Cancelación tras asignación del recurso\n%\n<24h: 50% de la tarifa / 24–48h: 25% de la tarifa",
+      "originalValues": [
+        "Cancelación tras asignación del recurso",
+        "%",
+        "<24h: 50% de la tarifa / 24–48h: 25% de la tarifa"
+      ],
+      "code": "",
+      "name": "Cancelación tras asignación del recurso\n%\n<24h: 50% de la tarifa / 24–48h: 25% de la tarifa",
+      "unit": "",
+      "unitPrice": 2450244825,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-29",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Servicios Especiales (Consultar)",
+      "originalValues": [
+        "Servicios Especiales (Consultar)"
+      ],
+      "code": "",
+      "name": "Servicios Especiales (Consultar)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-30",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Festivos y domingos",
+      "originalValues": [
+        "Festivos y domingos"
+      ],
+      "code": "",
+      "name": "Festivos y domingos",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-31",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Servicios urgentes",
+      "originalValues": [
+        "Servicios urgentes"
+      ],
+      "code": "",
+      "name": "Servicios urgentes",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-32",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Esperas prolongadas",
+      "originalValues": [
+        "Esperas prolongadas"
+      ],
+      "code": "",
+      "name": "Esperas prolongadas",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-33",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Segunda persona",
+      "originalValues": [
+        "Segunda persona"
+      ],
+      "code": "",
+      "name": "Segunda persona",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-ultima-milla-34",
+      "sheetName": "ULTIMA MILLA",
+      "originalDescription": "Cambios de ruta",
+      "originalValues": [
+        "Cambios de ruta"
+      ],
+      "code": "",
+      "name": "Cambios de ruta",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-1",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "Tarifas por Peso (€)",
+      "originalValues": [
+        "Tarifas por Peso (€)"
+      ],
+      "code": "",
+      "name": "Tarifas por Peso (€)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-2",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "Servicio\nHasta 2 kg\nHasta 5 kg\nHasta 10 kg\nKg adicional",
+      "originalValues": [
+        "Servicio",
+        "Hasta 2 kg",
+        "Hasta 5 kg",
+        "Hasta 10 kg",
+        "Kg adicional"
+      ],
+      "code": "",
+      "name": "Servicio\nHasta 2 kg\nHasta 5 kg\nHasta 10 kg\nKg adicional",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-3",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "48h\n5.5\n6.5\n8.5\n0.5",
+      "originalValues": [
+        "48h",
+        "5.5",
+        "6.5",
+        "8.5",
+        "0.5"
+      ],
+      "code": "",
+      "name": "48h\n5.5\n6.5\n8.5\n0.5",
+      "unit": "",
+      "unitPrice": 48,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-4",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "19h\n9.87\n10.17\n13.08\n0.81",
+      "originalValues": [
+        "19h",
+        "9.87",
+        "10.17",
+        "13.08",
+        "0.81"
+      ],
+      "code": "",
+      "name": "19h\n9.87\n10.17\n13.08\n0.81",
+      "unit": "",
+      "unitPrice": 19,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-5",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "14h\n14.04\n15.42\n24.03\n1.68",
+      "originalValues": [
+        "14h",
+        "14.04",
+        "15.42",
+        "24.03",
+        "1.68"
+      ],
+      "code": "",
+      "name": "14h\n14.04\n15.42\n24.03\n1.68",
+      "unit": "",
+      "unitPrice": 14,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-6",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "12h\n15.66\n17.73\n29.08\n1.86",
+      "originalValues": [
+        "12h",
+        "15.66",
+        "17.73",
+        "29.08",
+        "1.86"
+      ],
+      "code": "",
+      "name": "12h\n15.66\n17.73\n29.08\n1.86",
+      "unit": "",
+      "unitPrice": 12,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-7",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "10h\n29.59\n32.63\n49\n2.62",
+      "originalValues": [
+        "10h",
+        "29.59",
+        "32.63",
+        "49",
+        "2.62"
+      ],
+      "code": "",
+      "name": "10h\n29.59\n32.63\n49\n2.62",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-8",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "08:30h\n56.62\n62.11\n86.5\n3.86",
+      "originalValues": [
+        "08:30h",
+        "56.62",
+        "62.11",
+        "86.5",
+        "3.86"
+      ],
+      "code": "",
+      "name": "08:30h\n56.62\n62.11\n86.5\n3.86",
+      "unit": "",
+      "unitPrice": 830,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-9",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "HOY\nConsultar\nConsultar\nConsultar\nConsultar",
+      "originalValues": [
+        "HOY",
+        "Consultar",
+        "Consultar",
+        "Consultar",
+        "Consultar"
+      ],
+      "code": "",
+      "name": "HOY\nConsultar\nConsultar\nConsultar\nConsultar",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-10",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "Pallet seco",
+      "originalValues": [
+        "Pallet seco"
+      ],
+      "code": "",
+      "name": "Pallet seco",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-11",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "Provincia\nNacional\nBaleares\nAndorra\nGibraltar\nCanarias",
+      "originalValues": [
+        "Provincia",
+        "Nacional",
+        "Baleares",
+        "Andorra",
+        "Gibraltar",
+        "Canarias"
+      ],
+      "code": "",
+      "name": "Provincia\nNacional\nBaleares\nAndorra\nGibraltar\nCanarias",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-12",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "Kilos\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo",
+      "originalValues": [
+        "Kilos",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo"
+      ],
+      "code": "",
+      "name": "Kilos\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-13",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "25\n0.4727625\n0.64614375\n1.159725\n0.699825\n2.36775\n1.743",
+      "originalValues": [
+        "25",
+        "0.4727625",
+        "0.64614375",
+        "1.159725",
+        "0.699825",
+        "2.36775",
+        "1.743"
+      ],
+      "code": "",
+      "name": "25\n0.4727625\n0.64614375\n1.159725\n0.699825\n2.36775\n1.743",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-14",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "100\n0.33768750000000003\n0.46153125000000006\n0.828375\n0.49987499999999996\n1.69125\n1.245",
+      "originalValues": [
+        "100",
+        "0.33768750000000003",
+        "0.46153125000000006",
+        "0.828375",
+        "0.49987499999999996",
+        "1.69125",
+        "1.245"
+      ],
+      "code": "",
+      "name": "100\n0.33768750000000003\n0.46153125000000006\n0.828375\n0.49987499999999996\n1.69125\n1.245",
+      "unit": "",
+      "unitPrice": 100,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-15",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "300\n0.2625\n0.36374999999999996\n0.6925000000000001\n0.40125\n1.2506249999999999\n1.2075",
+      "originalValues": [
+        "300",
+        "0.2625",
+        "0.36374999999999996",
+        "0.6925000000000001",
+        "0.40125",
+        "1.2506249999999999",
+        "1.2075"
+      ],
+      "code": "",
+      "name": "300\n0.2625\n0.36374999999999996\n0.6925000000000001\n0.40125\n1.2506249999999999\n1.2075",
+      "unit": "",
+      "unitPrice": 300,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-16",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "500\n0.24\n0.33875\n0.599375\n0.313125\n0.76875\n1.1287500000000001",
+      "originalValues": [
+        "500",
+        "0.24",
+        "0.33875",
+        "0.599375",
+        "0.313125",
+        "0.76875",
+        "1.1287500000000001"
+      ],
+      "code": "",
+      "name": "500\n0.24\n0.33875\n0.599375\n0.313125\n0.76875\n1.1287500000000001",
+      "unit": "",
+      "unitPrice": 500,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-17",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "750\n0.234375\n0.3315625\n0.583125\n0.298125\n0.73125\n1.05375",
+      "originalValues": [
+        "750",
+        "0.234375",
+        "0.3315625",
+        "0.583125",
+        "0.298125",
+        "0.73125",
+        "1.05375"
+      ],
+      "code": "",
+      "name": "750\n0.234375\n0.3315625\n0.583125\n0.298125\n0.73125\n1.05375",
+      "unit": "",
+      "unitPrice": 750,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-18",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "1000\n0.226875\n0.3203125\n0.5650000000000001\n0.283125\n0.6937500000000001\n1.0875",
+      "originalValues": [
+        "1000",
+        "0.226875",
+        "0.3203125",
+        "0.5650000000000001",
+        "0.283125",
+        "0.6937500000000001",
+        "1.0875"
+      ],
+      "code": "",
+      "name": "1000\n0.226875\n0.3203125\n0.5650000000000001\n0.283125\n0.6937500000000001\n1.0875",
+      "unit": "",
+      "unitPrice": 1000,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-19",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "1500\n0.211875\n0.3096875\n0.55\n0.2775\n0.66\n1.119375",
+      "originalValues": [
+        "1500",
+        "0.211875",
+        "0.3096875",
+        "0.55",
+        "0.2775",
+        "0.66",
+        "1.119375"
+      ],
+      "code": "",
+      "name": "1500\n0.211875\n0.3096875\n0.55\n0.2775\n0.66\n1.119375",
+      "unit": "",
+      "unitPrice": 1500,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-20",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "2000\n0.20625000000000002\n0.3028125\n0.5375\n0.271875\n0.66\n1.0387499999999998",
+      "originalValues": [
+        "2000",
+        "0.20625000000000002",
+        "0.3028125",
+        "0.5375",
+        "0.271875",
+        "0.66",
+        "1.0387499999999998"
+      ],
+      "code": "",
+      "name": "2000\n0.20625000000000002\n0.3028125\n0.5375\n0.271875\n0.66\n1.0387499999999998",
+      "unit": "",
+      "unitPrice": 2000,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-21",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "2500\n0.200625\n0.2965625\n0.51625\n0.26625\n0.66\n1.0050000000000001",
+      "originalValues": [
+        "2500",
+        "0.200625",
+        "0.2965625",
+        "0.51625",
+        "0.26625",
+        "0.66",
+        "1.0050000000000001"
+      ],
+      "code": "",
+      "name": "2500\n0.200625\n0.2965625\n0.51625\n0.26625\n0.66\n1.0050000000000001",
+      "unit": "",
+      "unitPrice": 2500,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-22",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "3000\n0.193125\n0.2859375\n0.49562500000000004\n0.260625\n0.66\n0.984375",
+      "originalValues": [
+        "3000",
+        "0.193125",
+        "0.2859375",
+        "0.49562500000000004",
+        "0.260625",
+        "0.66",
+        "0.984375"
+      ],
+      "code": "",
+      "name": "3000\n0.193125\n0.2859375\n0.49562500000000004\n0.260625\n0.66\n0.984375",
+      "unit": "",
+      "unitPrice": 3000,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-23",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "10000\n0.18375\n0.2746875\n0.49562500000000004\n0.255\n0.66\n0.965625",
+      "originalValues": [
+        "10000",
+        "0.18375",
+        "0.2746875",
+        "0.49562500000000004",
+        "0.255",
+        "0.66",
+        "0.965625"
+      ],
+      "code": "",
+      "name": "10000\n0.18375\n0.2746875\n0.49562500000000004\n0.255\n0.66\n0.965625",
+      "unit": "",
+      "unitPrice": 10000,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-24",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "ZONA 7  (1)",
+      "originalValues": [
+        "ZONA 7  (1)"
+      ],
+      "code": "",
+      "name": "ZONA 7  (1)",
+      "unit": "",
+      "unitPrice": 71,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-25",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "28.05",
+      "originalValues": [
+        "28.05"
+      ],
+      "code": "",
+      "name": "28.05",
+      "unit": "",
+      "unitPrice": 28.05,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-26",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "28.05",
+      "originalValues": [
+        "28.05"
+      ],
+      "code": "",
+      "name": "28.05",
+      "unit": "",
+      "unitPrice": 28.05,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-27",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "29.91",
+      "originalValues": [
+        "29.91"
+      ],
+      "code": "",
+      "name": "29.91",
+      "unit": "",
+      "unitPrice": 29.91,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-28",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "43.07",
+      "originalValues": [
+        "43.07"
+      ],
+      "code": "",
+      "name": "43.07",
+      "unit": "",
+      "unitPrice": 43.07,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-29",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "55.81",
+      "originalValues": [
+        "55.81"
+      ],
+      "code": "",
+      "name": "55.81",
+      "unit": "",
+      "unitPrice": 55.81,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-30",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "67.86",
+      "originalValues": [
+        "67.86"
+      ],
+      "code": "",
+      "name": "67.86",
+      "unit": "",
+      "unitPrice": 67.86,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-31",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "77.6",
+      "originalValues": [
+        "77.6"
+      ],
+      "code": "",
+      "name": "77.6",
+      "unit": "",
+      "unitPrice": 77.6,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-32",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "87.56",
+      "originalValues": [
+        "87.56"
+      ],
+      "code": "",
+      "name": "87.56",
+      "unit": "",
+      "unitPrice": 87.56,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-33",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "97.43",
+      "originalValues": [
+        "97.43"
+      ],
+      "code": "",
+      "name": "97.43",
+      "unit": "",
+      "unitPrice": 97.43,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-34",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "107.32",
+      "originalValues": [
+        "107.32"
+      ],
+      "code": "",
+      "name": "107.32",
+      "unit": "",
+      "unitPrice": 107.32,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-35",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "116.75",
+      "originalValues": [
+        "116.75"
+      ],
+      "code": "",
+      "name": "116.75",
+      "unit": "",
+      "unitPrice": 116.75,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-36",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "127.12",
+      "originalValues": [
+        "127.12"
+      ],
+      "code": "",
+      "name": "127.12",
+      "unit": "",
+      "unitPrice": 127.12,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-37",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "144.54",
+      "originalValues": [
+        "144.54"
+      ],
+      "code": "",
+      "name": "144.54",
+      "unit": "",
+      "unitPrice": 144.54,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-38",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "168.35",
+      "originalValues": [
+        "168.35"
+      ],
+      "code": "",
+      "name": "168.35",
+      "unit": "",
+      "unitPrice": 168.35,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-39",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "189.84",
+      "originalValues": [
+        "189.84"
+      ],
+      "code": "",
+      "name": "189.84",
+      "unit": "",
+      "unitPrice": 189.84,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-40",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "212.42",
+      "originalValues": [
+        "212.42"
+      ],
+      "code": "",
+      "name": "212.42",
+      "unit": "",
+      "unitPrice": 212.42,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-41",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "241.95",
+      "originalValues": [
+        "241.95"
+      ],
+      "code": "",
+      "name": "241.95",
+      "unit": "",
+      "unitPrice": 241.95,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-42",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "273.29",
+      "originalValues": [
+        "273.29"
+      ],
+      "code": "",
+      "name": "273.29",
+      "unit": "",
+      "unitPrice": 273.29,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-43",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "306.63",
+      "originalValues": [
+        "306.63"
+      ],
+      "code": "",
+      "name": "306.63",
+      "unit": "",
+      "unitPrice": 306.63,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-44",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "338.77",
+      "originalValues": [
+        "338.77"
+      ],
+      "code": "",
+      "name": "338.77",
+      "unit": "",
+      "unitPrice": 338.77,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-45",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "371.38",
+      "originalValues": [
+        "371.38"
+      ],
+      "code": "",
+      "name": "371.38",
+      "unit": "",
+      "unitPrice": 371.38,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-46",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "405.42",
+      "originalValues": [
+        "405.42"
+      ],
+      "code": "",
+      "name": "405.42",
+      "unit": "",
+      "unitPrice": 405.42,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-47",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "500.21",
+      "originalValues": [
+        "500.21"
+      ],
+      "code": "",
+      "name": "500.21",
+      "unit": "",
+      "unitPrice": 500.21,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-48",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "569.06",
+      "originalValues": [
+        "569.06"
+      ],
+      "code": "",
+      "name": "569.06",
+      "unit": "",
+      "unitPrice": 569.06,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-49",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "638.86",
+      "originalValues": [
+        "638.86"
+      ],
+      "code": "",
+      "name": "638.86",
+      "unit": "",
+      "unitPrice": 638.86,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-50",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "709.53",
+      "originalValues": [
+        "709.53"
+      ],
+      "code": "",
+      "name": "709.53",
+      "unit": "",
+      "unitPrice": 709.53,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-51",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "790.23",
+      "originalValues": [
+        "790.23"
+      ],
+      "code": "",
+      "name": "790.23",
+      "unit": "",
+      "unitPrice": 790.23,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-distribucion-envios-52",
+      "sheetName": "DISTRIBUCION-ENVÍOS",
+      "originalDescription": "284.4",
+      "originalValues": [
+        "284.4"
+      ],
+      "code": "",
+      "name": "284.4",
+      "unit": "",
+      "unitPrice": 284.4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-1",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "FRIO ONUS 13_30\nFRIO\nProvincia\nNacional\nBaleares\nAndorra\nGibraltar\nCanarias 3",
+      "originalValues": [
+        "FRIO ONUS 13_30",
+        "FRIO",
+        "Provincia",
+        "Nacional",
+        "Baleares",
+        "Andorra",
+        "Gibraltar",
+        "Canarias 3"
+      ],
+      "code": "",
+      "name": "FRIO ONUS 13_30\nFRIO\nProvincia\nNacional\nBaleares\nAndorra\nGibraltar\nCanarias 3",
+      "unit": "",
+      "unitPrice": 1330,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-2",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kilos\nProvinciales\nNacional\nPortugal\nBaleares\nKilos\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo",
+      "originalValues": [
+        "Kilos",
+        "Provinciales",
+        "Nacional",
+        "Portugal",
+        "Baleares",
+        "Kilos",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo",
+        "Valor kilo"
+      ],
+      "code": "",
+      "name": "Kilos\nProvinciales\nNacional\nPortugal\nBaleares\nKilos\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo\nValor kilo",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-3",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 1 kg\n8.0055\n9.747\n9.747\n12.15\n100\n0.4558781250000001\n0.6230671875000001\n1.11830625\n0.67483125\n2.2831875\n1.6807500000000002",
+      "originalValues": [
+        "Hasta 1 kg",
+        "8.0055",
+        "9.747",
+        "9.747",
+        "12.15",
+        "100",
+        "0.4558781250000001",
+        "0.6230671875000001",
+        "1.11830625",
+        "0.67483125",
+        "2.2831875",
+        "1.6807500000000002"
+      ],
+      "code": "",
+      "name": "Hasta 1 kg\n8.0055\n9.747\n9.747\n12.15\n100\n0.4558781250000001\n0.6230671875000001\n1.11830625\n0.67483125\n2.2831875\n1.6807500000000002",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-4",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 2 kg\n9.5715\n13.284\n13.284\n18.643500000000003\n300\n0.35437500000000005\n0.49106249999999996\n0.9348750000000002\n0.5416875\n1.68834375\n1.630125",
+      "originalValues": [
+        "Hasta 2 kg",
+        "9.5715",
+        "13.284",
+        "13.284",
+        "18.643500000000003",
+        "300",
+        "0.35437500000000005",
+        "0.49106249999999996",
+        "0.9348750000000002",
+        "0.5416875",
+        "1.68834375",
+        "1.630125"
+      ],
+      "code": "",
+      "name": "Hasta 2 kg\n9.5715\n13.284\n13.284\n18.643500000000003\n300\n0.35437500000000005\n0.49106249999999996\n0.9348750000000002\n0.5416875\n1.68834375\n1.630125",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-5",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 3 kg\n13.0815\n14.9985\n14.9985\n25.8525\n500\n0.324\n0.4573125\n0.80915625\n0.42271875000000003\n1.0378125\n1.5238125000000002",
+      "originalValues": [
+        "Hasta 3 kg",
+        "13.0815",
+        "14.9985",
+        "14.9985",
+        "25.8525",
+        "500",
+        "0.324",
+        "0.4573125",
+        "0.80915625",
+        "0.42271875000000003",
+        "1.0378125",
+        "1.5238125000000002"
+      ],
+      "code": "",
+      "name": "Hasta 3 kg\n13.0815\n14.9985\n14.9985\n25.8525\n500\n0.324\n0.4573125\n0.80915625\n0.42271875000000003\n1.0378125\n1.5238125000000002",
+      "unit": "",
+      "unitPrice": 3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-6",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 4 kg\n13.810500000000001\n17.577\n17.577\n27.553500000000003\n750\n0.31640625\n0.44760937500000003\n0.7872187500000001\n0.40246875\n0.9871875\n1.4225625",
+      "originalValues": [
+        "Hasta 4 kg",
+        "13.810500000000001",
+        "17.577",
+        "17.577",
+        "27.553500000000003",
+        "750",
+        "0.31640625",
+        "0.44760937500000003",
+        "0.7872187500000001",
+        "0.40246875",
+        "0.9871875",
+        "1.4225625"
+      ],
+      "code": "",
+      "name": "Hasta 4 kg\n13.810500000000001\n17.577\n17.577\n27.553500000000003\n750\n0.31640625\n0.44760937500000003\n0.7872187500000001\n0.40246875\n0.9871875\n1.4225625",
+      "unit": "",
+      "unitPrice": 4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-7",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 5 kg\n14.5395\n18.846000000000004\n18.846000000000004\n33.291000000000004\n1000\n0.30628125\n0.432421875\n0.7627500000000002\n0.38221875000000005\n0.9365625000000002\n1.468125",
+      "originalValues": [
+        "Hasta 5 kg",
+        "14.5395",
+        "18.846000000000004",
+        "18.846000000000004",
+        "33.291000000000004",
+        "1000",
+        "0.30628125",
+        "0.432421875",
+        "0.7627500000000002",
+        "0.38221875000000005",
+        "0.9365625000000002",
+        "1.468125"
+      ],
+      "code": "",
+      "name": "Hasta 5 kg\n14.5395\n18.846000000000004\n18.846000000000004\n33.291000000000004\n1000\n0.30628125\n0.432421875\n0.7627500000000002\n0.38221875000000005\n0.9365625000000002\n1.468125",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-8",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 6 kg\n15.4305\n21.0465\n21.0465\n37.50300000000001\n1500\n0.28603125\n0.418078125\n0.7425000000000002\n0.37462500000000004\n0.8910000000000001\n1.5111562500000002",
+      "originalValues": [
+        "Hasta 6 kg",
+        "15.4305",
+        "21.0465",
+        "21.0465",
+        "37.50300000000001",
+        "1500",
+        "0.28603125",
+        "0.418078125",
+        "0.7425000000000002",
+        "0.37462500000000004",
+        "0.8910000000000001",
+        "1.5111562500000002"
+      ],
+      "code": "",
+      "name": "Hasta 6 kg\n15.4305\n21.0465\n21.0465\n37.50300000000001\n1500\n0.28603125\n0.418078125\n0.7425000000000002\n0.37462500000000004\n0.8910000000000001\n1.5111562500000002",
+      "unit": "",
+      "unitPrice": 6,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-9",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 7 kg\n17.5635\n22.005000000000003\n22.005000000000003\n40.999500000000005\n2000\n0.27843750000000006\n0.408796875\n0.725625\n0.36703125\n0.8910000000000001\n1.4023124999999999",
+      "originalValues": [
+        "Hasta 7 kg",
+        "17.5635",
+        "22.005000000000003",
+        "22.005000000000003",
+        "40.999500000000005",
+        "2000",
+        "0.27843750000000006",
+        "0.408796875",
+        "0.725625",
+        "0.36703125",
+        "0.8910000000000001",
+        "1.4023124999999999"
+      ],
+      "code": "",
+      "name": "Hasta 7 kg\n17.5635\n22.005000000000003\n22.005000000000003\n40.999500000000005\n2000\n0.27843750000000006\n0.408796875\n0.725625\n0.36703125\n0.8910000000000001\n1.4023124999999999",
+      "unit": "",
+      "unitPrice": 7,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-10",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 8 kg\n18.3195\n23.314500000000002\n23.314500000000002\n44.5095\n2500\n0.27084375\n0.400359375\n0.6969375\n0.3594375\n0.8910000000000001\n1.3567500000000003",
+      "originalValues": [
+        "Hasta 8 kg",
+        "18.3195",
+        "23.314500000000002",
+        "23.314500000000002",
+        "44.5095",
+        "2500",
+        "0.27084375",
+        "0.400359375",
+        "0.6969375",
+        "0.3594375",
+        "0.8910000000000001",
+        "1.3567500000000003"
+      ],
+      "code": "",
+      "name": "Hasta 8 kg\n18.3195\n23.314500000000002\n23.314500000000002\n44.5095\n2500\n0.27084375\n0.400359375\n0.6969375\n0.3594375\n0.8910000000000001\n1.3567500000000003",
+      "unit": "",
+      "unitPrice": 8,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-11",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 9 kg\n20.439000000000004\n26.203500000000002\n26.203500000000002\n48.0195\n3000\n0.26071875\n0.38601562500000003\n0.66909375\n0.35184375\n0.8910000000000001\n1.3289062500000002",
+      "originalValues": [
+        "Hasta 9 kg",
+        "20.439000000000004",
+        "26.203500000000002",
+        "26.203500000000002",
+        "48.0195",
+        "3000",
+        "0.26071875",
+        "0.38601562500000003",
+        "0.66909375",
+        "0.35184375",
+        "0.8910000000000001",
+        "1.3289062500000002"
+      ],
+      "code": "",
+      "name": "Hasta 9 kg\n20.439000000000004\n26.203500000000002\n26.203500000000002\n48.0195\n3000\n0.26071875\n0.38601562500000003\n0.66909375\n0.35184375\n0.8910000000000001\n1.3289062500000002",
+      "unit": "",
+      "unitPrice": 9,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-12",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 10 kg\n21.060000000000002\n27.567000000000004\n27.567000000000004\n52.569\n10000\n0.24806250000000002\n0.370828125\n0.66909375\n0.34425000000000006\n0.8910000000000001\n1.30359375",
+      "originalValues": [
+        "Hasta 10 kg",
+        "21.060000000000002",
+        "27.567000000000004",
+        "27.567000000000004",
+        "52.569",
+        "10000",
+        "0.24806250000000002",
+        "0.370828125",
+        "0.66909375",
+        "0.34425000000000006",
+        "0.8910000000000001",
+        "1.30359375"
+      ],
+      "code": "",
+      "name": "Hasta 10 kg\n21.060000000000002\n27.567000000000004\n27.567000000000004\n52.569\n10000\n0.24806250000000002\n0.370828125\n0.66909375\n0.34425000000000006\n0.8910000000000001\n1.30359375",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-13",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 15 kg\n32.3325\n42.7005\n42.7005\n72.3465",
+      "originalValues": [
+        "Hasta 15 kg",
+        "32.3325",
+        "42.7005",
+        "42.7005",
+        "72.3465"
+      ],
+      "code": "",
+      "name": "Hasta 15 kg\n32.3325\n42.7005\n42.7005\n72.3465",
+      "unit": "",
+      "unitPrice": 15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-14",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 20 kg\n39.096000000000004\n51.948\n51.948\n91.4085",
+      "originalValues": [
+        "Hasta 20 kg",
+        "39.096000000000004",
+        "51.948",
+        "51.948",
+        "91.4085"
+      ],
+      "code": "",
+      "name": "Hasta 20 kg\n39.096000000000004\n51.948\n51.948\n91.4085",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-15",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 25 kg\n45.83250000000001\n61.398\n61.398\n112.19850000000001",
+      "originalValues": [
+        "Hasta 25 kg",
+        "45.83250000000001",
+        "61.398",
+        "61.398",
+        "112.19850000000001"
+      ],
+      "code": "",
+      "name": "Hasta 25 kg\n45.83250000000001\n61.398\n61.398\n112.19850000000001",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-16",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 30 kg\n52.569\n70.82100000000001\n70.82100000000001\n132.97500000000002",
+      "originalValues": [
+        "Hasta 30 kg",
+        "52.569",
+        "70.82100000000001",
+        "70.82100000000001",
+        "132.97500000000002"
+      ],
+      "code": "",
+      "name": "Hasta 30 kg\n52.569\n70.82100000000001\n70.82100000000001\n132.97500000000002",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-17",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kg extra\n1.539\n1.701\n2.0925000000000002\n4.293",
+      "originalValues": [
+        "Kg extra",
+        "1.539",
+        "1.701",
+        "2.0925000000000002",
+        "4.293"
+      ],
+      "code": "",
+      "name": "Kg extra\n1.539\n1.701\n2.0925000000000002\n4.293",
+      "unit": "",
+      "unitPrice": 1.539,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-18",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "FRIO ONUS 10",
+      "originalValues": [
+        "FRIO ONUS 10"
+      ],
+      "code": "",
+      "name": "FRIO ONUS 10",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-19",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kilos\nProvinciales\nNacional\nPortugal",
+      "originalValues": [
+        "Kilos",
+        "Provinciales",
+        "Nacional",
+        "Portugal"
+      ],
+      "code": "",
+      "name": "Kilos\nProvinciales\nNacional\nPortugal",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-20",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 1 kg\n13.297500000000001\n15.309000000000001\n15.309000000000001",
+      "originalValues": [
+        "Hasta 1 kg",
+        "13.297500000000001",
+        "15.309000000000001",
+        "15.309000000000001"
+      ],
+      "code": "",
+      "name": "Hasta 1 kg\n13.297500000000001\n15.309000000000001\n15.309000000000001",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-21",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 2 kg\n15.700500000000002\n18.5895\n18.5895",
+      "originalValues": [
+        "Hasta 2 kg",
+        "15.700500000000002",
+        "18.5895",
+        "18.5895"
+      ],
+      "code": "",
+      "name": "Hasta 2 kg\n15.700500000000002\n18.5895\n18.5895",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-22",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 3 kg\n18.333000000000002\n21.006000000000004\n21.006000000000004",
+      "originalValues": [
+        "Hasta 3 kg",
+        "18.333000000000002",
+        "21.006000000000004",
+        "21.006000000000004"
+      ],
+      "code": "",
+      "name": "Hasta 3 kg\n18.333000000000002\n21.006000000000004\n21.006000000000004",
+      "unit": "",
+      "unitPrice": 3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-23",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 4 kg\n19.359\n24.610500000000002\n24.610500000000002",
+      "originalValues": [
+        "Hasta 4 kg",
+        "19.359",
+        "24.610500000000002",
+        "24.610500000000002"
+      ],
+      "code": "",
+      "name": "Hasta 4 kg\n19.359\n24.610500000000002\n24.610500000000002",
+      "unit": "",
+      "unitPrice": 4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-24",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 5 kg\n20.3715\n26.365500000000004\n26.365500000000004",
+      "originalValues": [
+        "Hasta 5 kg",
+        "20.3715",
+        "26.365500000000004",
+        "26.365500000000004"
+      ],
+      "code": "",
+      "name": "Hasta 5 kg\n20.3715\n26.365500000000004\n26.365500000000004",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-25",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 6 kg\n24.462000000000003\n30.847500000000004\n30.847500000000004",
+      "originalValues": [
+        "Hasta 6 kg",
+        "24.462000000000003",
+        "30.847500000000004",
+        "30.847500000000004"
+      ],
+      "code": "",
+      "name": "Hasta 6 kg\n24.462000000000003\n30.847500000000004\n30.847500000000004",
+      "unit": "",
+      "unitPrice": 6,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-26",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 7 kg\n27.094500000000004\n34.722\n34.722",
+      "originalValues": [
+        "Hasta 7 kg",
+        "27.094500000000004",
+        "34.722",
+        "34.722"
+      ],
+      "code": "",
+      "name": "Hasta 7 kg\n27.094500000000004\n34.722\n34.722",
+      "unit": "",
+      "unitPrice": 7,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-27",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 8 kg\n31.212000000000003\n41.526\n41.526",
+      "originalValues": [
+        "Hasta 8 kg",
+        "31.212000000000003",
+        "41.526",
+        "41.526"
+      ],
+      "code": "",
+      "name": "Hasta 8 kg\n31.212000000000003\n41.526\n41.526",
+      "unit": "",
+      "unitPrice": 8,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-28",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 9 kg\n36.9765\n49.0995\n49.0995",
+      "originalValues": [
+        "Hasta 9 kg",
+        "36.9765",
+        "49.0995",
+        "49.0995"
+      ],
+      "code": "",
+      "name": "Hasta 9 kg\n36.9765\n49.0995\n49.0995",
+      "unit": "",
+      "unitPrice": 9,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-29",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 10 kg\n44.3745\n57.969\n57.969",
+      "originalValues": [
+        "Hasta 10 kg",
+        "44.3745",
+        "57.969",
+        "57.969"
+      ],
+      "code": "",
+      "name": "Hasta 10 kg\n44.3745\n57.969\n57.969",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-30",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 15 kg\n50.301\n66.177\n66.177",
+      "originalValues": [
+        "Hasta 15 kg",
+        "50.301",
+        "66.177",
+        "66.177"
+      ],
+      "code": "",
+      "name": "Hasta 15 kg\n50.301\n66.177\n66.177",
+      "unit": "",
+      "unitPrice": 15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-31",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 20 kg\n66.2715\n88.33050000000001\n88.33050000000001",
+      "originalValues": [
+        "Hasta 20 kg",
+        "66.2715",
+        "88.33050000000001",
+        "88.33050000000001"
+      ],
+      "code": "",
+      "name": "Hasta 20 kg\n66.2715\n88.33050000000001\n88.33050000000001",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-32",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 25 kg\n81.47250000000001\n105.732\n105.732",
+      "originalValues": [
+        "Hasta 25 kg",
+        "81.47250000000001",
+        "105.732",
+        "105.732"
+      ],
+      "code": "",
+      "name": "Hasta 25 kg\n81.47250000000001\n105.732\n105.732",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-33",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 30 kg\n93.5145\n119.367\n119.367",
+      "originalValues": [
+        "Hasta 30 kg",
+        "93.5145",
+        "119.367",
+        "119.367"
+      ],
+      "code": "",
+      "name": "Hasta 30 kg\n93.5145\n119.367\n119.367",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-34",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kg extra\n2.2275\n3.0240000000000005\n3.0240000000000005",
+      "originalValues": [
+        "Kg extra",
+        "2.2275",
+        "3.0240000000000005",
+        "3.0240000000000005"
+      ],
+      "code": "",
+      "name": "Kg extra\n2.2275\n3.0240000000000005\n3.0240000000000005",
+      "unit": "",
+      "unitPrice": 2.2275,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-35",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "FRIO ONUS  DEVOLUCIONES",
+      "originalValues": [
+        "FRIO ONUS  DEVOLUCIONES"
+      ],
+      "code": "",
+      "name": "FRIO ONUS  DEVOLUCIONES",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-36",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kilos\nProvinciales\nLargo España\nPortugal\nBaleares",
+      "originalValues": [
+        "Kilos",
+        "Provinciales",
+        "Largo España",
+        "Portugal",
+        "Baleares"
+      ],
+      "code": "",
+      "name": "Kilos\nProvinciales\nLargo España\nPortugal\nBaleares",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-37",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 1 kg\n8.0055\n9.747\n9.747\n12.15",
+      "originalValues": [
+        "Hasta 1 kg",
+        "8.0055",
+        "9.747",
+        "9.747",
+        "12.15"
+      ],
+      "code": "",
+      "name": "Hasta 1 kg\n8.0055\n9.747\n9.747\n12.15",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-38",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 2 kg\n9.5715\n13.284\n13.284\n18.643500000000003",
+      "originalValues": [
+        "Hasta 2 kg",
+        "9.5715",
+        "13.284",
+        "13.284",
+        "18.643500000000003"
+      ],
+      "code": "",
+      "name": "Hasta 2 kg\n9.5715\n13.284\n13.284\n18.643500000000003",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-39",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 3 kg\n13.0815\n14.9985\n14.9985\n25.8525",
+      "originalValues": [
+        "Hasta 3 kg",
+        "13.0815",
+        "14.9985",
+        "14.9985",
+        "25.8525"
+      ],
+      "code": "",
+      "name": "Hasta 3 kg\n13.0815\n14.9985\n14.9985\n25.8525",
+      "unit": "",
+      "unitPrice": 3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-40",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 4 kg\n13.810500000000001\n17.577\n17.577\n27.553500000000003",
+      "originalValues": [
+        "Hasta 4 kg",
+        "13.810500000000001",
+        "17.577",
+        "17.577",
+        "27.553500000000003"
+      ],
+      "code": "",
+      "name": "Hasta 4 kg\n13.810500000000001\n17.577\n17.577\n27.553500000000003",
+      "unit": "",
+      "unitPrice": 4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-41",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 5 kg\n14.5395\n18.846000000000004\n18.846000000000004\n33.291000000000004",
+      "originalValues": [
+        "Hasta 5 kg",
+        "14.5395",
+        "18.846000000000004",
+        "18.846000000000004",
+        "33.291000000000004"
+      ],
+      "code": "",
+      "name": "Hasta 5 kg\n14.5395\n18.846000000000004\n18.846000000000004\n33.291000000000004",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-42",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 6 kg\n15.4305\n21.0465\n21.0465\n37.50300000000001",
+      "originalValues": [
+        "Hasta 6 kg",
+        "15.4305",
+        "21.0465",
+        "21.0465",
+        "37.50300000000001"
+      ],
+      "code": "",
+      "name": "Hasta 6 kg\n15.4305\n21.0465\n21.0465\n37.50300000000001",
+      "unit": "",
+      "unitPrice": 6,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-43",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 7 kg\n17.5635\n22.005000000000003\n22.005000000000003\n40.999500000000005",
+      "originalValues": [
+        "Hasta 7 kg",
+        "17.5635",
+        "22.005000000000003",
+        "22.005000000000003",
+        "40.999500000000005"
+      ],
+      "code": "",
+      "name": "Hasta 7 kg\n17.5635\n22.005000000000003\n22.005000000000003\n40.999500000000005",
+      "unit": "",
+      "unitPrice": 7,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-44",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 8 kg\n18.3195\n23.314500000000002\n23.314500000000002\n44.5095",
+      "originalValues": [
+        "Hasta 8 kg",
+        "18.3195",
+        "23.314500000000002",
+        "23.314500000000002",
+        "44.5095"
+      ],
+      "code": "",
+      "name": "Hasta 8 kg\n18.3195\n23.314500000000002\n23.314500000000002\n44.5095",
+      "unit": "",
+      "unitPrice": 8,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-45",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 9 kg\n20.439000000000004\n26.203500000000002\n26.203500000000002\n48.0195",
+      "originalValues": [
+        "Hasta 9 kg",
+        "20.439000000000004",
+        "26.203500000000002",
+        "26.203500000000002",
+        "48.0195"
+      ],
+      "code": "",
+      "name": "Hasta 9 kg\n20.439000000000004\n26.203500000000002\n26.203500000000002\n48.0195",
+      "unit": "",
+      "unitPrice": 9,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-46",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 10 kg\n21.060000000000002\n27.567000000000004\n27.567000000000004\n52.569",
+      "originalValues": [
+        "Hasta 10 kg",
+        "21.060000000000002",
+        "27.567000000000004",
+        "27.567000000000004",
+        "52.569"
+      ],
+      "code": "",
+      "name": "Hasta 10 kg\n21.060000000000002\n27.567000000000004\n27.567000000000004\n52.569",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-47",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 15 kg\n32.3325\n42.7005\n42.7005\n72.3465",
+      "originalValues": [
+        "Hasta 15 kg",
+        "32.3325",
+        "42.7005",
+        "42.7005",
+        "72.3465"
+      ],
+      "code": "",
+      "name": "Hasta 15 kg\n32.3325\n42.7005\n42.7005\n72.3465",
+      "unit": "",
+      "unitPrice": 15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-48",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 20 kg\n39.096000000000004\n51.948\n51.948\n91.4085",
+      "originalValues": [
+        "Hasta 20 kg",
+        "39.096000000000004",
+        "51.948",
+        "51.948",
+        "91.4085"
+      ],
+      "code": "",
+      "name": "Hasta 20 kg\n39.096000000000004\n51.948\n51.948\n91.4085",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-49",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 25 kg\n45.83250000000001\n61.398\n61.398\n112.19850000000001",
+      "originalValues": [
+        "Hasta 25 kg",
+        "45.83250000000001",
+        "61.398",
+        "61.398",
+        "112.19850000000001"
+      ],
+      "code": "",
+      "name": "Hasta 25 kg\n45.83250000000001\n61.398\n61.398\n112.19850000000001",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-50",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Hasta 30 kg\n52.569\n70.82100000000001\n70.82100000000001\n132.97500000000002",
+      "originalValues": [
+        "Hasta 30 kg",
+        "52.569",
+        "70.82100000000001",
+        "70.82100000000001",
+        "132.97500000000002"
+      ],
+      "code": "",
+      "name": "Hasta 30 kg\n52.569\n70.82100000000001\n70.82100000000001\n132.97500000000002",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-frio-distribucion-51",
+      "sheetName": "FRIO-DISTRIBUCIÓN",
+      "originalDescription": "Kg extra\n1.539\n1.701\n2.0925000000000002\n4.293",
+      "originalValues": [
+        "Kg extra",
+        "1.539",
+        "1.701",
+        "2.0925000000000002",
+        "4.293"
+      ],
+      "code": "",
+      "name": "Kg extra\n1.539\n1.701\n2.0925000000000002\n4.293",
+      "unit": "",
+      "unitPrice": 1.539,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-1",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "SERVICIOS DIRECTOS DEDICADOS (GENERAL)",
+      "originalValues": [
+        "SERVICIOS DIRECTOS DEDICADOS (GENERAL)"
+      ],
+      "code": "",
+      "name": "SERVICIOS DIRECTOS DEDICADOS (GENERAL)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-2",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "1. DEFINICIÓN DEL SERVICIO",
+      "originalValues": [
+        "1. DEFINICIÓN DEL SERVICIO"
+      ],
+      "code": "",
+      "name": "1. DEFINICIÓN DEL SERVICIO",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-3",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Transporte en exclusiva con vehículo y conductor asignados al envío.",
+      "originalValues": [
+        "Transporte en exclusiva con vehículo y conductor asignados al envío."
+      ],
+      "code": "",
+      "name": "Transporte en exclusiva con vehículo y conductor asignados al envío.",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-4",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Sin consolidación con otros clientes.",
+      "originalValues": [
+        "Sin consolidación con otros clientes."
+      ],
+      "code": "",
+      "name": "Sin consolidación con otros clientes.",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-5",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "2. QUÉ INCLUYE LA TARIFA",
+      "originalValues": [
+        "2. QUÉ INCLUYE LA TARIFA"
+      ],
+      "code": "",
+      "name": "2. QUÉ INCLUYE LA TARIFA",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-6",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "1 punto de recogida + 1 punto de entrega",
+      "originalValues": [
+        "1 punto de recogida + 1 punto de entrega"
+      ],
+      "code": "",
+      "name": "1 punto de recogida + 1 punto de entrega",
+      "unit": "",
+      "unitPrice": 11,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-7",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Hasta 60 min totales de operativa (carga + descarga)",
+      "originalValues": [
+        "Hasta 60 min totales de operativa (carga + descarga)"
+      ],
+      "code": "",
+      "name": "Hasta 60 min totales de operativa (carga + descarga)",
+      "unit": "",
+      "unitPrice": 60,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-8",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Planificación, comunicación y seguimiento operativo",
+      "originalValues": [
+        "Planificación, comunicación y seguimiento operativo"
+      ],
+      "code": "",
+      "name": "Planificación, comunicación y seguimiento operativo",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-9",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "3. TARIFAS BASE – SECO (NO PALETIZADO)",
+      "originalValues": [
+        "3. TARIFAS BASE – SECO (NO PALETIZADO)"
+      ],
+      "code": "",
+      "name": "3. TARIFAS BASE – SECO (NO PALETIZADO)",
+      "unit": "",
+      "unitPrice": 3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-10",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Moto (mensajería urbana)",
+      "originalValues": [
+        "Moto (mensajería urbana)"
+      ],
+      "code": "",
+      "name": "Moto (mensajería urbana)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-11",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Tramo\nPrecio",
+      "originalValues": [
+        "Tramo",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Tramo\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-12",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "0–10 km\n18\n275\n1200\n1475",
+      "originalValues": [
+        "0–10 km",
+        "18",
+        "275",
+        "1200",
+        "1475"
+      ],
+      "code": "",
+      "name": "0–10 km\n18\n275\n1200\n1475",
+      "unit": "",
+      "unitPrice": 10,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-13",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "11–20 km\n24",
+      "originalValues": [
+        "11–20 km",
+        "24"
+      ],
+      "code": "",
+      "name": "11–20 km\n24",
+      "unit": "",
+      "unitPrice": 1120,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-14",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "21–40 km\n34",
+      "originalValues": [
+        "21–40 km",
+        "34"
+      ],
+      "code": "",
+      "name": "21–40 km\n34",
+      "unit": "",
+      "unitPrice": 2140,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-15",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "NOTA MAX 40KM MOTO",
+      "originalValues": [
+        "NOTA MAX 40KM MOTO"
+      ],
+      "code": "",
+      "name": "NOTA MAX 40KM MOTO",
+      "unit": "",
+      "unitPrice": 40,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-16",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Vehículos - Seco\nFrio\nCongelado",
+      "originalValues": [
+        "Vehículos - Seco",
+        "Frio",
+        "Congelado"
+      ],
+      "code": "",
+      "name": "Vehículos - Seco\nFrio\nCongelado",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-17",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Tipo\n0–50 km\n51–100 km\n101–200 km\nkm adicional\nTipo de Vehículo\nZ1 (0-50)km\nZ2 (51-100)km\nZ3 (101-200)km\nkm adicional\nTipo de Vehículo\nZ1 (0-50)km\nZ2 (51-100)km\nZ3 (101-200)km\nkm adicional",
+      "originalValues": [
+        "Tipo",
+        "0–50 km",
+        "51–100 km",
+        "101–200 km",
+        "km adicional",
+        "Tipo de Vehículo",
+        "Z1 (0-50)km",
+        "Z2 (51-100)km",
+        "Z3 (101-200)km",
+        "km adicional",
+        "Tipo de Vehículo",
+        "Z1 (0-50)km",
+        "Z2 (51-100)km",
+        "Z3 (101-200)km",
+        "km adicional"
+      ],
+      "code": "",
+      "name": "Tipo\n0–50 km\n51–100 km\n101–200 km\nkm adicional\nTipo de Vehículo\nZ1 (0-50)km\nZ2 (51-100)km\nZ3 (101-200)km\nkm adicional\nTipo de Vehículo\nZ1 (0-50)km\nZ2 (51-100)km\nZ3 (101-200)km\nkm adicional",
+      "unit": "",
+      "unitPrice": 50,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-18",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Furgoneta (ligera)\n65\n120\n230\n0.9\nFurgoneta (ligera)\n78\n138\n264.5\n1.19025\nFurgoneta (ligera)\n93.6\n158.7\n304.175\n1.520875",
+      "originalValues": [
+        "Furgoneta (ligera)",
+        "65",
+        "120",
+        "230",
+        "0.9",
+        "Furgoneta (ligera)",
+        "78",
+        "138",
+        "264.5",
+        "1.19025",
+        "Furgoneta (ligera)",
+        "93.6",
+        "158.7",
+        "304.175",
+        "1.520875"
+      ],
+      "code": "",
+      "name": "Furgoneta (ligera)\n65\n120\n230\n0.9\nFurgoneta (ligera)\n78\n138\n264.5\n1.19025\nFurgoneta (ligera)\n93.6\n158.7\n304.175\n1.520875",
+      "unit": "",
+      "unitPrice": 65,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-19",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Furgón L2H2\n90\n165\n275\n1.25\nFurgón L2H2\n108\n189.75\n316.25\n1.423125\nFurgón L2H2\n129.6\n218.2125\n363.6875\n1.8184375",
+      "originalValues": [
+        "Furgón L2H2",
+        "90",
+        "165",
+        "275",
+        "1.25",
+        "Furgón L2H2",
+        "108",
+        "189.75",
+        "316.25",
+        "1.423125",
+        "Furgón L2H2",
+        "129.6",
+        "218.2125",
+        "363.6875",
+        "1.8184375"
+      ],
+      "code": "",
+      "name": "Furgón L2H2\n90\n165\n275\n1.25\nFurgón L2H2\n108\n189.75\n316.25\n1.423125\nFurgón L2H2\n129.6\n218.2125\n363.6875\n1.8184375",
+      "unit": "",
+      "unitPrice": 22,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-20",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Carrozado\n150\n225\n360\n1.5\nCarrozado\n180\n258.75\n414\n1.863\nCarrozado\n216\n297.5625\n476.1\n2.3805",
+      "originalValues": [
+        "Carrozado",
+        "150",
+        "225",
+        "360",
+        "1.5",
+        "Carrozado",
+        "180",
+        "258.75",
+        "414",
+        "1.863",
+        "Carrozado",
+        "216",
+        "297.5625",
+        "476.1",
+        "2.3805"
+      ],
+      "code": "",
+      "name": "Carrozado\n150\n225\n360\n1.5\nCarrozado\n180\n258.75\n414\n1.863\nCarrozado\n216\n297.5625\n476.1\n2.3805",
+      "unit": "",
+      "unitPrice": 150,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-21",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Rígido 12T\n220\n315\n510\n2.25\nRígido 12T\n264\n362.25\n586.5\n2.63925\nRígido 12T\n316.8\n416.5875\n674.475\n3.372375",
+      "originalValues": [
+        "Rígido 12T",
+        "220",
+        "315",
+        "510",
+        "2.25",
+        "Rígido 12T",
+        "264",
+        "362.25",
+        "586.5",
+        "2.63925",
+        "Rígido 12T",
+        "316.8",
+        "416.5875",
+        "674.475",
+        "3.372375"
+      ],
+      "code": "",
+      "name": "Rígido 12T\n220\n315\n510\n2.25\nRígido 12T\n264\n362.25\n586.5\n2.63925\nRígido 12T\n316.8\n416.5875\n674.475\n3.372375",
+      "unit": "",
+      "unitPrice": 12,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-22",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "4. MODALIDADES (MULTIPLICADORES)",
+      "originalValues": [
+        "4. MODALIDADES (MULTIPLICADORES)"
+      ],
+      "code": "",
+      "name": "4. MODALIDADES (MULTIPLICADORES)",
+      "unit": "",
+      "unitPrice": 4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-23",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Servicio\nRecargo",
+      "originalValues": [
+        "Servicio",
+        "Recargo"
+      ],
+      "code": "",
+      "name": "Servicio\nRecargo",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-24",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Express (salida < 90 min)\n0.7",
+      "originalValues": [
+        "Express (salida < 90 min)",
+        "0.7"
+      ],
+      "code": "",
+      "name": "Express (salida < 90 min)\n0.7",
+      "unit": "",
+      "unitPrice": 90,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-25",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Nocturno (22:00–06:00) o festivo\n0.3",
+      "originalValues": [
+        "Nocturno (22:00–06:00) o festivo",
+        "0.3"
+      ],
+      "code": "",
+      "name": "Nocturno (22:00–06:00) o festivo\n0.3",
+      "unit": "",
+      "unitPrice": 22000600,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-26",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Sábado\n0.15",
+      "originalValues": [
+        "Sábado",
+        "0.15"
+      ],
+      "code": "",
+      "name": "Sábado\n0.15",
+      "unit": "",
+      "unitPrice": 0.15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-27",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "5. SUPLEMENTOS OPERATIVOS",
+      "originalValues": [
+        "5. SUPLEMENTOS OPERATIVOS"
+      ],
+      "code": "",
+      "name": "5. SUPLEMENTOS OPERATIVOS",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-28",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Concepto\nImporte",
+      "originalValues": [
+        "Concepto",
+        "Importe"
+      ],
+      "code": "",
+      "name": "Concepto\nImporte",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-29",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Espera extra (tras 60 min incluidos)\n20 €/hora",
+      "originalValues": [
+        "Espera extra (tras 60 min incluidos)",
+        "20 €/hora"
+      ],
+      "code": "",
+      "name": "Espera extra (tras 60 min incluidos)\n20 €/hora",
+      "unit": "",
+      "unitPrice": 60,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-30",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Punto adicional (Ligero)\n20",
+      "originalValues": [
+        "Punto adicional (Ligero)",
+        "20"
+      ],
+      "code": "",
+      "name": "Punto adicional (Ligero)\n20",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-31",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Punto adicional ( Carrozado/ Rigido)\n30",
+      "originalValues": [
+        "Punto adicional ( Carrozado/ Rigido)",
+        "30"
+      ],
+      "code": "",
+      "name": "Punto adicional ( Carrozado/ Rigido)\n30",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-32",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Franja horaria cerrada\n25",
+      "originalValues": [
+        "Franja horaria cerrada",
+        "25"
+      ],
+      "code": "",
+      "name": "Franja horaria cerrada\n25",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-33",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Plataforma elevadora\n30",
+      "originalValues": [
+        "Plataforma elevadora",
+        "30"
+      ],
+      "code": "",
+      "name": "Plataforma elevadora\n30",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-34",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Peajes / ferries / parkings\nSegún ticket",
+      "originalValues": [
+        "Peajes / ferries / parkings",
+        "Según ticket"
+      ],
+      "code": "",
+      "name": "Peajes / ferries / parkings\nSegún ticket",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-35",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Segundo intento de entrega\n40",
+      "originalValues": [
+        "Segundo intento de entrega",
+        "40"
+      ],
+      "code": "",
+      "name": "Segundo intento de entrega\n40",
+      "unit": "",
+      "unitPrice": 40,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-36",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "Devolución / no recepción / rechazo\nincremento 80% del porte",
+      "originalValues": [
+        "Devolución / no recepción / rechazo",
+        "incremento 80% del porte"
+      ],
+      "code": "",
+      "name": "Devolución / no recepción / rechazo\nincremento 80% del porte",
+      "unit": "",
+      "unitPrice": 80,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-directos-37",
+      "sheetName": "DIRECTOS",
+      "originalDescription": "ADR / alto valor / documentación extra\nA cotizar",
+      "originalValues": [
+        "ADR / alto valor / documentación extra",
+        "A cotizar"
+      ],
+      "code": "",
+      "name": "ADR / alto valor / documentación extra\nA cotizar",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-1",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "SERVICIOS DE ALMACENAJE",
+      "originalValues": [
+        "SERVICIOS DE ALMACENAJE"
+      ],
+      "code": "",
+      "name": "SERVICIOS DE ALMACENAJE",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-2",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Almacenaje - Seco\nAlmacenaje - Refrigerado\nAlmacenaje - Congelado",
+      "originalValues": [
+        "Almacenaje - Seco",
+        "Almacenaje - Refrigerado",
+        "Almacenaje - Congelado"
+      ],
+      "code": "",
+      "name": "Almacenaje - Seco\nAlmacenaje - Refrigerado\nAlmacenaje - Congelado",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-3",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-4",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Pallet\nMes\n14.6\nPallet\nMes\n36.5\nPallet\nMes\n51.1",
+      "originalValues": [
+        "Pallet",
+        "Mes",
+        "14.6",
+        "Pallet",
+        "Mes",
+        "36.5",
+        "Pallet",
+        "Mes",
+        "51.1"
+      ],
+      "code": "",
+      "name": "Pallet\nMes\n14.6\nPallet\nMes\n36.5\nPallet\nMes\n51.1",
+      "unit": "",
+      "unitPrice": 14.6,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-5",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Caja/unidad técnica\nMes\n1.5\nCaja/unidad técnica\nMes\n3.75\nCaja/unidad técnica\nMes\n5.25",
+      "originalValues": [
+        "Caja/unidad técnica",
+        "Mes",
+        "1.5",
+        "Caja/unidad técnica",
+        "Mes",
+        "3.75",
+        "Caja/unidad técnica",
+        "Mes",
+        "5.25"
+      ],
+      "code": "",
+      "name": "Caja/unidad técnica\nMes\n1.5\nCaja/unidad técnica\nMes\n3.75\nCaja/unidad técnica\nMes\n5.25",
+      "unit": "",
+      "unitPrice": 1.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-6",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Pallet ( dias puntuales)\nDía\n0.9\nPallet ( dias puntuales)\nDía\n2.25\nPallet ( dias puntuales)\nDía\n3.15",
+      "originalValues": [
+        "Pallet ( dias puntuales)",
+        "Día",
+        "0.9",
+        "Pallet ( dias puntuales)",
+        "Día",
+        "2.25",
+        "Pallet ( dias puntuales)",
+        "Día",
+        "3.15"
+      ],
+      "code": "",
+      "name": "Pallet ( dias puntuales)\nDía\n0.9\nPallet ( dias puntuales)\nDía\n2.25\nPallet ( dias puntuales)\nDía\n3.15",
+      "unit": "",
+      "unitPrice": 0.9,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-7",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Unidad  ( dias puntuales)\nDía\n0.12\nUnidad  ( dias puntuales)\nDía\n0.3\nUnidad  ( dias puntuales)\nDía\n0.42",
+      "originalValues": [
+        "Unidad  ( dias puntuales)",
+        "Día",
+        "0.12",
+        "Unidad  ( dias puntuales)",
+        "Día",
+        "0.3",
+        "Unidad  ( dias puntuales)",
+        "Día",
+        "0.42"
+      ],
+      "code": "",
+      "name": "Unidad  ( dias puntuales)\nDía\n0.12\nUnidad  ( dias puntuales)\nDía\n0.3\nUnidad  ( dias puntuales)\nDía\n0.42",
+      "unit": "",
+      "unitPrice": 0.12,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-8",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Pallet fuera de medida\nDía\n3.2\nPallet fuera de medida\nDía\n8\nPallet fuera de medida\nDía\n11.2",
+      "originalValues": [
+        "Pallet fuera de medida",
+        "Día",
+        "3.2",
+        "Pallet fuera de medida",
+        "Día",
+        "8",
+        "Pallet fuera de medida",
+        "Día",
+        "11.2"
+      ],
+      "code": "",
+      "name": "Pallet fuera de medida\nDía\n3.2\nPallet fuera de medida\nDía\n8\nPallet fuera de medida\nDía\n11.2",
+      "unit": "",
+      "unitPrice": 3.2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-9",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción\nRecepción\nRecepción",
+      "originalValues": [
+        "Recepción",
+        "Recepción",
+        "Recepción"
+      ],
+      "code": "",
+      "name": "Recepción\nRecepción\nRecepción",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-10",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-11",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción pallet completo\nPallet\n5.5\nRecepción pallet completo\nPallet\n7.15\nRecepción pallet completo\nPallet\n9.295",
+      "originalValues": [
+        "Recepción pallet completo",
+        "Pallet",
+        "5.5",
+        "Recepción pallet completo",
+        "Pallet",
+        "7.15",
+        "Recepción pallet completo",
+        "Pallet",
+        "9.295"
+      ],
+      "code": "",
+      "name": "Recepción pallet completo\nPallet\n5.5\nRecepción pallet completo\nPallet\n7.15\nRecepción pallet completo\nPallet\n9.295",
+      "unit": "",
+      "unitPrice": 5.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-12",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción bulto (hasta 5 Und)\nBulto\n1\nRecepción bulto (hasta 5 Und)\nBulto\n1.3\nRecepción bulto (hasta 5 Und)\nBulto\n1.69",
+      "originalValues": [
+        "Recepción bulto (hasta 5 Und)",
+        "Bulto",
+        "1",
+        "Recepción bulto (hasta 5 Und)",
+        "Bulto",
+        "1.3",
+        "Recepción bulto (hasta 5 Und)",
+        "Bulto",
+        "1.69"
+      ],
+      "code": "",
+      "name": "Recepción bulto (hasta 5 Und)\nBulto\n1\nRecepción bulto (hasta 5 Und)\nBulto\n1.3\nRecepción bulto (hasta 5 Und)\nBulto\n1.69",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-13",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción bulto ( >5 Und. < 30Und.)\nBulto\n0.5\nRecepción bulto ( >5 Und. < 30Und.)\nBulto\n0.65\nRecepción bulto ( >5 Und. < 30Und.)\nBulto\n0.845",
+      "originalValues": [
+        "Recepción bulto ( >5 Und. < 30Und.)",
+        "Bulto",
+        "0.5",
+        "Recepción bulto ( >5 Und. < 30Und.)",
+        "Bulto",
+        "0.65",
+        "Recepción bulto ( >5 Und. < 30Und.)",
+        "Bulto",
+        "0.845"
+      ],
+      "code": "",
+      "name": "Recepción bulto ( >5 Und. < 30Und.)\nBulto\n0.5\nRecepción bulto ( >5 Und. < 30Und.)\nBulto\n0.65\nRecepción bulto ( >5 Und. < 30Und.)\nBulto\n0.845",
+      "unit": "",
+      "unitPrice": 0.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-14",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción bulto ( > 30Und.)\nBulto\n0.25\nRecepción bulto ( > 30Und.)\nBulto\n0.325\nRecepción bulto ( > 30Und.)\nBulto\n0.4225",
+      "originalValues": [
+        "Recepción bulto ( > 30Und.)",
+        "Bulto",
+        "0.25",
+        "Recepción bulto ( > 30Und.)",
+        "Bulto",
+        "0.325",
+        "Recepción bulto ( > 30Und.)",
+        "Bulto",
+        "0.4225"
+      ],
+      "code": "",
+      "name": "Recepción bulto ( > 30Und.)\nBulto\n0.25\nRecepción bulto ( > 30Und.)\nBulto\n0.325\nRecepción bulto ( > 30Und.)\nBulto\n0.4225",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-15",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción pieza técnica\nPieza\n1\nRecepción pieza técnica\nPieza\n1.3\nRecepción pieza técnica\nPieza\n1.69",
+      "originalValues": [
+        "Recepción pieza técnica",
+        "Pieza",
+        "1",
+        "Recepción pieza técnica",
+        "Pieza",
+        "1.3",
+        "Recepción pieza técnica",
+        "Pieza",
+        "1.69"
+      ],
+      "code": "",
+      "name": "Recepción pieza técnica\nPieza\n1\nRecepción pieza técnica\nPieza\n1.3\nRecepción pieza técnica\nPieza\n1.69",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-16",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Recepción con incidencias\nConsultar\nRecepción con incidencias\nConsultar\nRecepción con incidencias\nConsultar",
+      "originalValues": [
+        "Recepción con incidencias",
+        "Consultar",
+        "Recepción con incidencias",
+        "Consultar",
+        "Recepción con incidencias",
+        "Consultar"
+      ],
+      "code": "",
+      "name": "Recepción con incidencias\nConsultar\nRecepción con incidencias\nConsultar\nRecepción con incidencias\nConsultar",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-17",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Picking/Ubicación\nUnidad\nPrecio\nPicking/Ubicación\nUnidad\nPicking/Ubicación\nUnidad",
+      "originalValues": [
+        "Picking/Ubicación",
+        "Unidad",
+        "Precio",
+        "Picking/Ubicación",
+        "Unidad",
+        "Picking/Ubicación",
+        "Unidad"
+      ],
+      "code": "",
+      "name": "Picking/Ubicación\nUnidad\nPrecio\nPicking/Ubicación\nUnidad\nPicking/Ubicación\nUnidad",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-18",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Picking pallet completo\nUnd.\n5.5\nPicking pallet completo\nUnd.\n6.6\nPicking pallet completo\nUnd.\n7.92",
+      "originalValues": [
+        "Picking pallet completo",
+        "Und.",
+        "5.5",
+        "Picking pallet completo",
+        "Und.",
+        "6.6",
+        "Picking pallet completo",
+        "Und.",
+        "7.92"
+      ],
+      "code": "",
+      "name": "Picking pallet completo\nUnd.\n5.5\nPicking pallet completo\nUnd.\n6.6\nPicking pallet completo\nUnd.\n7.92",
+      "unit": "",
+      "unitPrice": 5.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-19",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Picking por caja\nUnd.\n1.5\nPicking por caja\nUnd.\n1.8\nPicking por caja\nUnd.\n2.16",
+      "originalValues": [
+        "Picking por caja",
+        "Und.",
+        "1.5",
+        "Picking por caja",
+        "Und.",
+        "1.8",
+        "Picking por caja",
+        "Und.",
+        "2.16"
+      ],
+      "code": "",
+      "name": "Picking por caja\nUnd.\n1.5\nPicking por caja\nUnd.\n1.8\nPicking por caja\nUnd.\n2.16",
+      "unit": "",
+      "unitPrice": 1.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-20",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Picking por unidad (e-commerce)\nUnd.\n0.3\nPicking por unidad (e-commerce)\nUnd.\n0.36\nPicking por unidad (e-commerce)\nUnd.\n0.432",
+      "originalValues": [
+        "Picking por unidad (e-commerce)",
+        "Und.",
+        "0.3",
+        "Picking por unidad (e-commerce)",
+        "Und.",
+        "0.36",
+        "Picking por unidad (e-commerce)",
+        "Und.",
+        "0.432"
+      ],
+      "code": "",
+      "name": "Picking por unidad (e-commerce)\nUnd.\n0.3\nPicking por unidad (e-commerce)\nUnd.\n0.36\nPicking por unidad (e-commerce)\nUnd.\n0.432",
+      "unit": "",
+      "unitPrice": 0.3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-21",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Picking por unidad técnica\nUnd.\n0.4\nPicking por unidad técnica\nUnd.\n0.48\nPicking por unidad técnica\nUnd.\n0.576",
+      "originalValues": [
+        "Picking por unidad técnica",
+        "Und.",
+        "0.4",
+        "Picking por unidad técnica",
+        "Und.",
+        "0.48",
+        "Picking por unidad técnica",
+        "Und.",
+        "0.576"
+      ],
+      "code": "",
+      "name": "Picking por unidad técnica\nUnd.\n0.4\nPicking por unidad técnica\nUnd.\n0.48\nPicking por unidad técnica\nUnd.\n0.576",
+      "unit": "",
+      "unitPrice": 0.4,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-22",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Packing\nPacking\nPacking",
+      "originalValues": [
+        "Packing",
+        "Packing",
+        "Packing"
+      ],
+      "code": "",
+      "name": "Packing\nPacking\nPacking",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-23",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Unidad",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio\nConcepto\nUnidad\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-24",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Packing estándar ( Pedido)\nUnd.\n1.5\nPacking estándar\nUnd.\n1.95\nPacking estándar\nUnd.\n2.535",
+      "originalValues": [
+        "Packing estándar ( Pedido)",
+        "Und.",
+        "1.5",
+        "Packing estándar",
+        "Und.",
+        "1.95",
+        "Packing estándar",
+        "Und.",
+        "2.535"
+      ],
+      "code": "",
+      "name": "Packing estándar ( Pedido)\nUnd.\n1.5\nPacking estándar\nUnd.\n1.95\nPacking estándar\nUnd.\n2.535",
+      "unit": "",
+      "unitPrice": 1.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-25",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Packing con etiquetado\nUnd.\n1.7\nPacking con etiquetado\nUnd.\n2.21\nPacking con etiquetado\nUnd.\n2.873",
+      "originalValues": [
+        "Packing con etiquetado",
+        "Und.",
+        "1.7",
+        "Packing con etiquetado",
+        "Und.",
+        "2.21",
+        "Packing con etiquetado",
+        "Und.",
+        "2.873"
+      ],
+      "code": "",
+      "name": "Packing con etiquetado\nUnd.\n1.7\nPacking con etiquetado\nUnd.\n2.21\nPacking con etiquetado\nUnd.\n2.873",
+      "unit": "",
+      "unitPrice": 1.7,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-26",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Packing técnico especial\nUnd.\n2\nPacking técnico especial\nUnd.\n2.6\nPacking técnico especial\nUnd.\n3.38",
+      "originalValues": [
+        "Packing técnico especial",
+        "Und.",
+        "2",
+        "Packing técnico especial",
+        "Und.",
+        "2.6",
+        "Packing técnico especial",
+        "Und.",
+        "3.38"
+      ],
+      "code": "",
+      "name": "Packing técnico especial\nUnd.\n2\nPacking técnico especial\nUnd.\n2.6\nPacking técnico especial\nUnd.\n3.38",
+      "unit": "",
+      "unitPrice": 2,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-27",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Retractilado pallet\nUnd.\n7\nRetractilado pallet\nUnd.\n9.1\nRetractilado pallet\nUnd.\n11.83",
+      "originalValues": [
+        "Retractilado pallet",
+        "Und.",
+        "7",
+        "Retractilado pallet",
+        "Und.",
+        "9.1",
+        "Retractilado pallet",
+        "Und.",
+        "11.83"
+      ],
+      "code": "",
+      "name": "Retractilado pallet\nUnd.\n7\nRetractilado pallet\nUnd.\n9.1\nRetractilado pallet\nUnd.\n11.83",
+      "unit": "",
+      "unitPrice": 7,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-28",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Reempaquetado\nUnd.\n2.5\nReempaquetado\nUnd.\n3.25\nReempaquetado\nUnd.\n4.225",
+      "originalValues": [
+        "Reempaquetado",
+        "Und.",
+        "2.5",
+        "Reempaquetado",
+        "Und.",
+        "3.25",
+        "Reempaquetado",
+        "Und.",
+        "4.225"
+      ],
+      "code": "",
+      "name": "Reempaquetado\nUnd.\n2.5\nReempaquetado\nUnd.\n3.25\nReempaquetado\nUnd.\n4.225",
+      "unit": "",
+      "unitPrice": 2.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-29",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Etiquetado\nUnd.\n0.3\nEtiquetado\nUnd.\n0.39\nEtiquetado\nUnd.\n0.507",
+      "originalValues": [
+        "Etiquetado",
+        "Und.",
+        "0.3",
+        "Etiquetado",
+        "Und.",
+        "0.39",
+        "Etiquetado",
+        "Und.",
+        "0.507"
+      ],
+      "code": "",
+      "name": "Etiquetado\nUnd.\n0.3\nEtiquetado\nUnd.\n0.39\nEtiquetado\nUnd.\n0.507",
+      "unit": "",
+      "unitPrice": 0.3,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-30",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho\nDespacho\nDespacho",
+      "originalValues": [
+        "Despacho",
+        "Despacho",
+        "Despacho"
+      ],
+      "code": "",
+      "name": "Despacho\nDespacho\nDespacho",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-31",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Concepto\nUnidad\nPrecio\nConcepto\nPrecio\nConcepto\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Precio",
+        "Concepto",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio\nConcepto\nPrecio\nConcepto\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-32",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho pallet\nPallet\n5.5\nDespacho pallet\nPallet\n7.15\nDespacho pallet\nPallet\n9.295",
+      "originalValues": [
+        "Despacho pallet",
+        "Pallet",
+        "5.5",
+        "Despacho pallet",
+        "Pallet",
+        "7.15",
+        "Despacho pallet",
+        "Pallet",
+        "9.295"
+      ],
+      "code": "",
+      "name": "Despacho pallet\nPallet\n5.5\nDespacho pallet\nPallet\n7.15\nDespacho pallet\nPallet\n9.295",
+      "unit": "",
+      "unitPrice": 5.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-33",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho bulto ( hasta 5U)\nBulto\n1\nDespacho bulto ( hasta 5U)\nBulto\n1.3\nDespacho bulto ( hasta 5U)\nBulto\n1.69",
+      "originalValues": [
+        "Despacho bulto ( hasta 5U)",
+        "Bulto",
+        "1",
+        "Despacho bulto ( hasta 5U)",
+        "Bulto",
+        "1.3",
+        "Despacho bulto ( hasta 5U)",
+        "Bulto",
+        "1.69"
+      ],
+      "code": "",
+      "name": "Despacho bulto ( hasta 5U)\nBulto\n1\nDespacho bulto ( hasta 5U)\nBulto\n1.3\nDespacho bulto ( hasta 5U)\nBulto\n1.69",
+      "unit": "",
+      "unitPrice": 5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-34",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho bulto ( >5 Und. <30 Und.)\nBulto\n0.5\nDespacho bulto ( >5 Und. <30 Und.)\nBulto\n0.65\nDespacho bulto ( >5 Und. <30 Und.)\nBulto\n0.845",
+      "originalValues": [
+        "Despacho bulto ( >5 Und. <30 Und.)",
+        "Bulto",
+        "0.5",
+        "Despacho bulto ( >5 Und. <30 Und.)",
+        "Bulto",
+        "0.65",
+        "Despacho bulto ( >5 Und. <30 Und.)",
+        "Bulto",
+        "0.845"
+      ],
+      "code": "",
+      "name": "Despacho bulto ( >5 Und. <30 Und.)\nBulto\n0.5\nDespacho bulto ( >5 Und. <30 Und.)\nBulto\n0.65\nDespacho bulto ( >5 Und. <30 Und.)\nBulto\n0.845",
+      "unit": "",
+      "unitPrice": 0.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-35",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho bulto (>30 Und.)\nBulto\n0.25\nDespacho bulto (>30 Und.)\nBulto\n0.325\nDespacho bulto (>30 Und.)\nBulto\n0.4225",
+      "originalValues": [
+        "Despacho bulto (>30 Und.)",
+        "Bulto",
+        "0.25",
+        "Despacho bulto (>30 Und.)",
+        "Bulto",
+        "0.325",
+        "Despacho bulto (>30 Und.)",
+        "Bulto",
+        "0.4225"
+      ],
+      "code": "",
+      "name": "Despacho bulto (>30 Und.)\nBulto\n0.25\nDespacho bulto (>30 Und.)\nBulto\n0.325\nDespacho bulto (>30 Und.)\nBulto\n0.4225",
+      "unit": "",
+      "unitPrice": 30,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-36",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Despacho técnico\nPieza\n1\nDespacho técnico\nPieza\n1.3\nDespacho técnico\nPieza\n1.69",
+      "originalValues": [
+        "Despacho técnico",
+        "Pieza",
+        "1",
+        "Despacho técnico",
+        "Pieza",
+        "1.3",
+        "Despacho técnico",
+        "Pieza",
+        "1.69"
+      ],
+      "code": "",
+      "name": "Despacho técnico\nPieza\n1\nDespacho técnico\nPieza\n1.3\nDespacho técnico\nPieza\n1.69",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-37",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Servicios Extras\nServicios Extras\nServicios Extras",
+      "originalValues": [
+        "Servicios Extras",
+        "Servicios Extras",
+        "Servicios Extras"
+      ],
+      "code": "",
+      "name": "Servicios Extras\nServicios Extras\nServicios Extras",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-38",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Concepto\nUnidad\nPrecio\nConcepto\nPrecio\nConcepto\nPrecio",
+      "originalValues": [
+        "Concepto",
+        "Unidad",
+        "Precio",
+        "Concepto",
+        "Precio",
+        "Concepto",
+        "Precio"
+      ],
+      "code": "",
+      "name": "Concepto\nUnidad\nPrecio\nConcepto\nPrecio\nConcepto\nPrecio",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-39",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Gestión de incidencias ( Hora)\nHora\n25\nGestión de incidencias\nHora\n25\nGestión de incidencias\nHora\n25",
+      "originalValues": [
+        "Gestión de incidencias ( Hora)",
+        "Hora",
+        "25",
+        "Gestión de incidencias",
+        "Hora",
+        "25",
+        "Gestión de incidencias",
+        "Hora",
+        "25"
+      ],
+      "code": "",
+      "name": "Gestión de incidencias ( Hora)\nHora\n25\nGestión de incidencias\nHora\n25\nGestión de incidencias\nHora\n25",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-40",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Reportes personalizados (Hora)\nHora\n35\nReportes personalizados\nHora\n35\nReportes personalizados\nHora\n35",
+      "originalValues": [
+        "Reportes personalizados (Hora)",
+        "Hora",
+        "35",
+        "Reportes personalizados",
+        "Hora",
+        "35",
+        "Reportes personalizados",
+        "Hora",
+        "35"
+      ],
+      "code": "",
+      "name": "Reportes personalizados (Hora)\nHora\n35\nReportes personalizados\nHora\n35\nReportes personalizados\nHora\n35",
+      "unit": "",
+      "unitPrice": 35,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-41",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Gestión devoluciones e-commerce\nPor envío\n2.5\nGestión devoluciones e-commerce\nPor envío\n2.5\nGestión devoluciones e-commerce\nPor envío\n2.5",
+      "originalValues": [
+        "Gestión devoluciones e-commerce",
+        "Por envío",
+        "2.5",
+        "Gestión devoluciones e-commerce",
+        "Por envío",
+        "2.5",
+        "Gestión devoluciones e-commerce",
+        "Por envío",
+        "2.5"
+      ],
+      "code": "",
+      "name": "Gestión devoluciones e-commerce\nPor envío\n2.5\nGestión devoluciones e-commerce\nPor envío\n2.5\nGestión devoluciones e-commerce\nPor envío\n2.5",
+      "unit": "",
+      "unitPrice": 2.5,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-42",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Control de lote/serie\n0.1\nControl de lote/serie\n0.13\nControl de lote/serie\n0.169",
+      "originalValues": [
+        "Control de lote/serie",
+        "0.1",
+        "Control de lote/serie",
+        "0.13",
+        "Control de lote/serie",
+        "0.169"
+      ],
+      "code": "",
+      "name": "Control de lote/serie\n0.1\nControl de lote/serie\n0.13\nControl de lote/serie\n0.169",
+      "unit": "",
+      "unitPrice": 0.1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-43",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "SERVICIO INVENTARIO ALMACÉN",
+      "originalValues": [
+        "SERVICIO INVENTARIO ALMACÉN"
+      ],
+      "code": "",
+      "name": "SERVICIO INVENTARIO ALMACÉN",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-44",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Servicio\nUnidad\nPrecio (€)",
+      "originalValues": [
+        "Servicio",
+        "Unidad",
+        "Precio (€)"
+      ],
+      "code": "",
+      "name": "Servicio\nUnidad\nPrecio (€)",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-45",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario manual básico\npor hora / operario\n20",
+      "originalValues": [
+        "Inventario manual básico",
+        "por hora / operario",
+        "20"
+      ],
+      "code": "",
+      "name": "Inventario manual básico\npor hora / operario\n20",
+      "unit": "",
+      "unitPrice": 20,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-46",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario con PDA / digital\npor hora / operario\n23",
+      "originalValues": [
+        "Inventario con PDA / digital",
+        "por hora / operario",
+        "23"
+      ],
+      "code": "",
+      "name": "Inventario con PDA / digital\npor hora / operario\n23",
+      "unit": "",
+      "unitPrice": 23,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-47",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario nocturno manual básico\npor hora / operario\n24",
+      "originalValues": [
+        "Inventario nocturno manual básico",
+        "por hora / operario",
+        "24"
+      ],
+      "code": "",
+      "name": "Inventario nocturno manual básico\npor hora / operario\n24",
+      "unit": "",
+      "unitPrice": 24,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-48",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario nocturno con PDA / digital\npor hora / operario\n27",
+      "originalValues": [
+        "Inventario nocturno con PDA / digital",
+        "por hora / operario",
+        "27"
+      ],
+      "code": "",
+      "name": "Inventario nocturno con PDA / digital\npor hora / operario\n27",
+      "unit": "",
+      "unitPrice": 27,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-49",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Coordinador inventario\npor hora\n35",
+      "originalValues": [
+        "Coordinador inventario",
+        "por hora",
+        "35"
+      ],
+      "code": "",
+      "name": "Coordinador inventario\npor hora\n35",
+      "unit": "",
+      "unitPrice": 35,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-50",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario urgente (<24h)\nrecargo\n0.15",
+      "originalValues": [
+        "Inventario urgente (<24h)",
+        "recargo",
+        "0.15"
+      ],
+      "code": "",
+      "name": "Inventario urgente (<24h)\nrecargo\n0.15",
+      "unit": "",
+      "unitPrice": 24,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-almacenaje-51",
+      "sheetName": "ALMACENAJE",
+      "originalDescription": "Inventario fin de semana\nrecargo\n0.15",
+      "originalValues": [
+        "Inventario fin de semana",
+        "recargo",
+        "0.15"
+      ],
+      "code": "",
+      "name": "Inventario fin de semana\nrecargo\n0.15",
+      "unit": "",
+      "unitPrice": 0.15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-1",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "SUPLEMENTOS OPERATIVOS Y PENALIZACIONES",
+      "originalValues": [
+        "SUPLEMENTOS OPERATIVOS Y PENALIZACIONES"
+      ],
+      "code": "",
+      "name": "SUPLEMENTOS OPERATIVOS Y PENALIZACIONES",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-2",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Condiciones de Servicio y Recargos",
+      "originalValues": [
+        "Condiciones de Servicio y Recargos"
+      ],
+      "code": "",
+      "name": "Condiciones de Servicio y Recargos",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-3",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Concepto\nCuándo aplica\nRecargo / Penalización\nCómo se factura",
+      "originalValues": [
+        "Concepto",
+        "Cuándo aplica",
+        "Recargo / Penalización",
+        "Cómo se factura"
+      ],
+      "code": "",
+      "name": "Concepto\nCuándo aplica\nRecargo / Penalización\nCómo se factura",
+      "unit": "",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-4",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Salida sin mercancía (no cargar)\nSe solicita el mensajero/vehículo y no se entrega mercancía por causas externas\n50% +\n50% de la Tarifa Base",
+      "originalValues": [
+        "Salida sin mercancía (no cargar)",
+        "Se solicita el mensajero/vehículo y no se entrega mercancía por causas externas",
+        "50% +",
+        "50% de la Tarifa Base"
+      ],
+      "code": "",
+      "name": "Salida sin mercancía (no cargar)\nSe solicita el mensajero/vehículo y no se entrega mercancía por causas externas\n50% +\n50% de la Tarifa Base",
+      "unit": "",
+      "unitPrice": 50,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-5",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Solicitud con < 48h\nServicio solicitado con menos de 48h de antelación\n25% +\n% sobre Tarifa Base",
+      "originalValues": [
+        "Solicitud con < 48h",
+        "Servicio solicitado con menos de 48h de antelación",
+        "25% +",
+        "% sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Solicitud con < 48h\nServicio solicitado con menos de 48h de antelación\n25% +\n% sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 48,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-6",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Solicitud con ~24h o menos\nServicio solicitado con 24h o menos\n50% +\n% sobre Tarifa Base",
+      "originalValues": [
+        "Solicitud con ~24h o menos",
+        "Servicio solicitado con 24h o menos",
+        "50% +",
+        "% sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Solicitud con ~24h o menos\nServicio solicitado con 24h o menos\n50% +\n% sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 24,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-7",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Ruta esporádica (< 1 semana)\nServicio con >48h pero duración <7 días\n30% +\n% sobre Tarifa Base",
+      "originalValues": [
+        "Ruta esporádica (< 1 semana)",
+        "Servicio con >48h pero duración <7 días",
+        "30% +",
+        "% sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Ruta esporádica (< 1 semana)\nServicio con >48h pero duración <7 días\n30% +\n% sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 1,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-8",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Espera en carga/descarga\nTiempo parado por causas del cliente (muelle, colas, documentación, etc.)\n10%  + cada 30 min (tras 30 min incluidos)\nTramos de 30 min sobre Tarifa Base",
+      "originalValues": [
+        "Espera en carga/descarga",
+        "Tiempo parado por causas del cliente (muelle, colas, documentación, etc.)",
+        "10%  + cada 30 min (tras 30 min incluidos)",
+        "Tramos de 30 min sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Espera en carga/descarga\nTiempo parado por causas del cliente (muelle, colas, documentación, etc.)\n10%  + cada 30 min (tras 30 min incluidos)\nTramos de 30 min sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 103030,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-9",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Cancelación tardía\nCancelación tras asignación del recurso\n<24h: 50% de la tarifa / 24–48h: 25% de la tarifa\n% sobre Tarifa Base",
+      "originalValues": [
+        "Cancelación tardía",
+        "Cancelación tras asignación del recurso",
+        "<24h: 50% de la tarifa / 24–48h: 25% de la tarifa",
+        "% sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Cancelación tardía\nCancelación tras asignación del recurso\n<24h: 50% de la tarifa / 24–48h: 25% de la tarifa\n% sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 2450244825,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-10",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Cambio de punto / condiciones\nCambio de destino, franja o requisitos tras asignación\n25% +\n% sobre Tarifa Base",
+      "originalValues": [
+        "Cambio de punto / condiciones",
+        "Cambio de destino, franja o requisitos tras asignación",
+        "25% +",
+        "% sobre Tarifa Base"
+      ],
+      "code": "",
+      "name": "Cambio de punto / condiciones\nCambio de destino, franja o requisitos tras asignación\n25% +\n% sobre Tarifa Base",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    },
+    {
+      "id": "onus-julio27-suplementos-11",
+      "sheetName": "SUPLEMENTOS",
+      "originalDescription": "Segundo intento por ausencia/rechazo\nEntrega fallida por cliente/receptor\n25%  + o nuevo servicio\nSegún acuerdo",
+      "originalValues": [
+        "Segundo intento por ausencia/rechazo",
+        "Entrega fallida por cliente/receptor",
+        "25%  + o nuevo servicio",
+        "Según acuerdo"
+      ],
+      "code": "",
+      "name": "Segundo intento por ausencia/rechazo\nEntrega fallida por cliente/receptor\n25%  + o nuevo servicio\nSegún acuerdo",
+      "unit": "",
+      "unitPrice": 25,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {}
+    }
+  ]
+}

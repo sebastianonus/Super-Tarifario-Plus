@@ -1,0 +1,622 @@
+{
+  "id": "districenter",
+  "name": "Districenter",
+  "description": "Tarifario Districenter cargado desde VS Code. Fuente: Tarifario_Districenter.docx",
+  "criteriaColumns": [
+    "lot",
+    "estimacion",
+    "precioMaximo",
+    "precioUnitario"
+  ],
+  "items": [
+    {
+      "id": "districenter-1-1",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A1. Furgoneta horari 7 a 21\n330,00 €\n22,14 €\n19,93 €",
+      "originalValues": [
+        "A1. Furgoneta horari 7 a 21",
+        "330,00 €",
+        "22,14 €",
+        "19,93 €"
+      ],
+      "code": "A1",
+      "name": "A1. Furgoneta horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 19.93,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "330,00 €",
+        "precioMaximo": "22,14 €",
+        "precioUnitario": "19,93 €"
+      }
+    },
+    {
+      "id": "districenter-1-2",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A2. Furgoneta horari 21 a 7\n20,00 €\n29,93 €\n26,94 €",
+      "originalValues": [
+        "A2. Furgoneta horari 21 a 7",
+        "20,00 €",
+        "29,93 €",
+        "26,94 €"
+      ],
+      "code": "A2",
+      "name": "A2. Furgoneta horari 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 26.94,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "20,00 €",
+        "precioMaximo": "29,93 €",
+        "precioUnitario": "26,94 €"
+      }
+    },
+    {
+      "id": "districenter-1-3",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A3. Furgoneta Urgent 7 a 21\n20,00 €\n26,57 €\n23,91 €",
+      "originalValues": [
+        "A3. Furgoneta Urgent 7 a 21",
+        "20,00 €",
+        "26,57 €",
+        "23,91 €"
+      ],
+      "code": "A3",
+      "name": "A3. Furgoneta Urgent 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 23.91,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "20,00 €",
+        "precioMaximo": "26,57 €",
+        "precioUnitario": "23,91 €"
+      }
+    },
+    {
+      "id": "districenter-1-4",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A4. Furgoneta Urgent 21 a 7\n20,00 €\n35,42 €\n31,88 €",
+      "originalValues": [
+        "A4. Furgoneta Urgent 21 a 7",
+        "20,00 €",
+        "35,42 €",
+        "31,88 €"
+      ],
+      "code": "A4",
+      "name": "A4. Furgoneta Urgent 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 31.88,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "20,00 €",
+        "precioMaximo": "35,42 €",
+        "precioUnitario": "31,88 €"
+      }
+    },
+    {
+      "id": "districenter-1-5",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A5. Mosso 7 a 21\n10,00 €\n20,50 €\n18,45 €",
+      "originalValues": [
+        "A5. Mosso 7 a 21",
+        "10,00 €",
+        "20,50 €",
+        "18,45 €"
+      ],
+      "code": "A5",
+      "name": "A5. Mosso 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 18.45,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "10,00 €",
+        "precioMaximo": "20,50 €",
+        "precioUnitario": "18,45 €"
+      }
+    },
+    {
+      "id": "districenter-1-6",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A6. Mosso 21 a 7\n50,00 €\n27,68 €\n24,91 €",
+      "originalValues": [
+        "A6. Mosso 21 a 7",
+        "50,00 €",
+        "27,68 €",
+        "24,91 €"
+      ],
+      "code": "A6",
+      "name": "A6. Mosso 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 24.91,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "50,00 €",
+        "precioMaximo": "27,68 €",
+        "precioUnitario": "24,91 €"
+      }
+    },
+    {
+      "id": "districenter-1-7",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A7. Mosso Urgent 7 a 21\n50,00 €\n25,63 €\n23,06 €",
+      "originalValues": [
+        "A7. Mosso Urgent 7 a 21",
+        "50,00 €",
+        "25,63 €",
+        "23,06 €"
+      ],
+      "code": "A7",
+      "name": "A7. Mosso Urgent 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 23.06,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "50,00 €",
+        "precioMaximo": "25,63 €",
+        "precioUnitario": "23,06 €"
+      }
+    },
+    {
+      "id": "districenter-1-8",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A8. Mosso Urgent 21 a 7\n50,00 €\n32,80 €\n29,52 €",
+      "originalValues": [
+        "A8. Mosso Urgent 21 a 7",
+        "50,00 €",
+        "32,80 €",
+        "29,52 €"
+      ],
+      "code": "A8",
+      "name": "A8. Mosso Urgent 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 29.52,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "50,00 €",
+        "precioMaximo": "32,80 €",
+        "precioUnitario": "29,52 €"
+      }
+    },
+    {
+      "id": "districenter-1-9",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A9. Disponibilitat de localització de la flota de les furgonetes via GPS\n☐ No (0 punts)☒ Sí (4 punts)",
+      "originalValues": [
+        "A9. Disponibilitat de localització de la flota de les furgonetes via GPS",
+        "☐ No (0 punts)☒ Sí (4 punts)"
+      ],
+      "code": "A9",
+      "name": "A9. Disponibilitat de localització de la flota de les furgonetes via GPS",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☐ No (0 punts)☒ Sí (4 punts)",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    },
+    {
+      "id": "districenter-1-10",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A10. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores\n☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)",
+      "originalValues": [
+        "A10. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores",
+        "☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)"
+      ],
+      "code": "A10",
+      "name": "A10. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    },
+    {
+      "id": "districenter-1-11",
+      "sheetName": "LOT 1 - Servei de transport de material lleuger i de dimensions mitjanes",
+      "originalDescription": "A11. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions\n☐ No (0 punts)☒ Sí (10 punts)",
+      "originalValues": [
+        "A11. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions",
+        "☐ No (0 punts)☒ Sí (10 punts)"
+      ],
+      "code": "A11",
+      "name": "A11. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☐ No (0 punts)☒ Sí (10 punts)",
+      "criteria": {
+        "lot": "1",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    },
+    {
+      "id": "districenter-2-12",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A1. Camió 6,5 horari 7 a 21\n350\n40,51 €\n36,46 €",
+      "originalValues": [
+        "A1. Camió 6,5 horari 7 a 21",
+        "350",
+        "40,51 €",
+        "36,46 €"
+      ],
+      "code": "A1",
+      "name": "A1. Camió 6,5 horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 36.46,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "350",
+        "precioMaximo": "40,51 €",
+        "precioUnitario": "36,46 €"
+      }
+    },
+    {
+      "id": "districenter-2-13",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A2. Camió 6,5 horari 21 a 7\n20\n54,69 €\n49,22 €",
+      "originalValues": [
+        "A2. Camió 6,5 horari 21 a 7",
+        "20",
+        "54,69 €",
+        "49,22 €"
+      ],
+      "code": "A2",
+      "name": "A2. Camió 6,5 horari 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 49.22,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "20",
+        "precioMaximo": "54,69 €",
+        "precioUnitario": "49,22 €"
+      }
+    },
+    {
+      "id": "districenter-2-14",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A3. Camió 6,5 Urgent horari 7 a 21\n20\n50,64 €\n45,57 €",
+      "originalValues": [
+        "A3. Camió 6,5 Urgent horari 7 a 21",
+        "20",
+        "50,64 €",
+        "45,57 €"
+      ],
+      "code": "A3",
+      "name": "A3. Camió 6,5 Urgent horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 45.57,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "20",
+        "precioMaximo": "50,64 €",
+        "precioUnitario": "45,57 €"
+      }
+    },
+    {
+      "id": "districenter-2-15",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A4. Camió 6,5 Urgent horari 21 a 7\n15\n64,81 €\n58,33 €",
+      "originalValues": [
+        "A4. Camió 6,5 Urgent horari 21 a 7",
+        "15",
+        "64,81 €",
+        "58,33 €"
+      ],
+      "code": "A4",
+      "name": "A4. Camió 6,5 Urgent horari 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 58.33,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "15",
+        "precioMaximo": "64,81 €",
+        "precioUnitario": "58,33 €"
+      }
+    },
+    {
+      "id": "districenter-2-16",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A5. Camió 8-9 horari 7 a 21\n100\n50,10 €\n45,09 €",
+      "originalValues": [
+        "A5. Camió 8-9 horari 7 a 21",
+        "100",
+        "50,10 €",
+        "45,09 €"
+      ],
+      "code": "A5",
+      "name": "A5. Camió 8-9 horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 45.09,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "100",
+        "precioMaximo": "50,10 €",
+        "precioUnitario": "45,09 €"
+      }
+    },
+    {
+      "id": "districenter-2-17",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A6. Camió 8-9 horari 20 a 7\n10\n67,63 €\n60,87 €",
+      "originalValues": [
+        "A6. Camió 8-9 horari 20 a 7",
+        "10",
+        "67,63 €",
+        "60,87 €"
+      ],
+      "code": "A6",
+      "name": "A6. Camió 8-9 horari 20 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 60.87,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "10",
+        "precioMaximo": "67,63 €",
+        "precioUnitario": "60,87 €"
+      }
+    },
+    {
+      "id": "districenter-2-18",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A7. Camió 8-9 Urgent horari 7 a 21\n10\n62,62 €\n56,36 €",
+      "originalValues": [
+        "A7. Camió 8-9 Urgent horari 7 a 21",
+        "10",
+        "62,62 €",
+        "56,36 €"
+      ],
+      "code": "A7",
+      "name": "A7. Camió 8-9 Urgent horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 56.36,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "10",
+        "precioMaximo": "62,62 €",
+        "precioUnitario": "56,36 €"
+      }
+    },
+    {
+      "id": "districenter-2-19",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A8. Camió 8-9 Urgent horari 21 a 7\n5\n80,16 €\n72,15 €",
+      "originalValues": [
+        "A8. Camió 8-9 Urgent horari 21 a 7",
+        "5",
+        "80,16 €",
+        "72,15 €"
+      ],
+      "code": "A8",
+      "name": "A8. Camió 8-9 Urgent horari 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 72.15,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "5",
+        "precioMaximo": "80,16 €",
+        "precioUnitario": "72,15 €"
+      }
+    },
+    {
+      "id": "districenter-2-20",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A9. Tràiler horari 7 a 21\n20\n58,63 €\n52,77 €",
+      "originalValues": [
+        "A9. Tràiler horari 7 a 21",
+        "20",
+        "58,63 €",
+        "52,77 €"
+      ],
+      "code": "A9",
+      "name": "A9. Tràiler horari 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 52.77,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "20",
+        "precioMaximo": "58,63 €",
+        "precioUnitario": "52,77 €"
+      }
+    },
+    {
+      "id": "districenter-2-21",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A10. Mosso 7 a 21\n70\n20,50 €\n18,45 €",
+      "originalValues": [
+        "A10. Mosso 7 a 21",
+        "70",
+        "20,50 €",
+        "18,45 €"
+      ],
+      "code": "A10",
+      "name": "A10. Mosso 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 18.45,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "70",
+        "precioMaximo": "20,50 €",
+        "precioUnitario": "18,45 €"
+      }
+    },
+    {
+      "id": "districenter-2-22",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A11. Mosso 21 a 7\n10\n27,68 €\n24,91 €",
+      "originalValues": [
+        "A11. Mosso 21 a 7",
+        "10",
+        "27,68 €",
+        "24,91 €"
+      ],
+      "code": "A11",
+      "name": "A11. Mosso 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 24.91,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "10",
+        "precioMaximo": "27,68 €",
+        "precioUnitario": "24,91 €"
+      }
+    },
+    {
+      "id": "districenter-2-23",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A12. Mosso Urgent 7 a 21\n10\n25,63 €\n23,06 €",
+      "originalValues": [
+        "A12. Mosso Urgent 7 a 21",
+        "10",
+        "25,63 €",
+        "23,06 €"
+      ],
+      "code": "A12",
+      "name": "A12. Mosso Urgent 7 a 21",
+      "unit": "Hora o 25 km",
+      "unitPrice": 23.06,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "10",
+        "precioMaximo": "25,63 €",
+        "precioUnitario": "23,06 €"
+      }
+    },
+    {
+      "id": "districenter-2-24",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A13. Mosso Urgent 21 a 7\n10\n32,80 €\n29,52 €",
+      "originalValues": [
+        "A13. Mosso Urgent 21 a 7",
+        "10",
+        "32,80 €",
+        "29,52 €"
+      ],
+      "code": "A13",
+      "name": "A13. Mosso Urgent 21 a 7",
+      "unit": "Hora o 25 km",
+      "unitPrice": 29.52,
+      "minimum": 1,
+      "notes": "",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "10",
+        "precioMaximo": "32,80 €",
+        "precioUnitario": "29,52 €"
+      }
+    },
+    {
+      "id": "districenter-2-25",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A14. Disponibilitat de localització de la flota de les furgonetes via GPS\n☐ No (0 punts)☒ Sí (4 punts)",
+      "originalValues": [
+        "A14. Disponibilitat de localització de la flota de les furgonetes via GPS",
+        "☐ No (0 punts)☒ Sí (4 punts)"
+      ],
+      "code": "A14",
+      "name": "A14. Disponibilitat de localització de la flota de les furgonetes via GPS",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☐ No (0 punts)☒ Sí (4 punts)",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    },
+    {
+      "id": "districenter-2-26",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A15. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores\n☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)",
+      "originalValues": [
+        "A15. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores",
+        "☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)"
+      ],
+      "code": "A15",
+      "name": "A15. Per tal de garantir la màxima agilitat possible en la petició de vehicles programats (no urgents) es valorarà la millora del temps de confirmació de la disponibilitat del servei, respecte el màxim establert en tres hores",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☐ No millora (0 punts)☐ Entre 1 i 2 hores (3 punts)☒ Menys de 1 hora (6 punts)",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    },
+    {
+      "id": "districenter-2-27",
+      "sheetName": "LOT 2 - Servei de transport de material pesat i de dimensions grans",
+      "originalDescription": "A16. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions\n☒ No (0 punts)☐ Sí (10 punts)",
+      "originalValues": [
+        "A16. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions",
+        "☒ No (0 punts)☐ Sí (10 punts)"
+      ],
+      "code": "A16",
+      "name": "A16. Millora de la totalitat de la flota amb distintiu ECO o Zero emissions",
+      "unit": "Criterio",
+      "unitPrice": 0,
+      "minimum": 1,
+      "notes": "☒ No (0 punts)☐ Sí (10 punts)",
+      "criteria": {
+        "lot": "2",
+        "estimacion": "",
+        "precioMaximo": "",
+        "precioUnitario": ""
+      }
+    }
+  ]
+}

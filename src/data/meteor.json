@@ -1,0 +1,128 @@
+{
+  "id": "meteor",
+  "name": "Meteor",
+  "description": "Tarifario Meteor cargado desde VS Code. Fuente: Tarifas meteor.jpeg",
+  "criteriaColumns": [
+    "tipo",
+    "capacidad",
+    "tarifaFija",
+    "refuerzoManana",
+    "refuerzoTarde"
+  ],
+  "items": [
+    {
+      "id": "meteor-vehicle-a",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO A · 3 metros cúbicos 1 palet · Tarifa fija 160,00 € · Refuerzo mañana 80,00 € · Refuerzo tarde 80,00 €",
+      "originalValues": ["TIPO A", "3 metros cúbicos 1 palet", "160,00 €", "80,00 €", "80,00 €"],
+      "code": "TIPO_A",
+      "name": "Tipo A (3 m³ - 1 palet)",
+      "unit": "Servicio",
+      "unitPrice": 160,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 80,00 €",
+      "criteria": {
+        "tipo": "Tipo A",
+        "capacidad": "3 metros cúbicos 1 palet",
+        "tarifaFija": "160,00 €",
+        "refuerzoManana": "80,00 €",
+        "refuerzoTarde": "80,00 €"
+      }
+    },
+    {
+      "id": "meteor-vehicle-b",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO B · 6 metros cúbicos 2 palets · Tarifa fija 170,00 € · Refuerzo mañana 90,00 € · Refuerzo tarde 90,00 €",
+      "originalValues": ["TIPO B", "6 metros cúbicos 2 palets", "170,00 €", "90,00 €", "90,00 €"],
+      "code": "TIPO_B",
+      "name": "Tipo B (6 m³ - 2 palets)",
+      "unit": "Servicio",
+      "unitPrice": 170,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 90,00 €",
+      "criteria": {
+        "tipo": "Tipo B",
+        "capacidad": "6 metros cúbicos 2 palets",
+        "tarifaFija": "170,00 €",
+        "refuerzoManana": "90,00 €",
+        "refuerzoTarde": "90,00 €"
+      }
+    },
+    {
+      "id": "meteor-vehicle-c",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO C · 12 metros cúbicos · Tarifa fija 180,00 € · Refuerzo mañana 100,00 € · Refuerzo tarde 100,00 €",
+      "originalValues": ["TIPO C", "12 metros cúbicos", "180,00 €", "100,00 €", "100,00 €"],
+      "code": "TIPO_C",
+      "name": "Tipo C (12 m³)",
+      "unit": "Servicio",
+      "unitPrice": 180,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 100,00 €",
+      "criteria": {
+        "tipo": "Tipo C",
+        "capacidad": "12 metros cúbicos",
+        "tarifaFija": "180,00 €",
+        "refuerzoManana": "100,00 €",
+        "refuerzoTarde": "100,00 €"
+      }
+    },
+    {
+      "id": "meteor-vehicle-d",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO D · Carrozado con plataforma · Tarifa fija 220,00 € · Refuerzo mañana 110,00 € · Refuerzo tarde 110,00 €",
+      "originalValues": ["TIPO D", "Carrozado con plataforma", "220,00 €", "110,00 €", "110,00 €"],
+      "code": "TIPO_D",
+      "name": "Tipo D (Carrozado con plataforma)",
+      "unit": "Servicio",
+      "unitPrice": 220,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 110,00 €",
+      "criteria": {
+        "tipo": "Tipo D",
+        "capacidad": "Carrozado con plataforma",
+        "tarifaFija": "220,00 €",
+        "refuerzoManana": "110,00 €",
+        "refuerzoTarde": "110,00 €"
+      }
+    },
+    {
+      "id": "meteor-vehicle-e",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO E · Moto · Tarifa fija 110,00 € · Refuerzo mañana 50,00 € · Refuerzo tarde 50,00 €",
+      "originalValues": ["TIPO E", "Moto", "110,00 €", "50,00 €", "50,00 €"],
+      "code": "TIPO_E",
+      "name": "Tipo E (Moto)",
+      "unit": "Servicio",
+      "unitPrice": 110,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 50,00 €",
+      "criteria": {
+        "tipo": "Tipo E",
+        "capacidad": "Moto",
+        "tarifaFija": "110,00 €",
+        "refuerzoManana": "50,00 €",
+        "refuerzoTarde": "50,00 €"
+      }
+    },
+    {
+      "id": "meteor-vehicle-f",
+      "sheetName": "Tarifa medio día",
+      "originalDescription": "TIPO F · Bicicleta · Tarifa fija 90,00 € · Refuerzo mañana 40,00 € · Refuerzo tarde 40,00 €",
+      "originalValues": ["TIPO F", "Bicicleta", "90,00 €", "40,00 €", "40,00 €"],
+      "code": "TIPO_F",
+      "name": "Tipo F (Bicicleta)",
+      "unit": "Servicio",
+      "unitPrice": 90,
+      "minimum": 1,
+      "notes": "Refuerzo mañana/tarde: 40,00 €",
+      "criteria": {
+        "tipo": "Tipo F",
+        "capacidad": "Bicicleta",
+        "tarifaFija": "90,00 €",
+        "refuerzoManana": "40,00 €",
+        "refuerzoTarde": "40,00 €"
+      }
+    }
+  ]
+}
