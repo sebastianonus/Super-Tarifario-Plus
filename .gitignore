@@ -7,3 +7,6 @@ npm-debug.log*
 .backup/
 .logs/
 logs/
+
+.vercel/
+.env.local
