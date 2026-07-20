@@ -7,6 +7,7 @@ import onusExpressJulio27 from './data/onusExpressJulio27.json';
 import districenter from './data/districenter.json';
 import meteor from './data/meteor.json';
 import heroBackgroundVideo from './assets/video/hero-background.mp4';
+import mobileBackgroundVideo from './assets/video/background-mobile.mp4';
 
 GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
@@ -247,6 +248,18 @@ const initialAccessUsers: LoginSession[] = [
 ];
 
 const accessUsersStorageKey = 'super-tarifario-plus.access-users.v1';
+
+function AppVideoBackdrop() {
+  return (
+    <div className="app-video-backdrop" aria-hidden="true">
+      <video autoPlay loop muted playsInline preload="metadata">
+        <source src={mobileBackgroundVideo} media="(max-width: 860px)" type="video/mp4" />
+        <source src={heroBackgroundVideo} type="video/mp4" />
+      </video>
+      <div className="app-video-overlay" />
+    </div>
+  );
+}
 
 function isValidAccessUser(value: unknown): value is LoginSession {
   if (!value || typeof value !== 'object') {
@@ -2681,10 +2694,7 @@ function App() {
   if (!loginSession) {
     return (
       <main className="app-shell login-shell">
-        <div className="app-video-backdrop" aria-hidden="true">
-          <video src={heroBackgroundVideo} autoPlay loop muted playsInline />
-          <div className="app-video-overlay" />
-        </div>
+        <AppVideoBackdrop />
         <section className="login-panel" aria-labelledby="login-title">
           <p className="eyebrow">{texts.app.eyebrow}</p>
           <h1>{texts.app.title}</h1>
@@ -2728,10 +2738,7 @@ function App() {
 
   return (
     <main className="app-shell">
-      <div className="app-video-backdrop" aria-hidden="true">
-        <video src={heroBackgroundVideo} autoPlay loop muted playsInline />
-        <div className="app-video-overlay" />
-      </div>
+      <AppVideoBackdrop />
       <header className="topbar">
         <div>
           <p className="eyebrow">{texts.app.eyebrow}</p>

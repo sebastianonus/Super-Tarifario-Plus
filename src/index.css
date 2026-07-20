@@ -179,6 +179,7 @@ td input {
   display: grid;
   place-items: center;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .login-panel {
@@ -1160,57 +1161,141 @@ td input {
 
 @media (max-width: 860px) {
   .app-shell {
-    width: min(100% - 20px, 1220px);
-    padding-top: 18px;
+    width: min(100% - 16px, 1220px);
+    padding-top: 12px;
+    padding-bottom: 28px;
   }
 
   h1 {
     font-size: clamp(1.35rem, 9vw, 2rem);
   }
 
+  .login-shell {
+    align-content: center;
+    padding-block: 18px;
+  }
+
+  .login-panel {
+    width: min(100%, 430px);
+    gap: 16px;
+    border-radius: 22px;
+    padding: 22px;
+  }
+
+  .login-panel h1 {
+    font-size: clamp(2rem, 13vw, 3.1rem);
+  }
+
   .topbar,
   .workspace,
-  .topbar-actions,
   .context-strip,
   .analysis-grid,
   .agent-split,
-  .parameter-grid,
   .quote-draft-grid {
     grid-template-columns: 1fr;
   }
 
+  .topbar {
+    display: grid;
+    gap: 12px;
+  }
+
+  .topbar-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .topbar-actions button,
+  .session-badge {
+    min-height: 36px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
   .assistant-start {
-    min-height: calc(100vh - 180px);
-    gap: 22px;
-    padding: 72px 0 28px;
+    --assistant-vertical-gap: 24px;
+    min-height: calc(100vh - 120px);
+    min-height: calc(100dvh - 120px);
+    gap: 18px;
+    padding: 30px 0 24px;
   }
 
   .assistant-question {
-    font-size: clamp(2rem, 11vw, 2.75rem);
+    margin-bottom: 8px;
+    font-size: clamp(2rem, 10vw, 2.65rem);
   }
 
   .assistant-lead {
-    font-size: 1rem;
+    font-size: 0.95rem;
     padding-inline: 8px;
   }
 
+  .composer-panel,
+  .agent-panel,
+  .review-panel {
+    border-radius: 18px;
+    padding: 14px;
+  }
+
+  .composer-panel textarea {
+    min-height: 118px;
+    border-radius: 16px;
+  }
+
   .composer-actions {
-    align-items: stretch;
-    flex-direction: column;
+    display: grid;
+    gap: 10px;
   }
 
   .composer-upload-action,
   .composer-main-actions {
     align-items: stretch;
-    flex-direction: column;
+  }
+
+  .composer-upload-action {
+    display: grid;
+  }
+
+  .composer-main-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px;
+    gap: 8px;
+  }
+
+  .composer-actions button {
+    min-height: 42px;
+    padding-inline: 12px;
+    white-space: nowrap;
   }
 
   .icon-button {
-    width: 100%;
+    width: 44px;
+    min-width: 44px;
   }
 
-  .topbar {
-    display: grid;
+  .parameter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .parameter-wide {
+    grid-column: 1 / -1;
+  }
+
+  .parameter-grid label,
+  .parameter-grid .inline-field,
+  .parameter-toggles label {
+    min-width: 0;
+  }
+
+  .parameter-toggles {
+    gap: 8px;
+  }
+
+  .parameter-toggles label {
+    flex: 1 1 calc(50% - 8px);
+    justify-content: flex-start;
   }
 
   .agent-footer,
@@ -1223,6 +1308,62 @@ td input {
   .quote-draft-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    width: min(100% - 12px, 1220px);
+  }
+
+  .login-panel {
+    padding: 20px;
+  }
+
+  .assistant-start {
+    padding-top: 22px;
+  }
+
+  .assistant-question {
+    font-size: clamp(1.85rem, 10.5vw, 2.35rem);
+  }
+
+  .assistant-lead {
+    font-size: 0.9rem;
+  }
+
+  .composer-panel,
+  .agent-panel,
+  .review-panel {
+    padding: 12px;
+  }
+
+  .composer-main-actions {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 42px;
+  }
+
+  .composer-main-actions button {
+    font-size: 0.88rem;
+  }
+
+  .attached-document-list span {
+    max-width: 100%;
+    font-size: 0.78rem;
+  }
+
+  .agent-footer-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .parameter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parameter-toggles label {
+    flex-basis: 100%;
   }
 }
 
