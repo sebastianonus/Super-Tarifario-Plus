@@ -1762,6 +1762,67 @@ function looksLikeRouteAddressCandidate(value: string, context = '') {
   return addressSignals.some((pattern) => pattern.test(address));
 }
 
+function cleanRouteAddressCandidate(value: string) {
+  return value
+    .replace(/^[\s:=-]*(origen|destino|recogida|entrega|direccion|dirección|direccio|adreca|adreça|desde|hasta|a)\s*[:=-]?\s*/i, '')
+    .replace(/\s+(?:con|para|horario|contacto|telefono|tel[eé]fono|bultos|peso|veh[ií]culo|plataforma)\b.*$/i, '')
+    .replace(/[.。]+$/g, '')
+    .trim();
+}
+
+function dedupeRouteAddresses(addresses: string[]) {
+  const unique: string[] = [];
+  for (const address of addresses.map((item) => item.trim()).filter(Boolean)) {
+    if (!unique.some((current) => sameRoutePlace(current, address))) {
+      unique.push(address);
+    }
+  }
+  return unique;
+}
+
+function extractRouteAddressesFromText(userText: string) {
+  const addresses: string[] = [];
+  const addCandidate = (value: string) => {
+    const cleaned = cleanRouteAddressCandidate(value);
+    if (looksLikeRouteAddressCandidate(cleaned, userText)) {
+      addresses.push(normalizeRouteCorrectionAddress(cleaned, userText));
+    }
+  };
+
+  const registeredAddress = findRegisteredRoutePlaceAddress(userText);
+  if (registeredAddress) {
+    addresses.push(registeredAddress);
+  }
+
+  const labeledPatterns = [
+    /(?:^|\n|;)\s*(?:origen|salida|inicio|recogida|recollida|direccion de recogida|dirección de recogida|adreca de recollida)\s*[:=-]\s*([^\n;]+?)(?=\s+(?:destino|entrega|lliurament|direccion de entrega|dirección de entrega|adreca lliurament)\s*[:=-]|\n|;|$)/gi,
+    /(?:^|\n|;)\s*(?:destino|entrega|lliurament|direccion de entrega|dirección de entrega|adreca lliurament)\s*[:=-]\s*([^\n;]+?)(?=\s+(?:origen|salida|inicio|recogida|recollida|direccion de recogida|dirección de recogida|adreca de recollida)\s*[:=-]|\n|;|$)/gi,
+    /\b(?:desde|de)\s+([^;\n]+?)\s+(?:hasta|a)\s+([^;\n.]+)/gi,
+    /\b(?:recollir|recoger|recogida)\s+a?\s*([^;\n]+?)\s+(?:per|para|y entregar en|entregar en|lliurar a)\s+([^;\n.]+)/gi
+  ];
+
+  for (const pattern of labeledPatterns) {
+    for (const match of userText.matchAll(pattern)) {
+      if (match[1]) {
+        addCandidate(match[1]);
+      }
+      if (match[2]) {
+        addCandidate(match[2]);
+      }
+    }
+  }
+
+  const streetPattern =
+    /\b((?:c\/|calle|carrer|avenida|avinguda|av\.?|pol\.?\s*ind\.?|poligono|polígono|passeig|plaza|plaça|ronda|camino|carretera)\s+[^;\n]+?)(?=\s+(?:a|hasta|para|y)\s+(?:c\/|calle|carrer|avenida|avinguda|av\.?|pol\.?\s*ind\.?|poligono|polígono|passeig|plaza|plaça|ronda|camino|carretera)\b|[;\n]|$)/gi;
+  for (const match of userText.matchAll(streetPattern)) {
+    if (match[1]) {
+      addCandidate(match[1]);
+    }
+  }
+
+  return dedupeRouteAddresses(addresses);
+}
+
 function extractForcedRouteOrigin(userText: string) {
   const patterns = [
     /(?:^|\n)\s*(?:origen|primera parada|punto inicial|inicio|salida|recogida inicial|recollida inicial)(?:\s*\([^)]*\))?\s*[:=-]?\s*([^\n.;]+)/i,
@@ -1999,10 +2060,13 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
   }
 
   const normalizedText = normalizeText(text);
+  const existingRouteAddresses = (request.routeAddresses?.length ? request.routeAddresses : [request.originAddress, request.destinationAddress])
+    .map((address) => String(address || '').trim())
+    .filter(Boolean);
+  const extractedRouteAddresses = extractRouteAddressesFromText(text);
+  const combinedRouteAddresses = dedupeRouteAddresses([...existingRouteAddresses, ...extractedRouteAddresses]);
   const routeAddresses = applyUserRouteCorrections(
-    (request.routeAddresses?.length ? request.routeAddresses : [request.originAddress, request.destinationAddress])
-      .map((address) => String(address || '').trim())
-      .filter(Boolean),
+    combinedRouteAddresses.length >= 2 ? combinedRouteAddresses : existingRouteAddresses.length ? existingRouteAddresses : extractedRouteAddresses,
     text
   );
   const confirmedDistanceKm = extractConfirmedDistanceKm(text);

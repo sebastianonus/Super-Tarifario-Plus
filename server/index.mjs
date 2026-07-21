@@ -137,6 +137,11 @@ const tariffAnalysisPrompt =
 const logisticsSystemPrompt =
   'Eres un analista experto en operaciones logisticas y tarificacion de servicios de transporte. Tu prioridad es la precision. No inventes datos para completar campos. Cuando existan contradicciones, usa este orden: 1 correcciones del usuario, 2 reglas del sistema, 3 tarifario vigente, 4 albaranes/documentos oficiales, 5 texto descriptivo, 6 estimaciones razonadas. Nunca ocultes una contradiccion: registrala. Extrae operativa, ruta, paradas, horarios, contactos, mercancia, vehiculo y recursos. Mantén direccion_original y direccion_normalizada. No inventes calles, CP, municipios, pesos, dimensiones ni kilometros. Diferencia bultos fisicos, movimientos de bultos y carga maxima simultanea. El vehiculo se recomienda por carga maxima simultanea, no por suma acumulada de movimientos. Si falta peso o dimensiones, usa null en confirmados; solo estima si la politica permite estimaciones, siempre con rango y marcando pendiente de confirmacion. No calcules kilometros por intuicion: si no vienen de API o usuario, distance_status debe ser pendiente_de_calcular. La IA propone reglas y estructura; el codigo calcula importes. Nunca generes importes monetarios finales ni precios unitarios por tu cuenta: si un concepto no ha sido calculado por codigo, precio_unitario, importe, base_imponible, iva_importe y total_con_iva deben ser 0 y calculado_por_codigo false. No cierres una tarifa definitiva si faltan datos criticos.';
 
+const routeAwareTariffAnalysisPrompt = [
+  tariffAnalysisPrompt,
+  'Si el usuario aporta direcciones, poblaciones o establecimientos, rellena originAddress, destinationAddress y routeAddresses en pricingRequest. routeAddresses debe conservar todas las paradas utiles en orden operativo. Si solo hay una entrega para distribucion, usa destinationAddress como referencia de entrega. No dejes las direcciones solo en summary o serviceDescription.'
+].join(' ');
+
 const logisticsRouteExtractionPrompt = [
   'Extrae una ruta ordenada con TODAS las paradas que aparezcan en albaranes, emails, capturas e instrucciones.',
   'Cada direccion encontrada debe convertirse en un item de ruta, no en un resumen generico.',
@@ -219,6 +224,17 @@ const analysisSchema = {
           section: { type: ['string', 'null'] },
           concept: { type: ['string', 'null'] },
           quantity: { type: ['number', 'null'] },
+          originAddress: { type: ['string', 'null'] },
+          destinationAddress: { type: ['string', 'null'] },
+          routeAddresses: {
+            type: ['array', 'null'],
+            items: { type: 'string' }
+          },
+          routeHasTimeConstraints: { type: ['boolean', 'null'] },
+          routeOptimization: { type: ['boolean', 'null'] },
+          loadZone: { type: ['string', 'null'] },
+          deliveryZone: { type: ['string', 'null'] },
+          estimatedStops: { type: ['number', 'null'] },
           operationalSurcharges: {
             type: ['object', 'null'],
             additionalProperties: false,
@@ -273,6 +289,14 @@ const analysisSchema = {
           'section',
           'concept',
           'quantity',
+          'originAddress',
+          'destinationAddress',
+          'routeAddresses',
+          'routeHasTimeConstraints',
+          'routeOptimization',
+          'loadZone',
+          'deliveryZone',
+          'estimatedStops',
           'operationalSurcharges',
           'clientPrice'
         ]
@@ -805,6 +829,22 @@ function normalizePricingRequest(pricingRequest, contextText) {
   normalized.modality = cleanedModalities.length > 0 ? cleanedModalities : null;
   normalized.operationalSurcharges = inferOperationalSurchargesFromText(contextText, normalized.operationalSurcharges);
 
+  if (Array.isArray(normalized.routeAddresses)) {
+    normalized.routeAddresses = normalized.routeAddresses.map((address) => String(address || '').trim()).filter(Boolean);
+    if (normalized.routeAddresses.length === 0) {
+      normalized.routeAddresses = null;
+    }
+  }
+
+  if (normalized.routeAddresses?.length) {
+    normalized.originAddress = normalized.originAddress || normalized.routeAddresses[0] || null;
+    normalized.destinationAddress = normalized.destinationAddress || normalized.routeAddresses[normalized.routeAddresses.length - 1] || null;
+    normalized.additionalStops = normalized.additionalStops ?? Math.max(0, normalized.routeAddresses.length - 2);
+  } else if (normalized.originAddress && normalized.destinationAddress) {
+    normalized.routeAddresses = [normalized.originAddress, normalized.destinationAddress];
+    normalized.additionalStops = normalized.additionalStops ?? 0;
+  }
+
   if (normalize(normalized.family) === 'directos' && !normalized.vehicleType) {
     normalized.vehicleType = inferDirectVehicleType(contextText);
   }
@@ -1206,7 +1246,7 @@ app.post('/api/analyze-service', async (req, res) => {
       input: [
         {
           role: 'system',
-          content: tariffAnalysisPrompt
+          content: routeAwareTariffAnalysisPrompt
         },
         {
           role: 'user',
