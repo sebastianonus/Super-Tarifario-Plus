@@ -1388,6 +1388,18 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
     criteria.push(`${label('parameterTariffDestination', 'Destino tarifario')}: ${formatMetaValue(request.destination)}`);
   }
 
+  if (isDistributionFamily && request.destinationAddress) {
+    criteria.push(`${label('parameterDeliveryReference', 'Entrega / referencia de destino')}: ${request.destinationAddress}`);
+  }
+
+  if ((isDistributionFamily || request.family === 'mensajeria') && request.weightKg !== null && request.weightKg !== undefined) {
+    criteria.push(`${label('parameterWeight', 'Peso kg')}: ${request.weightKg.toLocaleString('es-ES')} kg`);
+  }
+
+  if (isDistributionFamily && request.quantity !== null && request.quantity !== undefined) {
+    criteria.push(`${label('parameterPalletCount', 'Nº palets')}: ${request.quantity}`);
+  }
+
   if ((isDirectFamily || isLastMileFamily) && request.vehicleType) {
     criteria.push(`${label('parameterVehicle', 'Vehículo')}: ${request.vehicleType}`);
   }
@@ -1443,6 +1455,67 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
   }
 
   return criteria;
+}
+
+function appendMissingRequirement(items: string[], condition: boolean, label: string) {
+  if (condition && !items.some((item) => normalizeText(item) === normalizeText(label))) {
+    items.push(label);
+  }
+}
+
+function getTariffCriticalMissingData(missingData: string[], request?: PricingRequest | null) {
+  if (!request) {
+    return ensurePricingMissingData(missingData, request);
+  }
+
+  const items: string[] = [];
+  const family = normalizeText(request.family);
+  const distributionType = normalizeText(request.distributionType);
+
+  if (family === 'mensajeria') {
+    appendMissingRequirement(items, !request.serviceLevel, 'Servicio');
+    appendMissingRequirement(items, !request.weightKg, 'Peso total kg');
+    return items;
+  }
+
+  if (family === 'distribucion') {
+    appendMissingRequirement(items, !request.distributionType, 'Tipo de distribución');
+
+    if (!distributionType || distributionType === 'paqueteria') {
+      appendMissingRequirement(items, !request.serviceLevel, 'Servicio');
+      appendMissingRequirement(items, !request.weightKg, 'Peso total kg');
+      return items;
+    }
+
+    appendMissingRequirement(items, !request.destination && !request.zone, 'Destino tarifario');
+    appendMissingRequirement(items, !request.destinationAddress && !request.destination && !request.zone, 'Entrega o población de destino');
+    appendMissingRequirement(items, !request.weightKg, 'Peso total kg');
+
+    if (distributionType === 'pallet_seco' || distributionType === 'pallet' || distributionType === 'pallets') {
+      appendMissingRequirement(items, !request.quantity, 'Número de palets');
+    }
+
+    return items;
+  }
+
+  if (family === 'ultima_milla') {
+    appendMissingRequirement(items, !request.loadZone, 'Zona de carga');
+    appendMissingRequirement(items, !request.deliveryZone, 'Zona de reparto');
+    appendMissingRequirement(items, !request.vehicleType, 'Vehículo');
+    appendMissingRequirement(items, !request.serviceDays, 'Cantidad de días');
+    appendMissingRequirement(items, request.estimatedStops === null || request.estimatedStops === undefined, 'Número de paradas');
+    return ensurePricingMissingData(items, request);
+  }
+
+  if (family === 'directos') {
+    appendMissingRequirement(items, !request.originAddress, 'Dirección de origen');
+    appendMissingRequirement(items, !request.destinationAddress, 'Dirección de destino');
+    appendMissingRequirement(items, !request.vehicleType, 'Vehículo');
+    appendMissingRequirement(items, !request.distanceKm, 'Distancia en km');
+    return ensurePricingMissingData(items, request);
+  }
+
+  return ensurePricingMissingData(missingData, request);
 }
 
 function createDefaultPricingRequest(requestText = ''): PricingRequest {
@@ -2968,6 +3041,7 @@ function AnalysisPanel({
     .map((line) => line.trim())
     .filter(Boolean);
   const detectedCriteria = buildDetectedPricingCriteria(pricingRequest);
+  const criticalMissingData = getTariffCriticalMissingData(analysis.missingData, pricingRequest);
 
   return (
     <section className="agent-panel assistant-review">
@@ -2998,7 +3072,7 @@ function AnalysisPanel({
 
       <PricingRequestEditor
         value={pricingRequest}
-        missingData={analysis.missingData}
+        missingData={criticalMissingData}
         catalogs={catalogs}
         vehicleOptionIndex={vehicleOptionIndex}
         onChange={onPricingRequestChange}
@@ -3322,7 +3396,6 @@ function PricingRequestEditor({
         additionalStops: null,
         waitHours: null,
         originAddress: null,
-        destinationAddress: null,
         routeAddresses: null,
         routeOptimization: null,
         liftPlatform: null,
@@ -3462,8 +3535,11 @@ function PricingRequestEditor({
   const isDistributionFamily = value.family === 'distribucion';
   const isDirectFamily = value.family === 'directos';
   const showRouteFields = isDirectFamily || routeStopAddressEntries.length > 0;
-  const showShipmentFields = isShipmentFamily || (isDistributionFamily && (!value.distributionType || value.distributionType === 'paqueteria'));
+  const showShipmentFields = isShipmentFamily || (isDistributionFamily && value.distributionType === 'paqueteria');
   const showDistributionFields = isDistributionFamily;
+  const normalizedDistributionType = normalizeText(value.distributionType);
+  const showDistributionZoneFields = showDistributionFields && Boolean(value.distributionType) && normalizedDistributionType !== 'paqueteria';
+  const showPalletCountField = showDistributionZoneFields && ['pallet_seco', 'pallet', 'pallets'].includes(normalizedDistributionType);
   const showVehicleField = isDirectFamily || isLastMileFamily;
   const showDistanceField = isDirectFamily || isLastMileFamily;
   const showTemperatureField = isDirectFamily || isLastMileFamily;
@@ -3578,7 +3654,17 @@ function PricingRequestEditor({
             {texts.assistant.parameterDistributionType}
             <select
               value={value.distributionType ?? ''}
-              onChange={(event) => update({ distributionType: event.target.value || null, serviceLevel: event.target.value === 'paqueteria' ? value.serviceLevel : null })}
+              onChange={(event) => {
+                const distributionType = event.target.value || null;
+                const isParcel = distributionType === 'paqueteria';
+                update({
+                  distributionType,
+                  serviceLevel: isParcel ? value.serviceLevel : null,
+                  destination: isParcel ? null : value.destination,
+                  zone: isParcel ? null : value.zone,
+                  quantity: distributionType === 'pallet_seco' ? value.quantity : null
+                });
+              }}
             >
               <option value="">Pendiente</option>
               {distributionTypeOptions.map((option) => (
@@ -3589,7 +3675,16 @@ function PricingRequestEditor({
             </select>
           </label>
         )}
-        {showDistributionFields && value.distributionType !== 'paqueteria' && (
+        {showDistributionFields && (
+          <AddressAutocomplete
+            className="parameter-wide"
+            label={texts.assistant.parameterDeliveryReference}
+            value={value.destinationAddress ?? ''}
+            onChange={(address) => update({ destinationAddress: address || null })}
+            placeholder="Dirección, población o cliente de entrega"
+          />
+        )}
+        {showDistributionZoneFields && (
           <label>
             {texts.assistant.parameterTariffDestination}
             <select value={value.destination ?? value.zone ?? ''} onChange={(event) => update({ destination: event.target.value || null, zone: event.target.value || null })}>
@@ -3600,6 +3695,12 @@ function PricingRequestEditor({
                 </option>
               ))}
             </select>
+          </label>
+        )}
+        {showPalletCountField && (
+          <label>
+            {texts.assistant.parameterPalletCount}
+            <input type="number" min="1" step="1" value={value.quantity ?? ''} onChange={(event) => update({ quantity: parseOptionalNumber(event.target.value) })} />
           </label>
         )}
         {showVehicleField && (
@@ -3625,6 +3726,12 @@ function PricingRequestEditor({
           {texts.assistant.parameterWeight}
           <input type="number" min="0" step="0.1" value={value.weightKg ?? ''} onChange={(event) => update({ weightKg: parseOptionalNumber(event.target.value) })} />
         </label>
+        {showDistributionFields && (
+          <label className="parameter-wide">
+            {texts.assistant.parameterGoodsNotes}
+            <textarea rows={3} value={value.notes ?? ''} onChange={(event) => update({ notes: event.target.value || null })} />
+          </label>
+        )}
         {showTemperatureField && (
           <label>
             {texts.assistant.parameterTemperature}
