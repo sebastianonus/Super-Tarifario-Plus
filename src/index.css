@@ -830,6 +830,45 @@ td input {
   padding: 9px 10px;
 }
 
+.route-stop-editor {
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(245, 156, 56, 0.28);
+  border-radius: 10px;
+  background: rgba(255, 242, 223, 0.3);
+  padding: 10px;
+}
+
+.route-stop-editor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.route-stop-editor-heading strong {
+  color: var(--color-ink);
+}
+
+.route-stop-editor-heading button,
+.route-stop-remove {
+  min-height: 36px;
+  border-radius: 999px;
+  padding-inline: 12px;
+}
+
+.route-stop-list {
+  display: grid;
+  gap: 8px;
+}
+
+.route-stop-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
 .parameter-toggles {
   display: flex;
   flex-wrap: wrap;
@@ -1291,6 +1330,20 @@ td input {
 
   .parameter-toggles {
     gap: 8px;
+  }
+
+  .route-stop-editor-heading,
+  .route-stop-row {
+    grid-template-columns: 1fr;
+  }
+
+  .route-stop-editor-heading {
+    display: grid;
+  }
+
+  .route-stop-editor-heading button,
+  .route-stop-remove {
+    width: 100%;
   }
 
   .parameter-toggles label {

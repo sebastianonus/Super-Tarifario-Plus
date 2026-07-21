@@ -3260,44 +3260,65 @@ function PricingRequestEditor({
       vehicleType: findAllowedVehicle(value.vehicleType, allowedVehicles)
     });
   };
-  const routeAddresses = (value.routeAddresses ?? []).map((address) => String(address || '').trim()).filter(Boolean);
+  const routeAddressEntries = (value.routeAddresses ?? []).map((address) => String(address ?? ''));
+  const endpointOrigin = value.originAddress ?? routeAddressEntries[0] ?? '';
+  const endpointDestination = value.destinationAddress ?? (routeAddressEntries.length >= 2 ? routeAddressEntries[routeAddressEntries.length - 1] : '') ?? '';
+  const routeStopAddressEntries = routeAddressEntries.length >= 2 ? routeAddressEntries.slice(1, -1) : [];
+  const routeAddresses = [endpointOrigin, ...routeStopAddressEntries, endpointDestination].map((address) => String(address || '').trim()).filter(Boolean);
   const addressesForDistance =
     routeAddresses.length >= 2
       ? routeAddresses
       : [value.originAddress, value.destinationAddress].map((address) => String(address || '').trim()).filter(Boolean);
   const canCalculateDistance = addressesForDistance.length >= 2;
+  const updateFullRoute = (origin: string, stopAddresses: string[], destination: string, patch: Partial<PricingRequest> = {}) => {
+    const rawRoute = [origin, ...stopAddresses, destination];
+    const hasRouteValue = rawRoute.some((address) => address.trim());
+    const addressedStopCount = stopAddresses.map((address) => address.trim()).filter(Boolean).length;
+    const nextAdditionalStops =
+      patch.additionalStops !== undefined
+        ? patch.additionalStops
+        : Math.max(Number(value.additionalStops ?? 0), addressedStopCount);
+
+    update({
+      originAddress: origin.trim() || null,
+      destinationAddress: destination.trim() || null,
+      routeAddresses: hasRouteValue ? rawRoute : null,
+      additionalStops: nextAdditionalStops,
+      distanceKm: null,
+      ...patch
+    });
+  };
   const updateRouteEndpoint = (endpoint: 'origin' | 'destination', nextAddress: string) => {
     const cleanedAddress = nextAddress.trim();
-    const currentRoute =
-      routeAddresses.length >= 2
-        ? routeAddresses
-        : [value.originAddress, value.destinationAddress].map((address) => String(address || '').trim()).filter(Boolean);
-
     if (!cleanedAddress) {
-      update({
-        [endpoint === 'origin' ? 'originAddress' : 'destinationAddress']: null,
-        routeAddresses: null,
-        distanceKm: null,
-        additionalStops: null
-      });
+      updateFullRoute(
+        endpoint === 'origin' ? '' : endpointOrigin,
+        routeStopAddressEntries,
+        endpoint === 'destination' ? '' : endpointDestination,
+        { [endpoint === 'origin' ? 'originAddress' : 'destinationAddress']: null }
+      );
       return;
     }
 
-    const nextRoute =
-      endpoint === 'origin'
-        ? currentRoute.length >= 2
-          ? [cleanedAddress, ...currentRoute.slice(1)]
-          : [cleanedAddress, String(value.destinationAddress || '').trim()]
-        : currentRoute.length >= 2
-          ? [...currentRoute.slice(0, -1), cleanedAddress]
-          : [String(value.originAddress || '').trim(), cleanedAddress];
-    const cleanedRoute = nextRoute.map((address) => address.trim()).filter(Boolean);
-
-    update({
-      [endpoint === 'origin' ? 'originAddress' : 'destinationAddress']: cleanedAddress,
-      routeAddresses: cleanedRoute.length >= 2 ? cleanedRoute : null,
-      distanceKm: null,
-      additionalStops: cleanedRoute.length >= 2 ? Math.max(0, cleanedRoute.length - 2) : null
+    updateFullRoute(
+      endpoint === 'origin' ? cleanedAddress : endpointOrigin,
+      routeStopAddressEntries,
+      endpoint === 'destination' ? cleanedAddress : endpointDestination,
+      { [endpoint === 'origin' ? 'originAddress' : 'destinationAddress']: cleanedAddress }
+    );
+  };
+  const updateRouteStopAddress = (index: number, nextAddress: string) => {
+    const nextStops = [...routeStopAddressEntries];
+    nextStops[index] = nextAddress;
+    updateFullRoute(endpointOrigin, nextStops, endpointDestination);
+  };
+  const addRouteStopAddress = () => {
+    updateFullRoute(endpointOrigin, [...routeStopAddressEntries, ''], endpointDestination);
+  };
+  const removeRouteStopAddress = (index: number) => {
+    const nextStops = routeStopAddressEntries.filter((_, stopIndex) => stopIndex !== index);
+    updateFullRoute(endpointOrigin, nextStops, endpointDestination, {
+      additionalStops: Math.max(0, Number(value.additionalStops ?? routeStopAddressEntries.length) - 1)
     });
   };
   const handleDistanceCalculation = async () => {
@@ -3362,6 +3383,7 @@ function PricingRequestEditor({
   const showMozoHours = mozoRequirement === 'hours';
   const showMozoCount = mozoRequirement === 'fixed_count' || mozoRequirement === 'hours';
   const showVehicleSchedule = !isMeteorPricingRequest(value);
+  const showDirectRouteStops = !isLastMileFamily && (value.family === 'directos' || routeStopAddressEntries.length > 0);
 
   return (
     <div className="agent-card parameter-editor">
@@ -3386,7 +3408,7 @@ function PricingRequestEditor({
         <AddressAutocomplete
           className="parameter-wide"
           label={texts.assistant.parameterOrigin}
-          value={value.originAddress ?? ''}
+          value={endpointOrigin}
           onChange={(address) => updateRouteEndpoint('origin', address)}
           placeholder="Dirección de origen"
           disabled={isLastMileFamily}
@@ -3394,11 +3416,43 @@ function PricingRequestEditor({
         <AddressAutocomplete
           className="parameter-wide"
           label={texts.assistant.parameterDestination}
-          value={value.destinationAddress ?? ''}
+          value={endpointDestination}
           onChange={(address) => updateRouteEndpoint('destination', address)}
           placeholder="Dirección de destino"
           disabled={isLastMileFamily}
         />
+        {showDirectRouteStops && (
+          <div className="route-stop-editor parameter-wide">
+            <div className="route-stop-editor-heading">
+              <strong>{texts.assistant.parameterExtraStopAddresses}</strong>
+              <button type="button" className="secondary-button" onClick={addRouteStopAddress}>
+                {texts.assistant.addExtraStopAddress}
+              </button>
+            </div>
+            {routeStopAddressEntries.length > 0 && (
+              <div className="route-stop-list">
+                {routeStopAddressEntries.map((address, index) => (
+                  <div className="route-stop-row" key={`${index}-${routeStopAddressEntries.length}`}>
+                    <AddressAutocomplete
+                      label={`${texts.assistant.parameterExtraStopAddress} ${index + 1}`}
+                      value={address}
+                      onChange={(nextAddress) => updateRouteStopAddress(index, nextAddress)}
+                      placeholder={texts.assistant.extraStopAddressPlaceholder}
+                    />
+                    <button
+                      type="button"
+                      className="secondary-button route-stop-remove"
+                      onClick={() => removeRouteStopAddress(index)}
+                      aria-label={`${texts.assistant.removeExtraStopAddress} ${index + 1}`}
+                    >
+                      {texts.assistant.removeExtraStopAddress}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         <label>
           {texts.assistant.parameterFamily}
           <select value={value.family ?? ''} onChange={(event) => updateFamily(event.target.value || null)}>
