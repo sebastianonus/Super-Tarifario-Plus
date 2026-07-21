@@ -378,6 +378,19 @@ const scheduleOptions = [
   { value: 'refuerzo_max_3h', label: 'Refuerzo max. 3 h' }
 ];
 
+const shipmentServiceLevelOptions = ['48h', '19h', '14h', '12h', '10h', '08:30h', 'HOY'];
+
+const distributionTypeOptions = [
+  { value: 'paqueteria', label: 'Paquetería por peso' },
+  { value: 'pallet_seco', label: 'Pallet seco' },
+  { value: 'frio_13_30', label: 'Frío 13:30' },
+  { value: 'frio_10', label: 'Frío 10' },
+  { value: 'frio_devoluciones', label: 'Frío devoluciones' },
+  { value: 'frio_bulk', label: 'Frío bulk por kilo' }
+];
+
+const tariffDestinationOptions = ['provincia', 'nacional', 'baleares', 'andorra', 'gibraltar', 'canarias'];
+
 const scheduleHours: Record<string, number> = {
   media_jornada: 4,
   jornada_completa: 8,
@@ -1359,16 +1372,31 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
   const assistantTexts = texts.assistant as Record<string, string | undefined>;
   const label = (key: string, fallback: string) => assistantTexts[key] || fallback;
   const criteria: string[] = [];
+  const isDistributionFamily = request.family === 'distribucion';
+  const isDirectFamily = request.family === 'directos';
+  const isLastMileFamily = request.family === 'ultima_milla';
 
-  if (request.vehicleType) {
+  if (request.serviceLevel) {
+    criteria.push(`${label('parameterServiceLevel', 'Servicio')}: ${request.serviceLevel}`);
+  }
+
+  if (request.distributionType) {
+    criteria.push(`${label('parameterDistributionType', 'Tipo de distribución')}: ${formatMetaValue(request.distributionType)}`);
+  }
+
+  if ((isDistributionFamily || request.destination) && request.destination) {
+    criteria.push(`${label('parameterTariffDestination', 'Destino tarifario')}: ${formatMetaValue(request.destination)}`);
+  }
+
+  if ((isDirectFamily || isLastMileFamily) && request.vehicleType) {
     criteria.push(`${label('parameterVehicle', 'Vehículo')}: ${request.vehicleType}`);
   }
 
-  if (request.distanceKm !== null && request.distanceKm !== undefined) {
+  if ((isDirectFamily || isLastMileFamily) && request.distanceKm !== null && request.distanceKm !== undefined) {
     criteria.push(`${label('parameterDistance', 'Km reales')}: ${request.distanceKm.toLocaleString('es-ES')} km`);
   }
 
-  if (request.additionalStops !== null && request.additionalStops !== undefined) {
+  if (isDirectFamily && request.additionalStops !== null && request.additionalStops !== undefined) {
     criteria.push(`${label('parameterAdditionalStops', 'Paradas adicionales')}: ${request.additionalStops}`);
   }
 
@@ -1380,23 +1408,23 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
     criteria.push(`${label('parameterDeliveryZone', 'Zona de reparto')}: ${request.deliveryZone}`);
   }
 
-  if (request.serviceDays !== null && request.serviceDays !== undefined) {
+  if (isLastMileFamily && request.serviceDays !== null && request.serviceDays !== undefined) {
     criteria.push(`${label('parameterServiceDays', 'Cantidad de días')}: ${request.serviceDays}`);
   }
 
-  if (!isMeteorPricingRequest(request) && (request.vehicleSchedule || request.schedule)) {
+  if ((isDirectFamily || isLastMileFamily) && !isMeteorPricingRequest(request) && (request.vehicleSchedule || request.schedule)) {
     criteria.push(`${label('parameterVehicleSchedule', 'Jornada vehículo')}: ${formatMetaValue(request.vehicleSchedule || request.schedule)}`);
   }
 
-  if (request.mozoSchedule) {
+  if (isDirectFamily && request.mozoSchedule) {
     criteria.push(`${label('parameterMozoSchedule', 'Jornada mozo')}: ${formatMetaValue(request.mozoSchedule)}`);
   }
 
-  if (request.liftPlatform) {
+  if (isDirectFamily && request.liftPlatform) {
     criteria.push(`${label('parameterLiftPlatform', 'Plataforma')}: sí`);
   }
 
-  if (request.mozoCount || request.mozoHours) {
+  if (isDirectFamily && (request.mozoCount || request.mozoHours)) {
     const mozoCount = request.mozoCount ?? 1;
     const mozoHours =
       request.mozoHours !== null && request.mozoHours !== undefined
@@ -1406,7 +1434,7 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
     criteria.push(`${label('detectedHelper', 'Mozo/ayudante detectado')}: ${mozoCount} mozo(s) · ${mozoHours}`);
   }
 
-  if (request.temperature) {
+  if ((isDirectFamily || isLastMileFamily) && request.temperature) {
     criteria.push(`${label('parameterTemperature', 'Temperatura')}: ${request.temperature}`);
   }
 
@@ -3248,10 +3276,63 @@ function PricingRequestEditor({
   };
   const updateFamily = (family: string | null) => {
     const allowedVehicles = getVehicleOptionsForCatalog(`${value.tariffId || ''} ${value.tariffName || ''}`, family, value.temperature);
-    update({
+    const basePatch: Partial<PricingRequest> = {
       family,
       vehicleType: findAllowedVehicle(value.vehicleType, allowedVehicles)
-    });
+    };
+
+    if (family === 'mensajeria') {
+      update({
+        ...basePatch,
+        distributionType: null,
+        destination: null,
+        vehicleType: null,
+        schedule: null,
+        vehicleSchedule: null,
+        mozoSchedule: null,
+        mozoHours: null,
+        mozoCount: null,
+        mozoManualPrice: null,
+        distanceKm: null,
+        additionalStops: null,
+        waitHours: null,
+        originAddress: null,
+        destinationAddress: null,
+        routeAddresses: null,
+        routeOptimization: null,
+        liftPlatform: null,
+        roundTrip: null,
+        batchedRoute: null
+      });
+      return;
+    }
+
+    if (family === 'distribucion') {
+      update({
+        ...basePatch,
+        distributionType: value.distributionType || 'pallet_seco',
+        vehicleType: null,
+        schedule: null,
+        vehicleSchedule: null,
+        mozoSchedule: null,
+        mozoHours: null,
+        mozoCount: null,
+        mozoManualPrice: null,
+        distanceKm: null,
+        additionalStops: null,
+        waitHours: null,
+        originAddress: null,
+        destinationAddress: null,
+        routeAddresses: null,
+        routeOptimization: null,
+        liftPlatform: null,
+        roundTrip: null,
+        batchedRoute: null
+      });
+      return;
+    }
+
+    update(basePatch);
   };
   const updateTemperature = (temperature: string | null) => {
     const allowedVehicles = getVehicleOptionsForCatalog(`${value.tariffId || ''} ${value.tariffName || ''}`, value.family, temperature);
@@ -3377,13 +3458,24 @@ function PricingRequestEditor({
   };
   const vehicleOptions = getVehicleOptionsForCatalog(`${value.tariffId || ''} ${value.tariffName || ''}`, value.family, value.temperature);
   const isLastMileFamily = value.family === 'ultima_milla';
+  const isShipmentFamily = value.family === 'mensajeria';
+  const isDistributionFamily = value.family === 'distribucion';
+  const isDirectFamily = value.family === 'directos';
+  const showRouteFields = isDirectFamily || routeStopAddressEntries.length > 0;
+  const showShipmentFields = isShipmentFamily || (isDistributionFamily && (!value.distributionType || value.distributionType === 'paqueteria'));
+  const showDistributionFields = isDistributionFamily;
+  const showVehicleField = isDirectFamily || isLastMileFamily;
+  const showDistanceField = isDirectFamily || isLastMileFamily;
+  const showTemperatureField = isDirectFamily || isLastMileFamily;
+  const showAdditionalStopsField = isDirectFamily;
+  const showWaitField = isDirectFamily;
   const canCalculateLastMileEstimate = Boolean(value.loadZone && value.deliveryZone);
   const mozoRequirement = getMozoRequirement(value);
-  const showMozoManual = mozoRequirement === 'manual_price';
-  const showMozoHours = mozoRequirement === 'hours';
-  const showMozoCount = mozoRequirement === 'fixed_count' || mozoRequirement === 'hours';
-  const showVehicleSchedule = !isMeteorPricingRequest(value);
-  const showDirectRouteStops = !isLastMileFamily && (value.family === 'directos' || routeStopAddressEntries.length > 0);
+  const showMozoManual = isDirectFamily && mozoRequirement === 'manual_price';
+  const showMozoHours = isDirectFamily && mozoRequirement === 'hours';
+  const showMozoCount = isDirectFamily && (mozoRequirement === 'fixed_count' || mozoRequirement === 'hours');
+  const showVehicleSchedule = (isDirectFamily || isLastMileFamily) && !isMeteorPricingRequest(value);
+  const showDirectRouteStops = isDirectFamily || routeStopAddressEntries.length > 0;
 
   return (
     <div className="agent-card parameter-editor">
@@ -3399,28 +3491,32 @@ function PricingRequestEditor({
         </div>
       )}
       <div className="parameter-grid">
-        {routeAddresses.length > 2 && (
+        {showRouteFields && routeAddresses.length > 2 && (
           <div className="route-summary parameter-wide">
             <span>{texts.assistant.routeUsedForDistance}</span>
             <strong>{routeAddresses.length} {texts.assistant.stops.toLowerCase()}</strong>
           </div>
         )}
-        <AddressAutocomplete
-          className="parameter-wide"
-          label={texts.assistant.parameterOrigin}
-          value={endpointOrigin}
-          onChange={(address) => updateRouteEndpoint('origin', address)}
-          placeholder="Dirección de origen"
-          disabled={isLastMileFamily}
-        />
-        <AddressAutocomplete
-          className="parameter-wide"
-          label={texts.assistant.parameterDestination}
-          value={endpointDestination}
-          onChange={(address) => updateRouteEndpoint('destination', address)}
-          placeholder="Dirección de destino"
-          disabled={isLastMileFamily}
-        />
+        {showRouteFields && (
+          <>
+            <AddressAutocomplete
+              className="parameter-wide"
+              label={texts.assistant.parameterOrigin}
+              value={endpointOrigin}
+              onChange={(address) => updateRouteEndpoint('origin', address)}
+              placeholder="Dirección de origen"
+              disabled={isLastMileFamily}
+            />
+            <AddressAutocomplete
+              className="parameter-wide"
+              label={texts.assistant.parameterDestination}
+              value={endpointDestination}
+              onChange={(address) => updateRouteEndpoint('destination', address)}
+              placeholder="Dirección de destino"
+              disabled={isLastMileFamily}
+            />
+          </>
+        )}
         {showDirectRouteStops && (
           <div className="route-stop-editor parameter-wide">
             <div className="route-stop-editor-heading">
@@ -3464,53 +3560,105 @@ function PricingRequestEditor({
             <option value="almacenaje">Almacenaje</option>
           </select>
         </label>
-        <label>
-          {texts.assistant.parameterVehicle}
-          <select value={value.vehicleType ?? ''} onChange={(event) => update({ vehicleType: event.target.value || null })}>
-            <option value="">Pendiente</option>
-            {vehicleOptions.map((vehicle) => (
-              <option key={vehicle} value={vehicle}>
-                {vehicle}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {texts.assistant.parameterDistance}
-          <input type="number" min="0" step="0.1" value={value.distanceKm ?? ''} onChange={(event) => update({ distanceKm: parseOptionalNumber(event.target.value) })} />
-        </label>
+        {showShipmentFields && (
+          <label>
+            {texts.assistant.parameterServiceLevel}
+            <select value={value.serviceLevel ?? ''} onChange={(event) => update({ serviceLevel: event.target.value || null })}>
+              <option value="">Pendiente</option>
+              {shipmentServiceLevelOptions.map((serviceLevel) => (
+                <option key={serviceLevel} value={serviceLevel}>
+                  {serviceLevel}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {showDistributionFields && (
+          <label>
+            {texts.assistant.parameterDistributionType}
+            <select
+              value={value.distributionType ?? ''}
+              onChange={(event) => update({ distributionType: event.target.value || null, serviceLevel: event.target.value === 'paqueteria' ? value.serviceLevel : null })}
+            >
+              <option value="">Pendiente</option>
+              {distributionTypeOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {showDistributionFields && value.distributionType !== 'paqueteria' && (
+          <label>
+            {texts.assistant.parameterTariffDestination}
+            <select value={value.destination ?? value.zone ?? ''} onChange={(event) => update({ destination: event.target.value || null, zone: event.target.value || null })}>
+              <option value="">Pendiente</option>
+              {tariffDestinationOptions.map((destination) => (
+                <option key={destination} value={destination}>
+                  {formatMetaValue(destination)}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {showVehicleField && (
+          <label>
+            {texts.assistant.parameterVehicle}
+            <select value={value.vehicleType ?? ''} onChange={(event) => update({ vehicleType: event.target.value || null })}>
+              <option value="">Pendiente</option>
+              {vehicleOptions.map((vehicle) => (
+                <option key={vehicle} value={vehicle}>
+                  {vehicle}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {showDistanceField && (
+          <label>
+            {texts.assistant.parameterDistance}
+            <input type="number" min="0" step="0.1" value={value.distanceKm ?? ''} onChange={(event) => update({ distanceKm: parseOptionalNumber(event.target.value) })} />
+          </label>
+        )}
         <label>
           {texts.assistant.parameterWeight}
           <input type="number" min="0" step="0.1" value={value.weightKg ?? ''} onChange={(event) => update({ weightKg: parseOptionalNumber(event.target.value) })} />
         </label>
-        <label>
-          {texts.assistant.parameterTemperature}
-          <select value={value.temperature ?? ''} onChange={(event) => updateTemperature(event.target.value || null)}>
-            <option value="">Pendiente</option>
-            <option value="seco">Seco</option>
-            <option value="frio">Frío</option>
-            <option value="refrigerado">Refrigerado</option>
-            <option value="congelado">Congelado</option>
-          </select>
-        </label>
-        <label>
-          {texts.assistant.parameterAdditionalStops}
-          <input type="number" min="0" step="1" value={value.additionalStops ?? ''} onChange={(event) => update({ additionalStops: parseOptionalNumber(event.target.value) })} />
-        </label>
-        <label>
-          {texts.assistant.parameterWaitHours}
-          <select value={value.waitHours ?? ''} onChange={(event) => update({ waitHours: parseOptionalNumber(event.target.value) })}>
-            <option value="">Pendiente</option>
-            {waitHourOptions.map((hours) => (
-              <option key={hours} value={hours}>
-                {hours} h
-              </option>
-            ))}
-            {value.waitHours !== null && value.waitHours !== undefined && !waitHourOptions.includes(value.waitHours) && (
-              <option value={value.waitHours}>{value.waitHours} h</option>
-            )}
-          </select>
-        </label>
+        {showTemperatureField && (
+          <label>
+            {texts.assistant.parameterTemperature}
+            <select value={value.temperature ?? ''} onChange={(event) => updateTemperature(event.target.value || null)}>
+              <option value="">Pendiente</option>
+              <option value="seco">Seco</option>
+              <option value="frio">Frío</option>
+              <option value="refrigerado">Refrigerado</option>
+              <option value="congelado">Congelado</option>
+            </select>
+          </label>
+        )}
+        {showAdditionalStopsField && (
+          <label>
+            {texts.assistant.parameterAdditionalStops}
+            <input type="number" min="0" step="1" value={value.additionalStops ?? ''} onChange={(event) => update({ additionalStops: parseOptionalNumber(event.target.value) })} />
+          </label>
+        )}
+        {showWaitField && (
+          <label>
+            {texts.assistant.parameterWaitHours}
+            <select value={value.waitHours ?? ''} onChange={(event) => update({ waitHours: parseOptionalNumber(event.target.value) })}>
+              <option value="">Pendiente</option>
+              {waitHourOptions.map((hours) => (
+                <option key={hours} value={hours}>
+                  {hours} h
+                </option>
+              ))}
+              {value.waitHours !== null && value.waitHours !== undefined && !waitHourOptions.includes(value.waitHours) && (
+                <option value={value.waitHours}>{value.waitHours} h</option>
+              )}
+            </select>
+          </label>
+        )}
         {showMozoManual && (
           <label className="inline-field">
             <input
@@ -3632,32 +3780,38 @@ function PricingRequestEditor({
           </button>
         </div>
       )}
-      <div className="parameter-toggles">
-        <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateLastMileEstimate : !canCalculateDistance}>
-          {texts.assistant.calculateDistance}
-        </button>
-        <label>
-          <input type="checkbox" checked={Boolean(value.liftPlatform)} onChange={(event) => update({ liftPlatform: event.target.checked })} />
-          {texts.assistant.parameterLiftPlatform}
-        </label>
-        <label>
-          <input type="checkbox" checked={Boolean(value.roundTrip)} onChange={(event) => update({ roundTrip: event.target.checked })} />
-          {texts.assistant.parameterRoundTrip}
-        </label>
-        <label>
-          <input type="checkbox" checked={Boolean(value.batchedRoute)} onChange={(event) => update({ batchedRoute: event.target.checked })} />
-          {texts.assistant.parameterBatchedRoute}
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={Boolean(value.routeOptimization)}
-            disabled={Boolean(value.routeHasTimeConstraints)}
-            onChange={(event) => update({ routeOptimization: event.target.checked })}
-          />
-          {texts.assistant.parameterRouteOptimization}
-        </label>
-      </div>
+      {(isDirectFamily || isLastMileFamily) && (
+        <div className="parameter-toggles">
+          <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateLastMileEstimate : !canCalculateDistance}>
+            {texts.assistant.calculateDistance}
+          </button>
+          {isDirectFamily && (
+            <>
+              <label>
+                <input type="checkbox" checked={Boolean(value.liftPlatform)} onChange={(event) => update({ liftPlatform: event.target.checked })} />
+                {texts.assistant.parameterLiftPlatform}
+              </label>
+              <label>
+                <input type="checkbox" checked={Boolean(value.roundTrip)} onChange={(event) => update({ roundTrip: event.target.checked })} />
+                {texts.assistant.parameterRoundTrip}
+              </label>
+              <label>
+                <input type="checkbox" checked={Boolean(value.batchedRoute)} onChange={(event) => update({ batchedRoute: event.target.checked })} />
+                {texts.assistant.parameterBatchedRoute}
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={Boolean(value.routeOptimization)}
+                  disabled={Boolean(value.routeHasTimeConstraints)}
+                  onChange={(event) => update({ routeOptimization: event.target.checked })}
+                />
+                {texts.assistant.parameterRouteOptimization}
+              </label>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
