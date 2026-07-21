@@ -3520,6 +3520,15 @@ function PricingRequestEditor({
   };
   const updateFamily = (family: string | null) => {
     const allowedVehicles = getVehicleOptionsForCatalog(`${value.tariffId || ''} ${value.tariffName || ''}`, family, value.temperature);
+    const normalizedDistributionType = normalizeText(value.distributionType);
+    const hasKnownDistributionType = distributionTypeOptions.some((option) => normalizeText(option.value) === normalizedDistributionType);
+    const inferredDistributionType =
+      hasKnownDistributionType
+        ? value.distributionType
+        : normalizeText(`${value.notes || ''} ${value.destinationAddress || ''} ${value.routeAddresses?.join(' ') || ''}`).includes('palet') ||
+            normalizeText(`${value.notes || ''} ${value.destinationAddress || ''} ${value.routeAddresses?.join(' ') || ''}`).includes('pallet')
+          ? 'pallet_seco'
+          : 'pallet_seco';
     const basePatch: Partial<PricingRequest> = {
       family,
       vehicleType: findAllowedVehicle(value.vehicleType, allowedVehicles)
@@ -3537,13 +3546,7 @@ function PricingRequestEditor({
         mozoHours: null,
         mozoCount: null,
         mozoManualPrice: null,
-        distanceKm: null,
-        additionalStops: null,
         waitHours: null,
-        originAddress: null,
-        destinationAddress: null,
-        routeAddresses: null,
-        routeOptimization: null,
         liftPlatform: null,
         roundTrip: null,
         batchedRoute: null
@@ -3554,7 +3557,7 @@ function PricingRequestEditor({
     if (family === 'distribucion') {
       update({
         ...basePatch,
-        distributionType: value.distributionType || 'pallet_seco',
+        distributionType: inferredDistributionType,
         vehicleType: null,
         schedule: null,
         vehicleSchedule: null,
@@ -3562,12 +3565,7 @@ function PricingRequestEditor({
         mozoHours: null,
         mozoCount: null,
         mozoManualPrice: null,
-        distanceKm: null,
-        additionalStops: null,
         waitHours: null,
-        originAddress: null,
-        routeAddresses: null,
-        routeOptimization: null,
         liftPlatform: null,
         roundTrip: null,
         batchedRoute: null
