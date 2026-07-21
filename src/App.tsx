@@ -1690,12 +1690,19 @@ function getRouteAddresses(analysis?: LogisticsAnalysis) {
 
 const registeredRoutePlaces = [
   {
+    officialAddress: 'Onus Express, Sant Feliu de Llobregat, Barcelona, España',
+    match: (value: string) => {
+      const normalized = normalizeText(value);
+      return normalized.includes('onus') && normalized.includes('sant feliu');
+    }
+  },
+  {
     officialAddress: 'Carrer del Besòs, 1, Polígon Industrial Can Calopa, 08174 Sant Cugat del Vallès, Barcelona, España',
     match: (value: string) => {
       const normalized = normalizeText(value);
       return (
-        (normalized.includes('districenter') && normalized.includes('sant_cugat')) ||
-        (normalized.includes('carrer_del_besos') && normalized.includes('can_calopa'))
+        (normalized.includes('districenter') && normalized.includes('sant cugat')) ||
+        (normalized.includes('carrer del besos') && normalized.includes('can calopa'))
       );
     }
   }
@@ -1717,7 +1724,7 @@ function normalizeRouteCorrectionAddress(value: string, context = '') {
     return registeredAddress;
   }
 
-  if (normalized === 'sant_cugat' || normalized === 'san_cugat') {
+  if (normalized === 'sant cugat' || normalized === 'san cugat') {
     return 'Sant Cugat del Vallès, Barcelona, España';
   }
 
@@ -1756,7 +1763,7 @@ function looksLikeRouteAddressCandidate(value: string, context = '') {
   const addressSignals = [
     /\b(c\/|calle|carrer|avenida|avinguda|av\.?|pol\.?|poligono|polígono|passeig|plaza|plaça|ronda|camino|carretera)\b/i,
     /\b\d{5}\b/,
-    /\b(sant cugat|san cugat|barcelona|tarragona|alcover|arboc|l'arboç|montbrio|coma-ruga|vendrell|sant just)\b/i
+    /\b(sant cugat|san cugat|sant feliu|barcelona|tarragona|alcover|arboc|l'arboç|montbrio|coma-ruga|vendrell|sant just|montcada|reixac|lli[cç]a|amunt)\b/i
   ];
 
   return addressSignals.some((pattern) => pattern.test(address));
@@ -1765,6 +1772,7 @@ function looksLikeRouteAddressCandidate(value: string, context = '') {
 function cleanRouteAddressCandidate(value: string) {
   return value
     .replace(/^[\s:=-]*(origen|destino|recogida|entrega|direccion|dirección|direccio|adreca|adreça|desde|hasta|a)\s*[:=-]?\s*/i, '')
+    .replace(/^\s*en\s+/i, '')
     .replace(/\s+(?:con|para|horario|contacto|telefono|tel[eé]fono|bultos|peso|veh[ií]culo|plataforma)\b.*$/i, '')
     .replace(/[.。]+$/g, '')
     .trim();
@@ -1797,6 +1805,8 @@ function extractRouteAddressesFromText(userText: string) {
   const labeledPatterns = [
     /(?:^|\n|;)\s*(?:origen|salida|inicio|recogida|recollida|direccion de recogida|dirección de recogida|adreca de recollida)\s*[:=-]\s*([^\n;]+?)(?=\s+(?:destino|entrega|lliurament|direccion de entrega|dirección de entrega|adreca lliurament)\s*[:=-]|\n|;|$)/gi,
     /(?:^|\n|;)\s*(?:destino|entrega|lliurament|direccion de entrega|dirección de entrega|adreca lliurament)\s*[:=-]\s*([^\n;]+?)(?=\s+(?:origen|salida|inicio|recogida|recollida|direccion de recogida|dirección de recogida|adreca de recollida)\s*[:=-]|\n|;|$)/gi,
+    /(?:^|\n|;)\s*[-•]?\s*(?:la\s+)?plataforma\s+de\s+entrega\s+(?:de|a)\s+[^:\n]+:\s*([^\n;]+)/gi,
+    /(?:^|\n|;)\s*[-•]?\s*(?:env[ií]o|entrega)\s+(?:a|de)\s+[^:\n]+:\s*([^\n;]+)/gi,
     /\b(?:desde|de)\s+([^;\n]+?)\s+(?:hasta|a)\s+([^;\n.]+)/gi,
     /\b(?:recollir|recoger|recogida)\s+a?\s*([^;\n]+?)\s+(?:per|para|y entregar en|entregar en|lliurar a)\s+([^;\n.]+)/gi
   ];
@@ -1851,8 +1861,9 @@ function sameRoutePlace(left: string, right: string) {
   }
 
   const aliases = [
-    ['districenter', 'carrer_del_besos', 'can_calopa', 'sant_cugat'],
-    ['sant_cugat', 'sant_cugat_del_valles']
+    ['districenter', 'carrer del besos', 'can calopa', 'sant cugat'],
+    ['sant cugat', 'sant cugat del valles'],
+    ['onus', 'sant feliu', 'sant feliu de llobregat']
   ];
 
   return aliases.some((group) => group.some((token) => a.includes(token)) && group.some((token) => b.includes(token)));
@@ -1910,6 +1921,51 @@ function extractConfirmedDistanceKm(userText: string) {
     .filter((value) => Number.isFinite(value) && value > 0);
 
   return values.length > 0 ? values[values.length - 1] : null;
+}
+
+function resolveDistributionTypeFromText(request: PricingRequest, userText: string) {
+  const current = normalizeText(request.distributionType);
+  const allowed = new Set(distributionTypeOptions.map((option) => normalizeText(option.value)));
+  if (current && allowed.has(current)) {
+    return request.distributionType;
+  }
+
+  const normalized = normalizeText(`${userText}\n${request.notes || ''}`);
+  if (normalized.includes('pallet') || normalized.includes('palet')) {
+    return 'pallet_seco';
+  }
+  if (normalized.includes('frio') || normalized.includes('refriger')) {
+    return 'frio_13_30';
+  }
+  if (normalized.includes('paqueteria') || normalized.includes('bulto')) {
+    return 'paqueteria';
+  }
+
+  return request.distributionType ?? null;
+}
+
+function inferTariffDestinationFromRoute(addresses: string[], userText: string) {
+  const normalized = normalizeText([...addresses, userText].join(' '));
+  if (/\b(baleares|mallorca|menorca|ibiza|eivissa|formentera)\b/.test(normalized)) {
+    return 'baleares';
+  }
+  if (normalized.includes('andorra')) {
+    return 'andorra';
+  }
+  if (normalized.includes('gibraltar')) {
+    return 'gibraltar';
+  }
+  if (/\b(canarias|tenerife|gran canaria|lanzarote|fuerteventura|la palma)\b/.test(normalized)) {
+    return 'canarias';
+  }
+  if (
+    /\b08\d{3}\b/.test(normalized) ||
+    /\b(barcelona|sant feliu|montcada|reixac|llica|amunt|sant cugat)\b/.test(normalized)
+  ) {
+    return 'provincia';
+  }
+
+  return null;
 }
 
 function inferOperationalSurchargesFromText(userText: string, current?: PricingRequest['operationalSurcharges']) {
@@ -2076,6 +2132,8 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
   const mentionsCold = normalizedText.includes('frio') || normalizedText.includes('frigor') || normalizedText.includes('refriger');
   const mentionsFrozen = normalizedText.includes('congel');
   const operationalSurcharges = inferOperationalSurchargesFromText(text, request.operationalSurcharges);
+  const resolvedDistributionType = request.family === 'distribucion' ? resolveDistributionTypeFromText(request, text) : request.distributionType;
+  const inferredTariffDestination = request.family === 'distribucion' ? inferTariffDestinationFromRoute(routeAddresses, text) : null;
   const notes = [
     request.notes,
     `${texts.assistant.userInstructionsApplied}: ${text}`
@@ -2085,6 +2143,10 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
 
   return {
     ...normalizeHelperFromRequest(request),
+    distributionType: resolvedDistributionType,
+    serviceLevel: request.family === 'distribucion' && resolvedDistributionType !== 'paqueteria' ? null : request.serviceLevel,
+    destination: request.destination ?? inferredTariffDestination,
+    zone: request.zone ?? inferredTariffDestination,
     routeAddresses: routeAddresses.length >= 2 ? routeAddresses : request.routeAddresses,
     originAddress: routeAddresses[0] ?? request.originAddress,
     destinationAddress: routeAddresses.length >= 2 ? routeAddresses[routeAddresses.length - 1] : request.destinationAddress,
@@ -2587,7 +2649,7 @@ function App() {
         ...(analyzed.pricingRequest ?? createDefaultPricingRequest(requestForAnalysis)),
         ...(inferredPricingRequest ?? {})
       };
-      const prioritizedPricingRequest = applyUserTextToPricingRequest(
+      let prioritizedPricingRequest = applyUserTextToPricingRequest(
         {
           ...mergedPricingRequest,
           vehicleType: resolveVehicleForCatalog(
@@ -2601,6 +2663,50 @@ function App() {
         text,
         selectedCatalog
       );
+
+      const finalRouteAddresses = (prioritizedPricingRequest.routeAddresses?.length
+        ? prioritizedPricingRequest.routeAddresses
+        : [prioritizedPricingRequest.originAddress, prioritizedPricingRequest.destinationAddress]
+      )
+        .map((address) => String(address || '').trim())
+        .filter(Boolean);
+      if (
+        finalRouteAddresses.length >= 2 &&
+        !userConfirmedDistanceKm &&
+        prioritizedPricingRequest.family !== 'ultima_milla' &&
+        (prioritizedPricingRequest.distanceKm === null || prioritizedPricingRequest.distanceKm === undefined)
+      ) {
+        try {
+          const routeOptimization = shouldOptimizeRouteFromText(requestForAnalysis) && !prioritizedPricingRequest.routeHasTimeConstraints;
+          const routeDistance = await calculateRouteDistanceWithMaps(finalRouteAddresses, routeOptimization);
+          const calculatedRouteAddresses = routeDistance.addresses ?? finalRouteAddresses;
+          prioritizedPricingRequest = {
+            ...prioritizedPricingRequest,
+            distanceKm: routeDistance.distanceKm,
+            originAddress: routeDistance.origin,
+            destinationAddress: routeDistance.destination,
+            routeAddresses: calculatedRouteAddresses,
+            routeOptimization,
+            additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
+            notes: [
+              prioritizedPricingRequest.notes,
+              `${texts.assistant.mapsDistanceSource}: ${routeDistance.distanceText}${routeDistance.durationText ? ` · ${routeDistance.durationText}` : ''}${routeDistance.optimized ? ` · ${texts.assistant.optimizedRoute}` : ''}`
+            ]
+              .filter(Boolean)
+              .join('\n')
+          };
+        } catch (mapsError) {
+          prioritizedPricingRequest = {
+            ...prioritizedPricingRequest,
+            notes: [
+              prioritizedPricingRequest.notes,
+              mapsError instanceof Error ? mapsError.message : texts.assistant.mapsDistanceError
+            ]
+              .filter(Boolean)
+              .join('\n')
+          };
+        }
+      }
       setServiceAnalysis({
         ...analyzed,
         catalogName: selectedCatalog.name,
@@ -3605,7 +3711,8 @@ function PricingRequestEditor({
   const showDistributionZoneFields = showDistributionFields && Boolean(value.distributionType) && normalizedDistributionType !== 'paqueteria';
   const showPalletCountField = showDistributionZoneFields && ['pallet_seco', 'pallet', 'pallets'].includes(normalizedDistributionType);
   const showVehicleField = isDirectFamily || isLastMileFamily;
-  const showDistanceField = isDirectFamily || isLastMileFamily;
+  const showDistributionRouteDistance = isDistributionFamily && routeAddresses.length >= 2;
+  const showDistanceField = isDirectFamily || isLastMileFamily || showDistributionRouteDistance;
   const showTemperatureField = isDirectFamily || isLastMileFamily;
   const showAdditionalStopsField = isDirectFamily;
   const showWaitField = isDirectFamily;
@@ -3951,7 +4058,7 @@ function PricingRequestEditor({
           </button>
         </div>
       )}
-      {(isDirectFamily || isLastMileFamily) && (
+      {(isDirectFamily || isLastMileFamily || showDistributionRouteDistance) && (
         <div className="parameter-toggles">
           <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateLastMileEstimate : !canCalculateDistance}>
             {texts.assistant.calculateDistance}
