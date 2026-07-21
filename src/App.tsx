@@ -141,6 +141,7 @@ type PricingRequest = {
     waitBlocks30m?: number | null;
     cancellationHoursBefore?: number | null;
   } | null;
+  requestLeadTime?: 'none' | 'lt48' | 'lt24' | null;
   notes?: string | null;
   originAddress?: string | null;
   destinationAddress?: string | null;
@@ -1408,6 +1409,17 @@ function buildDetectedPricingCriteria(request: PricingRequest | null) {
     criteria.push(`${label('parameterDistance', 'Km reales')}: ${request.distanceKm.toLocaleString('es-ES')} km`);
   }
 
+  const leadTime = getRequestLeadTime(request);
+  if (leadTime) {
+    const leadTimeLabel =
+      leadTime === 'lt24'
+        ? label('requestLeadTime24', '24 h o menos')
+        : leadTime === 'lt48'
+          ? label('requestLeadTime48', 'Menos de 48 h')
+          : label('requestLeadTimeNone', 'Más de 48 h / sin recargo');
+    criteria.push(`${label('parameterRequestLeadTime', 'Antelación de solicitud')}: ${leadTimeLabel}`);
+  }
+
   if (isDirectFamily && request.additionalStops !== null && request.additionalStops !== undefined) {
     criteria.push(`${label('parameterAdditionalStops', 'Paradas adicionales')}: ${request.additionalStops}`);
   }
@@ -1989,6 +2001,45 @@ function inferOperationalSurchargesFromText(userText: string, current?: PricingR
   return Object.keys(next).length > 0 ? next : current ?? null;
 }
 
+function inferRequestLeadTimeFromText(userText: string): PricingRequest['requestLeadTime'] {
+  const normalized = normalizeText(userText);
+  const mentionsShortNotice =
+    /\b(hoy|manana|24h|24\s*h|menos[\s_]+de[\s_]+24\s*h?|menos[\s_]+de[\s_]+un[\s_]+dia|para[\s_]+manana)\b/.test(normalized) ||
+    (normalized.includes('urgente') && normalized.includes('manana'));
+  if (mentionsShortNotice) {
+    return 'lt24';
+  }
+
+  if (/\b(48h|48\s*h|menos[\s_]+de[\s_]+48\s*h?|pasado[\s_]+manana|dos[\s_]+dias|2[\s_]+dias)\b/.test(normalized)) {
+    return 'lt48';
+  }
+
+  return null;
+}
+
+function buildOperationalSurchargesForLeadTime(
+  leadTime: PricingRequest['requestLeadTime'],
+  current?: PricingRequest['operationalSurcharges']
+): PricingRequest['operationalSurcharges'] {
+  const next = { ...(current ?? {}) };
+  next.requestLessThan24h = leadTime === 'lt24';
+  next.requestLessThan48h = leadTime === 'lt48';
+  return next;
+}
+
+function getRequestLeadTime(request?: PricingRequest | null): PricingRequest['requestLeadTime'] {
+  if (request?.requestLeadTime) {
+    return request.requestLeadTime;
+  }
+  if (request?.operationalSurcharges?.requestLessThan24h) {
+    return 'lt24';
+  }
+  if (request?.operationalSurcharges?.requestLessThan48h) {
+    return 'lt48';
+  }
+  return 'none';
+}
+
 function cleanLiteralUrgencyModalities(modality?: string[] | null) {
   const modalities = Array.isArray(modality) ? modality : [];
   const literalUrgencyKeys = ['urgente', 'urgent', 'prioritario', 'priority'];
@@ -2131,7 +2182,12 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
   const mentionsPlatform = normalizedText.includes('plataforma');
   const mentionsCold = normalizedText.includes('frio') || normalizedText.includes('frigor') || normalizedText.includes('refriger');
   const mentionsFrozen = normalizedText.includes('congel');
-  const operationalSurcharges = inferOperationalSurchargesFromText(text, request.operationalSurcharges);
+  const inferredLeadTime = inferRequestLeadTimeFromText(text);
+  const requestLeadTime = request.requestLeadTime ?? inferredLeadTime ?? 'none';
+  const operationalSurcharges = buildOperationalSurchargesForLeadTime(
+    requestLeadTime,
+    inferOperationalSurchargesFromText(text, request.operationalSurcharges)
+  );
   const resolvedDistributionType = request.family === 'distribucion' ? resolveDistributionTypeFromText(request, text) : request.distributionType;
   const inferredTariffDestination = request.family === 'distribucion' ? inferTariffDestinationFromRoute(routeAddresses, text) : null;
   const notes = [
@@ -2143,6 +2199,7 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
 
   return {
     ...normalizeHelperFromRequest(request),
+    requestLeadTime,
     distributionType: resolvedDistributionType,
     serviceLevel: request.family === 'distribucion' && resolvedDistributionType !== 'paqueteria' ? null : request.serviceLevel,
     destination: request.destination ?? inferredTariffDestination,
@@ -3935,6 +3992,23 @@ function PricingRequestEditor({
             </select>
           </label>
         )}
+        <label>
+          {texts.assistant.parameterRequestLeadTime}
+          <select
+            value={getRequestLeadTime(value) ?? 'none'}
+            onChange={(event) => {
+              const requestLeadTime = event.target.value as PricingRequest['requestLeadTime'];
+              update({
+                requestLeadTime,
+                operationalSurcharges: buildOperationalSurchargesForLeadTime(requestLeadTime, value.operationalSurcharges)
+              });
+            }}
+          >
+            <option value="none">{texts.assistant.requestLeadTimeNone}</option>
+            <option value="lt48">{texts.assistant.requestLeadTime48}</option>
+            <option value="lt24">{texts.assistant.requestLeadTime24}</option>
+          </select>
+        </label>
         {showMozoManual && (
           <label className="inline-field">
             <input

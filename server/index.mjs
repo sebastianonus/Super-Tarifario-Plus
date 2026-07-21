@@ -800,6 +800,9 @@ function inferOperationalSurchargesFromText(text, current = null) {
     next.requestLessThan48h = false;
   } else if (mentionsLessThan48h && next.requestLessThan24h !== true) {
     next.requestLessThan48h = true;
+  } else {
+    next.requestLessThan24h = false;
+    next.requestLessThan48h = false;
   }
 
   return Object.keys(next).length > 0 ? next : current;
