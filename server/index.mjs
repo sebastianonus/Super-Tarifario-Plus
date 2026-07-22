@@ -1160,10 +1160,17 @@ app.post('/api/auth/login', async (req, res) => {
       return;
     }
 
-    await supabase.from('access_users').update({ last_login_at: new Date().toISOString() }).eq('id', user.id);
-
     const allowedCatalogIds = await getAllowedCatalogIdsForClient(supabase, user);
     res.json({ session: mapAccessUser(user, allowedCatalogIds) });
+    supabase
+      .from('access_users')
+      .update({ last_login_at: new Date().toISOString() })
+      .eq('id', user.id)
+      .then(({ error }) => {
+        if (error) {
+          console.warn('No se pudo actualizar last_login_at', error.message);
+        }
+      });
   } catch (error) {
     res.status(error.statusCode || 500).json({ error: error.message || 'No se pudo iniciar sesión.' });
   }

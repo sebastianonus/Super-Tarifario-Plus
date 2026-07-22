@@ -13,6 +13,7 @@
     clientPlaceholder: 'Nombre de cliente',
     codePlaceholder: 'Código de acceso',
     submit: 'Entrar',
+    submitting: 'Entrando...',
     error: 'Cliente o código no válido.',
     adminBadge: 'Administrador',
     lockedTariff: 'Tarifario asignado'

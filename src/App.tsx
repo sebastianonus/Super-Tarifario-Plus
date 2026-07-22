@@ -2378,6 +2378,7 @@ function App() {
   const [loginClient, setLoginClient] = useState('');
   const [loginCode, setLoginCode] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [isLoginSubmitting, setIsLoginSubmitting] = useState(false);
   const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false);
   const [isSupabaseReady, setIsSupabaseReady] = useState(false);
   const [adminSaveStatus, setAdminSaveStatus] = useState('');
@@ -2411,12 +2412,6 @@ function App() {
         }
 
         setIsSupabaseReady(configured);
-        if (configured) {
-          const users = await fetchAccessUsersFromApi();
-          if (isMounted && users.length > 0) {
-            setAccessUsers(users);
-          }
-        }
       })
       .catch(() => {
         if (isMounted) {
@@ -2428,6 +2423,29 @@ function App() {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!isSupabaseReady || loginSession?.role !== 'admin' || !isAdminPanelOpen) {
+      return;
+    }
+
+    let isMounted = true;
+    fetchAccessUsersFromApi()
+      .then((users) => {
+        if (isMounted && users.length > 0) {
+          setAccessUsers(users);
+        }
+      })
+      .catch((error) => {
+        if (isMounted) {
+          setAdminSaveStatus(error instanceof Error ? error.message : texts.admin.saveError);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isAdminPanelOpen, isSupabaseReady, loginSession?.role]);
 
   useEffect(() => {
     if (!isSupabaseReady) {
@@ -2540,6 +2558,10 @@ function App() {
 
   const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isLoginSubmitting) {
+      return;
+    }
+
     const applySession = (session: LoginSession) => {
       const firstCatalog = session.allowedCatalogIds.includes('*')
         ? data.catalogs[0]
@@ -2552,20 +2574,24 @@ function App() {
       setAssistantText(texts.assistant.initialMessage);
     };
 
+    setIsLoginSubmitting(true);
     if (isSupabaseReady) {
       loginWithSupabase(loginClient, loginCode)
         .then(applySession)
-        .catch((error) => setLoginError(error instanceof Error ? error.message : texts.login.error));
+        .catch((error) => setLoginError(error instanceof Error ? error.message : texts.login.error))
+        .finally(() => setIsLoginSubmitting(false));
       return;
     }
 
     const session = resolveLoginSession(loginClient, loginCode, accessUsers);
     if (!session) {
       setLoginError(texts.login.error);
+      setIsLoginSubmitting(false);
       return;
     }
 
     applySession(session);
+    setIsLoginSubmitting(false);
   };
 
   const handleLogout = () => {
@@ -3057,7 +3083,9 @@ function App() {
               />
             </label>
             {loginError && <p className="login-error" role="alert">{loginError}</p>}
-            <button type="submit">{texts.login.submit}</button>
+            <button type="submit" disabled={isLoginSubmitting}>
+              {isLoginSubmitting ? texts.login.submitting : texts.login.submit}
+            </button>
           </form>
         </section>
       </main>
