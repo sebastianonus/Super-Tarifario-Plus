@@ -807,16 +807,21 @@ td input {
 .route-step-marker {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: flex;
   width: 34px;
   height: 34px;
-  place-items: center;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(206, 18, 91, 0.28);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.88);
   color: var(--color-purple);
   font-size: 0.82rem;
   font-weight: 800;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
 }
 
 .route-step-stops .route-step-marker {
@@ -1412,6 +1417,7 @@ td input {
   .route-step-marker {
     width: 28px;
     height: 28px;
+    flex-basis: 28px;
     font-size: 0.76rem;
   }
 
