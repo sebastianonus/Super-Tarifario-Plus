@@ -761,6 +761,68 @@ td input {
   grid-column: span 2;
 }
 
+.route-flow {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(234, 220, 233, 0.9);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.48);
+  padding: 12px;
+}
+
+.route-flow-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.route-flow-heading strong {
+  color: var(--color-ink);
+}
+
+.route-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.route-step:not(:last-child)::after {
+  position: absolute;
+  top: 34px;
+  bottom: -10px;
+  left: 16px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(206, 18, 91, 0.24);
+  content: "";
+}
+
+.route-step-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(206, 18, 91, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-purple);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.route-step-stops .route-step-marker {
+  color: var(--color-magenta);
+}
+
 .last-mile-estimator {
   display: grid;
   gap: 10px;
@@ -835,7 +897,7 @@ td input {
   gap: 10px;
   border: 1px solid rgba(245, 156, 56, 0.28);
   border-radius: 10px;
-  background: rgba(255, 242, 223, 0.3);
+  background: rgba(255, 242, 223, 0.38);
   padding: 10px;
 }
 
@@ -855,6 +917,7 @@ td input {
   min-height: 36px;
   border-radius: 999px;
   padding-inline: 12px;
+  white-space: nowrap;
 }
 
 .route-stop-list {
@@ -1335,6 +1398,26 @@ td input {
   .route-stop-editor-heading,
   .route-stop-row {
     grid-template-columns: 1fr;
+  }
+
+  .route-flow {
+    padding: 10px;
+  }
+
+  .route-step {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .route-step-marker {
+    width: 28px;
+    height: 28px;
+    font-size: 0.76rem;
+  }
+
+  .route-step:not(:last-child)::after {
+    top: 28px;
+    left: 13px;
   }
 
   .route-stop-editor-heading {

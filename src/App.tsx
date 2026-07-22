@@ -3793,62 +3793,67 @@ function PricingRequestEditor({
         </div>
       )}
       <div className="parameter-grid">
-        {showRouteFields && routeAddresses.length > 2 && (
-          <div className="route-summary parameter-wide">
-            <span>{texts.assistant.routeUsedForDistance}</span>
-            <strong>{routeAddresses.length} {texts.assistant.stops.toLowerCase()}</strong>
-          </div>
-        )}
         {showRouteFields && (
-          <>
-            <AddressAutocomplete
-              className="parameter-wide"
-              label={texts.assistant.parameterOrigin}
-              value={endpointOrigin}
-              onChange={(address) => updateRouteEndpoint('origin', address)}
-              placeholder="Dirección de origen"
-              disabled={isLastMileFamily}
-            />
-            <AddressAutocomplete
-              className="parameter-wide"
-              label={texts.assistant.parameterDestination}
-              value={endpointDestination}
-              onChange={(address) => updateRouteEndpoint('destination', address)}
-              placeholder="Dirección de destino"
-              disabled={isLastMileFamily}
-            />
-          </>
-        )}
-        {showDirectRouteStops && (
-          <div className="route-stop-editor parameter-wide">
-            <div className="route-stop-editor-heading">
-              <strong>{texts.assistant.parameterExtraStopAddresses}</strong>
-              <button type="button" className="secondary-button" onClick={addRouteStopAddress}>
-                {texts.assistant.addExtraStopAddress}
-              </button>
+          <div className="route-flow">
+            <div className="route-flow-heading">
+              <span>{texts.assistant.routeUsedForDistance}</span>
+              <strong>{routeAddresses.length || 2} {texts.assistant.stops.toLowerCase()}</strong>
             </div>
-            {routeStopAddressEntries.length > 0 && (
-              <div className="route-stop-list">
-                {routeStopAddressEntries.map((address, index) => (
-                  <div className="route-stop-row" key={`${index}-${routeStopAddressEntries.length}`}>
-                    <AddressAutocomplete
-                      label={`${texts.assistant.parameterExtraStopAddress} ${index + 1}`}
-                      value={address}
-                      onChange={(nextAddress) => updateRouteStopAddress(index, nextAddress)}
-                      placeholder={texts.assistant.extraStopAddressPlaceholder}
-                    />
-                    <button
-                      type="button"
-                      className="secondary-button route-stop-remove"
-                      onClick={() => removeRouteStopAddress(index)}
-                      aria-label={`${texts.assistant.removeExtraStopAddress} ${index + 1}`}
-                    >
-                      {texts.assistant.removeExtraStopAddress}
+            <div className="route-step">
+              <span className="route-step-marker">A</span>
+              <AddressAutocomplete
+                label={texts.assistant.parameterOrigin}
+                value={endpointOrigin}
+                onChange={(address) => updateRouteEndpoint('origin', address)}
+                placeholder="Dirección de origen"
+                disabled={isLastMileFamily}
+              />
+            </div>
+            {showDirectRouteStops && (
+              <div className="route-step route-step-stops">
+                <span className="route-step-marker">+</span>
+                <div className="route-stop-editor">
+                  <div className="route-stop-editor-heading">
+                    <strong>{texts.assistant.parameterExtraStopAddresses}</strong>
+                    <button type="button" className="secondary-button" onClick={addRouteStopAddress}>
+                      {texts.assistant.addExtraStopAddress}
                     </button>
                   </div>
-                ))}
+                  {routeStopAddressEntries.length > 0 && (
+                    <div className="route-stop-list">
+                      {routeStopAddressEntries.map((address, index) => (
+                        <div className="route-stop-row" key={`${index}-${routeStopAddressEntries.length}`}>
+                          <AddressAutocomplete
+                            label={`${texts.assistant.parameterExtraStopAddress} ${index + 1}`}
+                            value={address}
+                            onChange={(nextAddress) => updateRouteStopAddress(index, nextAddress)}
+                            placeholder={texts.assistant.extraStopAddressPlaceholder}
+                          />
+                          <button
+                            type="button"
+                            className="secondary-button route-stop-remove"
+                            onClick={() => removeRouteStopAddress(index)}
+                            aria-label={`${texts.assistant.removeExtraStopAddress} ${index + 1}`}
+                          >
+                            {texts.assistant.removeExtraStopAddress}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
+            <div className="route-step">
+              <span className="route-step-marker">B</span>
+              <AddressAutocomplete
+                label={texts.assistant.parameterDestination}
+                value={endpointDestination}
+                onChange={(address) => updateRouteEndpoint('destination', address)}
+                placeholder="Dirección de destino"
+                disabled={isLastMileFamily}
+              />
+            </div>
           </div>
         )}
         <label>
