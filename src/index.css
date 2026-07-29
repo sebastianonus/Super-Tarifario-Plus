@@ -1099,6 +1099,36 @@ td input {
   font-weight: 700;
 }
 
+.route-share-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid rgba(51, 21, 161, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 12px;
+}
+
+.route-share-panel > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.route-share-panel span,
+.route-share-panel small {
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.route-share-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .calculation-detail-grid {
   display: grid;
   gap: 10px;
@@ -1459,7 +1489,13 @@ td input {
   }
 
   .quote-heading-actions,
+  .route-share-panel,
   .quote-draft-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .route-share-actions {
     align-items: stretch;
     flex-direction: column;
   }

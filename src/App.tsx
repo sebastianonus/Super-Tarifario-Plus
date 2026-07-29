@@ -4318,6 +4318,63 @@ function PricingRequestEditor({
   );
 }
 
+const googleMapsMaxIntermediateStops = 9;
+
+function buildGoogleMapsRouteUrl(addresses: string[]) {
+  const cleaned = addresses.map((address) => address.trim()).filter(Boolean);
+  if (cleaned.length < 2) {
+    return '';
+  }
+
+  const params = new URLSearchParams({
+    api: '1',
+    origin: cleaned[0],
+    destination: cleaned[cleaned.length - 1],
+    travelmode: 'driving'
+  });
+  const waypoints = cleaned.slice(1, -1);
+  if (waypoints.length > 0) {
+    params.set('waypoints', waypoints.join('|'));
+  }
+
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
+function buildGoogleMapsRouteLinks(addresses: string[]) {
+  const cleaned = addresses.map((address) => String(address || '').trim()).filter(Boolean);
+  if (cleaned.length < 2) {
+    return [];
+  }
+
+  const links: string[] = [];
+  let startIndex = 0;
+  while (startIndex < cleaned.length - 1) {
+    const endIndex = Math.min(cleaned.length - 1, startIndex + googleMapsMaxIntermediateStops + 1);
+    const segment = cleaned.slice(startIndex, endIndex + 1);
+    const url = buildGoogleMapsRouteUrl(segment);
+    if (url) {
+      links.push(url);
+    }
+    startIndex = endIndex;
+  }
+
+  return links;
+}
+
+function getShareableRouteAddresses(analysis: ServiceAnalysis | null) {
+  const request = analysis?.pricingRequest;
+  const routeAddresses = Array.isArray(request?.routeAddresses) ? request.routeAddresses : [];
+  const fallbackAddresses = [
+    request?.originAddress,
+    ...(routeAddresses.length > 2 ? routeAddresses.slice(1, -1) : []),
+    request?.destinationAddress
+  ];
+
+  return (routeAddresses.length >= 2 ? routeAddresses : fallbackAddresses)
+    .map((address) => String(address || '').trim())
+    .filter(Boolean);
+}
+
 function QuotePanel({
   lines,
   analysis,
@@ -4339,7 +4396,12 @@ function QuotePanel({
   const [quoteSubject, setQuoteSubject] = useState('');
   const [quoteMessage, setQuoteMessage] = useState('');
   const [quoteStatus, setQuoteStatus] = useState('');
+  const [routeShareStatus, setRouteShareStatus] = useState('');
   const isProposalMode = documentMode === 'proposal';
+  const routeLinks = buildGoogleMapsRouteLinks(getShareableRouteAddresses(analysis));
+  const routeShareHelp = routeLinks.length > 1
+    ? texts.assistant.googleMapsRouteSplitHelp.replace('{count}', String(routeLinks.length))
+    : texts.assistant.googleMapsRouteHelp;
 
   const openQuoteDraft = () => {
     setQuoteSubject((current) => current || buildQuoteSubject(analysis, displayedClient, displayedTariff, documentMode));
@@ -4354,6 +4416,15 @@ function QuotePanel({
       setQuoteStatus(isProposalMode ? texts.assistant.proposalCopied : texts.assistant.quoteCopied);
     } catch {
       setQuoteStatus(texts.assistant.quoteCopyError);
+    }
+  };
+
+  const handleCopyRouteLinks = async () => {
+    try {
+      await navigator.clipboard.writeText(routeLinks.join('\n'));
+      setRouteShareStatus(routeLinks.length > 1 ? texts.assistant.googleMapsRoutesCopied : texts.assistant.googleMapsRouteCopied);
+    } catch {
+      setRouteShareStatus(texts.assistant.googleMapsRouteCopyError);
     }
   };
 
@@ -4432,6 +4503,23 @@ function QuotePanel({
                 </span>
                 {pricingResult.tariffVersion && <span>Versión tarifario: {pricingResult.tariffVersion}</span>}
               </div>
+              {routeLinks.length > 0 && (
+                <div className="route-share-panel">
+                  <div>
+                    <strong>{texts.assistant.googleMapsRouteTitle}</strong>
+                    <span>{routeShareHelp}</span>
+                    {routeShareStatus && <small>{routeShareStatus}</small>}
+                  </div>
+                  <div className="route-share-actions">
+                    <a className="button-link" href={routeLinks[0]} target="_blank" rel="noreferrer">
+                      {texts.assistant.openGoogleMapsRoute}
+                    </a>
+                    <button type="button" className="secondary-button" onClick={handleCopyRouteLinks}>
+                      {texts.assistant.copyGoogleMapsRoute}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           <div className="table-wrap">
