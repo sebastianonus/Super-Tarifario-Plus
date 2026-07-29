@@ -146,6 +146,7 @@ type PricingRequest = {
   originAddress?: string | null;
   destinationAddress?: string | null;
   routeAddresses?: string[] | null;
+  routeStops?: RouteStopConstraint[] | null;
   routeHasTimeConstraints?: boolean | null;
   routeOptimization?: boolean | null;
   vehicleSchedule?: string | null;
@@ -153,6 +154,14 @@ type PricingRequest = {
   loadZone?: string | null;
   deliveryZone?: string | null;
   estimatedStops?: number | null;
+};
+
+type RouteStopConstraint = {
+  address: string;
+  label?: string | null;
+  timeWindowStart?: string | null;
+  timeWindowEnd?: string | null;
+  priority?: number | null;
 };
 
 type MapDistanceResult = {
@@ -1599,13 +1608,13 @@ async function calculateDistanceWithMaps(origin: string, destination: string): P
   };
 }
 
-async function calculateRouteDistanceWithMaps(addresses: string[], optimize = false): Promise<MapDistanceResult> {
+async function calculateRouteDistanceWithMaps(addresses: string[], optimize = false, stops: RouteStopConstraint[] | null = null, advanced = false): Promise<MapDistanceResult> {
   let response: Response;
   try {
     response = await fetch('/api/maps/route-distance', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ addresses, optimize })
+      body: JSON.stringify({ addresses, optimize, stops, advanced })
     });
   } catch {
     throw new Error(texts.assistant.apiUnavailable);
@@ -1698,6 +1707,23 @@ function getRouteAddresses(analysis?: LogisticsAnalysis) {
     .map((stop) => stop.direccion_normalizada || stop.direccion_original)
     .map((address) => String(address || '').trim())
     .filter(Boolean);
+}
+
+function getRouteStopsFromLogistics(analysis?: LogisticsAnalysis): RouteStopConstraint[] {
+  return (analysis?.ruta ?? [])
+    .slice()
+    .sort((a, b) => a.orden - b.orden)
+    .map((stop) => {
+      const address = String(stop.direccion_normalizada || stop.direccion_original || '').trim();
+      return {
+        address,
+        label: stop.tipo || `Parada ${stop.orden}`,
+        timeWindowStart: stop.horario_desde || null,
+        timeWindowEnd: stop.horario_hasta || null,
+        priority: stop.horario_desde || stop.horario_hasta ? 2 : null
+      };
+    })
+    .filter((stop) => stop.address);
 }
 
 const registeredRoutePlaces = [
@@ -1798,6 +1824,24 @@ function dedupeRouteAddresses(addresses: string[]) {
     }
   }
   return unique;
+}
+
+function alignRouteStopsToAddresses(addresses: string[], stops?: RouteStopConstraint[] | null) {
+  if (!addresses.length) {
+    return null;
+  }
+
+  const sourceStops = Array.isArray(stops) ? stops : [];
+  return addresses.map((address, index) => {
+    const existing = sourceStops.find((stop) => sameRoutePlace(stop.address, address)) || sourceStops[index];
+    return {
+      address,
+      label: existing?.label || (index === 0 ? 'Origen' : index === addresses.length - 1 ? 'Destino' : `Parada ${index}`),
+      timeWindowStart: existing?.timeWindowStart || null,
+      timeWindowEnd: existing?.timeWindowEnd || null,
+      priority: existing?.priority ?? null
+    };
+  });
 }
 
 function extractRouteAddressesFromText(userText: string) {
@@ -2197,7 +2241,7 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
   );
   const confirmedDistanceKm = extractConfirmedDistanceKm(text);
   const routeHasTimeConstraints = Boolean(request.routeHasTimeConstraints) || hasStrictRouteTimeInstruction(text);
-  const routeOptimization = shouldOptimizeRouteFromText(text) && !routeHasTimeConstraints;
+  const routeOptimization = shouldOptimizeRouteFromText(text) || Boolean(request.routeOptimization);
   const needsMozo = normalizedText.includes('mozo') || normalizedText.includes('mosso') || normalizedText.includes('ayudante');
   const mentionsPlatform = normalizedText.includes('plataforma');
   const mentionsCold = normalizedText.includes('frio') || normalizedText.includes('frigor') || normalizedText.includes('refriger');
@@ -2225,6 +2269,7 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
     destination: request.destination ?? inferredTariffDestination,
     zone: request.zone ?? inferredTariffDestination,
     routeAddresses: routeAddresses.length >= 2 ? routeAddresses : request.routeAddresses,
+    routeStops: routeAddresses.length >= 2 ? alignRouteStopsToAddresses(routeAddresses, request.routeStops) : request.routeStops,
     originAddress: routeAddresses[0] ?? request.originAddress,
     destinationAddress: routeAddresses.length >= 2 ? routeAddresses[routeAddresses.length - 1] : request.destinationAddress,
     additionalStops: routeAddresses.length >= 2 ? Math.max(0, routeAddresses.length - 2) : request.additionalStops,
@@ -2287,7 +2332,8 @@ async function preparePricingRequestForCalculation(request: PricingRequest, user
   }
 
   if (!isLastMile && addresses.length >= 2 && !confirmedDistanceKm && (hasRouteInstruction(text) || prepared.distanceKm === null || prepared.distanceKm === undefined)) {
-    const distance = await calculateRouteDistanceWithMaps(addresses, Boolean(prepared.routeOptimization) && !prepared.routeHasTimeConstraints);
+    const useAdvancedRouteOptimization = Boolean(prepared.routeOptimization && prepared.routeHasTimeConstraints);
+    const distance = await calculateRouteDistanceWithMaps(addresses, Boolean(prepared.routeOptimization), prepared.routeStops ?? null, useAdvancedRouteOptimization);
     const calculatedRouteAddresses = distance.addresses ?? addresses;
     prepared = {
       ...prepared,
@@ -2295,8 +2341,9 @@ async function preparePricingRequestForCalculation(request: PricingRequest, user
       originAddress: distance.origin,
       destinationAddress: distance.destination,
       routeAddresses: calculatedRouteAddresses,
+      routeStops: alignRouteStopsToAddresses(calculatedRouteAddresses, prepared.routeStops),
       additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
-      routeOptimization: Boolean(prepared.routeOptimization) && !prepared.routeHasTimeConstraints,
+      routeOptimization: Boolean(prepared.routeOptimization),
       notes: [
         prepared.notes,
         `${texts.assistant.mapsDistanceSource}: ${distance.distanceText}${distance.durationText ? ` · ${distance.durationText}` : ''}${distance.optimized ? ` · ${texts.assistant.optimizedRoute}` : ''}`
@@ -2321,6 +2368,7 @@ function hasRouteTimeConstraints(analysis?: LogisticsAnalysis, userText = '') {
 
 function inferPricingRequestFromLogistics(analysis: LogisticsAnalysis, baseText: string, catalog?: Catalog): PricingRequest {
   const routeAddresses = applyUserRouteCorrections(getRouteAddresses(analysis), baseText);
+  const routeStops = alignRouteStopsToAddresses(routeAddresses, getRouteStopsFromLogistics(analysis));
   const resources = (analysis.carga?.recursos_necesarios ?? []).join(' ');
   const combinedText = `${baseText}\n${analysis.servicio?.resumen || ''}\n${analysis.carga?.vehiculo_recomendado || ''}\n${resources}`;
   const request = createDefaultPricingRequest(combinedText);
@@ -2336,8 +2384,9 @@ function inferPricingRequestFromLogistics(analysis: LogisticsAnalysis, baseText:
     originAddress: routeAddresses[0] ?? null,
     destinationAddress: routeAddresses[routeAddresses.length - 1] ?? null,
     routeAddresses,
+    routeStops,
     routeHasTimeConstraints,
-    routeOptimization: shouldOptimizeRouteFromText(baseText) && !routeHasTimeConstraints,
+    routeOptimization: shouldOptimizeRouteFromText(baseText),
     distanceKm: confirmedDistanceKm ?? analysis.servicio?.distancia_km ?? null,
     weightKg: typeof confirmedWeight === 'number' ? confirmedWeight : null,
     mozoHours: needsMozo && typeof analysis.servicio?.duracion_horas === 'number' ? analysis.servicio.duracion_horas : request.mozoHours,
@@ -2692,8 +2741,9 @@ function App() {
           if (routeAddresses.length >= 2 && !userConfirmedDistanceKm) {
             try {
               const routeHasTimeConstraints = hasRouteTimeConstraints(documentAnalysis.analysis, requestForAnalysis);
-              const routeOptimization = shouldOptimizeRouteFromText(text) && !routeHasTimeConstraints;
-              const routeDistance = await calculateRouteDistanceWithMaps(routeAddresses, routeOptimization);
+              const routeOptimization = shouldOptimizeRouteFromText(text);
+              const routeStops = alignRouteStopsToAddresses(routeAddresses, getRouteStopsFromLogistics(documentAnalysis.analysis));
+              const routeDistance = await calculateRouteDistanceWithMaps(routeAddresses, routeOptimization, routeStops, routeOptimization && routeHasTimeConstraints);
               const calculatedRouteAddresses = routeDistance.addresses ?? routeAddresses;
               inferredPricingRequest = {
                 ...inferredPricingRequest,
@@ -2701,6 +2751,7 @@ function App() {
                 originAddress: routeDistance.origin,
                 destinationAddress: routeDistance.destination,
                 routeAddresses: calculatedRouteAddresses,
+                routeStops: alignRouteStopsToAddresses(calculatedRouteAddresses, routeStops),
                 routeHasTimeConstraints,
                 routeOptimization,
                 additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
@@ -2783,8 +2834,8 @@ function App() {
       ) {
         try {
           const routeHasTimeConstraints = Boolean(prioritizedPricingRequest.routeHasTimeConstraints) || hasStrictRouteTimeInstruction(requestForAnalysis);
-          const routeOptimization = shouldOptimizeRouteFromText(requestForAnalysis) && !routeHasTimeConstraints;
-          const routeDistance = await calculateRouteDistanceWithMaps(finalRouteAddresses, routeOptimization);
+          const routeOptimization = shouldOptimizeRouteFromText(requestForAnalysis);
+          const routeDistance = await calculateRouteDistanceWithMaps(finalRouteAddresses, routeOptimization, prioritizedPricingRequest.routeStops ?? null, routeOptimization && routeHasTimeConstraints);
           const calculatedRouteAddresses = routeDistance.addresses ?? finalRouteAddresses;
           prioritizedPricingRequest = {
             ...prioritizedPricingRequest,
@@ -2792,6 +2843,7 @@ function App() {
             originAddress: routeDistance.origin,
             destinationAddress: routeDistance.destination,
             routeAddresses: calculatedRouteAddresses,
+            routeStops: alignRouteStopsToAddresses(calculatedRouteAddresses, prioritizedPricingRequest.routeStops),
             routeHasTimeConstraints,
             routeOptimization,
             additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
@@ -3703,7 +3755,7 @@ function PricingRequestEditor({
       ? routeAddresses
       : [value.originAddress, value.destinationAddress].map((address) => String(address || '').trim()).filter(Boolean);
   const canCalculateDistance = addressesForDistance.length >= 2;
-  const canOptimizeRoute = addressesForDistance.length > 2 && !value.routeHasTimeConstraints;
+  const canOptimizeRoute = addressesForDistance.length > 2;
   const updateFullRoute = (origin: string, stopAddresses: string[], destination: string, patch: Partial<PricingRequest> = {}) => {
     const rawRoute = [origin, ...stopAddresses, destination];
     const hasRouteValue = rawRoute.some((address) => address.trim());
@@ -3717,6 +3769,7 @@ function PricingRequestEditor({
       originAddress: origin.trim() || null,
       destinationAddress: destination.trim() || null,
       routeAddresses: hasRouteValue ? rawRoute : null,
+      routeStops: hasRouteValue ? alignRouteStopsToAddresses(rawRoute.map((address) => address.trim()).filter(Boolean), value.routeStops) : null,
       additionalStops: nextAdditionalStops,
       distanceKm: null,
       ...patch
@@ -3767,7 +3820,7 @@ function PricingRequestEditor({
 
     const distance =
       addressesForDistance.length > 2
-        ? await calculateRouteDistanceWithMaps(addressesForDistance, Boolean(value.routeOptimization) && !value.routeHasTimeConstraints)
+        ? await calculateRouteDistanceWithMaps(addressesForDistance, Boolean(value.routeOptimization), value.routeStops ?? null, Boolean(value.routeOptimization && value.routeHasTimeConstraints))
         : await calculateDistanceWithMaps(addressesForDistance[0], addressesForDistance[1]);
     const calculatedRouteAddresses = distance.addresses ?? addressesForDistance;
     update({
@@ -3775,7 +3828,8 @@ function PricingRequestEditor({
       originAddress: distance.origin,
       destinationAddress: distance.destination,
       routeAddresses: calculatedRouteAddresses,
-      routeOptimization: Boolean(value.routeOptimization) && !value.routeHasTimeConstraints,
+      routeStops: alignRouteStopsToAddresses(calculatedRouteAddresses, value.routeStops),
+      routeOptimization: Boolean(value.routeOptimization),
       additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
       notes: [
         value.notes,
@@ -3792,13 +3846,14 @@ function PricingRequestEditor({
 
     setIsOptimizingRoute(true);
     try {
-      const distance = await calculateRouteDistanceWithMaps(addressesForDistance, true);
+      const distance = await calculateRouteDistanceWithMaps(addressesForDistance, true, value.routeStops ?? null, Boolean(value.routeHasTimeConstraints));
       const calculatedRouteAddresses = distance.addresses ?? addressesForDistance;
       update({
         distanceKm: distance.distanceKm,
         originAddress: distance.origin,
         destinationAddress: distance.destination,
         routeAddresses: calculatedRouteAddresses,
+        routeStops: alignRouteStopsToAddresses(calculatedRouteAddresses, value.routeStops),
         routeOptimization: true,
         additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
         notes: [
@@ -4251,7 +4306,6 @@ function PricingRequestEditor({
                 <input
                   type="checkbox"
                   checked={Boolean(value.routeOptimization)}
-                  disabled={Boolean(value.routeHasTimeConstraints)}
                   onChange={(event) => update({ routeOptimization: event.target.checked })}
                 />
                 {texts.assistant.parameterRouteOptimization}

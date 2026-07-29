@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { createRequire } from 'node:module';
-import 'dotenv/config';
+import { createSign } from 'node:crypto';
 import express from 'express';
 import OpenAI from 'openai';
 import { isSupabaseConfigured, requireSupabaseAdmin } from './supabase-client.mjs';
@@ -17,6 +17,11 @@ const googleDistanceMatrixUrl = 'https://maps.googleapis.com/maps/api/distancema
 const googleDirectionsUrl = 'https://maps.googleapis.com/maps/api/directions/json';
 const googlePlacesAutocompleteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
 const googlePlaceDetailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json';
+const googleGeocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+const googleRouteOptimizationUrl = 'https://routeoptimization.googleapis.com/v1';
+const googleCloudProjectId = String(process.env.GOOGLE_CLOUD_PROJECT_ID || '').trim();
+const googleRouteOptimizationAccessToken = String(process.env.GOOGLE_ROUTE_OPTIMIZATION_ACCESS_TOKEN || '').trim();
+const googleRouteOptimizationServiceAccountJson = String(process.env.GOOGLE_ROUTE_OPTIMIZATION_SERVICE_ACCOUNT_JSON || process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON || '').trim();
 
 app.use(express.json({ limit: '25mb' }));
 
@@ -24,6 +29,8 @@ const client = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPE
 const hasUsableApiKey = Boolean(process.env.OPENAI_API_KEY && /^sk-[A-Za-z0-9_-]+$/.test(process.env.OPENAI_API_KEY));
 const requireRealAi = process.env.REQUIRE_REAL_AI !== 'false';
 const googleMapsEnabled = googleMapsApiKey.length > 0;
+const googleRouteOptimizationEnabled = Boolean(googleCloudProjectId && (googleRouteOptimizationAccessToken || googleRouteOptimizationServiceAccountJson));
+let googleRouteOptimizationTokenCache = null;
 
 function mapAccessUser(row, allowedCatalogIds = []) {
   return {
@@ -140,7 +147,7 @@ const logisticsSystemPrompt =
 const routeAwareTariffAnalysisPrompt = [
   tariffAnalysisPrompt,
   'Si el usuario aporta direcciones, poblaciones o establecimientos, rellena originAddress, destinationAddress y routeAddresses en pricingRequest. routeAddresses debe conservar todas las paradas utiles en orden operativo. Si solo hay una entrega para distribucion, usa destinationAddress como referencia de entrega. No dejes las direcciones solo en summary o serviceDescription.',
-  'Si cualquier parada tiene hora estricta, cita, franja horaria, horario de recogida/entrega, "antes de", "despues de", "a partir de" o una hora concreta asociada a recogida/entrega, marca routeHasTimeConstraints=true y no propongas routeOptimization=true salvo que el usuario indique explicitamente que se puede reordenar respetando horarios.'
+  'Si cualquier parada tiene hora estricta, cita, franja horaria, horario de recogida/entrega, "antes de", "despues de", "a partir de" o una hora concreta asociada a recogida/entrega, marca routeHasTimeConstraints=true y rellena routeStops con address, label, timeWindowStart, timeWindowEnd y priority. Usa routeOptimization=true solo si el usuario pide optimizar o mejorar la ruta; entonces la optimizacion debera respetar esos horarios.'
 ].join(' ');
 
 const logisticsRouteExtractionPrompt = [
@@ -232,6 +239,21 @@ const analysisSchema = {
             type: ['array', 'null'],
             items: { type: 'string' }
           },
+          routeStops: {
+            type: ['array', 'null'],
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              properties: {
+                address: { type: 'string' },
+                label: { type: ['string', 'null'] },
+                timeWindowStart: { type: ['string', 'null'] },
+                timeWindowEnd: { type: ['string', 'null'] },
+                priority: { type: ['number', 'null'] }
+              },
+              required: ['address', 'label', 'timeWindowStart', 'timeWindowEnd', 'priority']
+            }
+          },
           routeHasTimeConstraints: { type: ['boolean', 'null'] },
           routeOptimization: { type: ['boolean', 'null'] },
           loadZone: { type: ['string', 'null'] },
@@ -294,6 +316,7 @@ const analysisSchema = {
           'originAddress',
           'destinationAddress',
           'routeAddresses',
+          'routeStops',
           'routeHasTimeConstraints',
           'routeOptimization',
           'loadZone',
@@ -841,10 +864,32 @@ function normalizePricingRequest(pricingRequest, contextText) {
     }
   }
 
+  if (Array.isArray(normalized.routeStops)) {
+    normalized.routeStops = normalized.routeStops
+      .map((stop) => ({
+        address: String(stop?.address || '').trim(),
+        label: stop?.label ? String(stop.label).trim() : null,
+        timeWindowStart: stop?.timeWindowStart ? String(stop.timeWindowStart).trim() : null,
+        timeWindowEnd: stop?.timeWindowEnd ? String(stop.timeWindowEnd).trim() : null,
+        priority: Number.isFinite(Number(stop?.priority)) ? Number(stop.priority) : null
+      }))
+      .filter((stop) => stop.address);
+    if (normalized.routeStops.length === 0) {
+      normalized.routeStops = null;
+    }
+  }
+
   if (normalized.routeAddresses?.length) {
     normalized.originAddress = normalized.originAddress || normalized.routeAddresses[0] || null;
     normalized.destinationAddress = normalized.destinationAddress || normalized.routeAddresses[normalized.routeAddresses.length - 1] || null;
     normalized.additionalStops = normalized.additionalStops ?? Math.max(0, normalized.routeAddresses.length - 2);
+    normalized.routeStops = normalized.routeStops || normalized.routeAddresses.map((address, index) => ({
+      address,
+      label: index === 0 ? 'Origen' : index === normalized.routeAddresses.length - 1 ? 'Destino' : `Parada ${index}`,
+      timeWindowStart: null,
+      timeWindowEnd: null,
+      priority: null
+    }));
   } else if (normalized.originAddress && normalized.destinationAddress) {
     normalized.routeAddresses = [normalized.originAddress, normalized.destinationAddress];
     normalized.additionalStops = normalized.additionalStops ?? 0;
@@ -914,6 +959,82 @@ function sanitizeModelTarification(analysis) {
 
 function parseAddressParam(value) {
   return String(value || '').trim();
+}
+
+function base64Url(value) {
+  return Buffer.from(value).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+}
+
+function parseServiceAccountJson() {
+  if (!googleRouteOptimizationServiceAccountJson) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(googleRouteOptimizationServiceAccountJson);
+    if (!parsed.client_email || !parsed.private_key) {
+      return null;
+    }
+
+    return {
+      clientEmail: parsed.client_email,
+      privateKey: String(parsed.private_key).replace(/\\n/g, '\n')
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function getGoogleRouteOptimizationAccessToken() {
+  if (googleRouteOptimizationAccessToken) {
+    return googleRouteOptimizationAccessToken;
+  }
+
+  if (googleRouteOptimizationTokenCache && googleRouteOptimizationTokenCache.expiresAt > Date.now() + 60000) {
+    return googleRouteOptimizationTokenCache.token;
+  }
+
+  const serviceAccount = parseServiceAccountJson();
+  if (!serviceAccount) {
+    throw new Error('Route Optimization no tiene credenciales OAuth configuradas.');
+  }
+
+  const now = Math.floor(Date.now() / 1000);
+  const header = base64Url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
+  const claim = base64Url(JSON.stringify({
+    iss: serviceAccount.clientEmail,
+    scope: 'https://www.googleapis.com/auth/cloud-platform',
+    aud: 'https://oauth2.googleapis.com/token',
+    iat: now,
+    exp: now + 3600
+  }));
+  const unsignedJwt = `${header}.${claim}`;
+  const signer = createSign('RSA-SHA256');
+  signer.update(unsignedJwt);
+  signer.end();
+  const signature = signer.sign(serviceAccount.privateKey, 'base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  const assertion = `${unsignedJwt}.${signature}`;
+
+  const response = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      assertion
+    })
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok || !payload?.access_token) {
+    throw new Error(payload?.error_description || payload?.error || 'No se pudo obtener token OAuth de Google.');
+  }
+
+  googleRouteOptimizationTokenCache = {
+    token: payload.access_token,
+    expiresAt: Date.now() + Math.max(300, Number(payload.expires_in || 3600) - 60) * 1000
+  };
+
+  return payload.access_token;
 }
 
 async function fetchGoogleDistance(origin, destination) {
@@ -1016,7 +1137,185 @@ async function fetchGoogleDirectionsRouteDistance(routeAddresses, optimize = fal
   };
 }
 
-async function fetchGoogleRouteDistance(addresses, { optimize = false } = {}) {
+async function fetchGoogleGeocode(address) {
+  const params = new URLSearchParams({
+    address,
+    key: googleMapsApiKey,
+    language: 'es',
+    region: 'es'
+  });
+
+  const response = await fetch(`${googleGeocodingUrl}?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error(`Google Geocoding respondio con estado HTTP ${response.status}.`);
+  }
+
+  const payload = await response.json();
+  if (payload.status !== 'OK' || !payload.results?.[0]?.geometry?.location) {
+    throw new Error(`Google Geocoding devolvio estado ${payload.status || 'SIN_RESULTADO'}.`);
+  }
+
+  const result = payload.results[0];
+  return {
+    address: result.formatted_address || address,
+    location: {
+      latitude: Number(result.geometry.location.lat),
+      longitude: Number(result.geometry.location.lng)
+    }
+  };
+}
+
+function normalizeRouteOptimizationStops(routeAddresses, stops) {
+  const providedStops = Array.isArray(stops) ? stops : [];
+  if (providedStops.length > 0) {
+    return providedStops
+      .map((stop, index) => ({
+        address: parseAddressParam(stop?.address || routeAddresses[index]),
+        label: parseAddressParam(stop?.label || `Parada ${index + 1}`),
+        timeWindowStart: parseAddressParam(stop?.timeWindowStart),
+        timeWindowEnd: parseAddressParam(stop?.timeWindowEnd),
+        priority: Number.isFinite(Number(stop?.priority)) ? Number(stop.priority) : null
+      }))
+      .filter((stop) => stop.address);
+  }
+
+  return routeAddresses.map((address, index) => ({
+    address,
+    label: index === 0 ? 'Origen' : index === routeAddresses.length - 1 ? 'Destino' : `Parada ${index}`,
+    timeWindowStart: '',
+    timeWindowEnd: '',
+    priority: null
+  }));
+}
+
+function timestampFromRouteTime(value, fallbackHour) {
+  const raw = parseAddressParam(value);
+  if (!raw) {
+    return `2026-01-01T${String(fallbackHour).padStart(2, '0')}:00:00Z`;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
+    return raw;
+  }
+
+  const match = raw.match(/\b([01]?\d|2[0-3])(?::|\.|h)?([0-5]\d)?\b/i);
+  if (match) {
+    const hour = String(match[1]).padStart(2, '0');
+    const minute = String(match[2] || '00').padStart(2, '0');
+    return `2026-01-01T${hour}:${minute}:00Z`;
+  }
+
+  return `2026-01-01T${String(fallbackHour).padStart(2, '0')}:00:00Z`;
+}
+
+async function fetchGoogleRouteOptimization(routeAddresses, stops) {
+  if (!googleRouteOptimizationEnabled) {
+    throw new Error('Route Optimization API no esta configurada.');
+  }
+
+  const normalizedStops = normalizeRouteOptimizationStops(routeAddresses, stops);
+  if (normalizedStops.length < 3) {
+    return null;
+  }
+
+  const geocodedStops = [];
+  for (const stop of normalizedStops) {
+    const geocoded = await fetchGoogleGeocode(stop.address);
+    geocodedStops.push({ ...stop, ...geocoded });
+  }
+
+  const origin = geocodedStops[0];
+  const destination = geocodedStops[geocodedStops.length - 1];
+  const middleStops = geocodedStops.slice(1, -1);
+  const accessToken = await getGoogleRouteOptimizationAccessToken();
+  const shipments = middleStops.map((stop, index) => {
+    const timeWindows = [];
+    if (stop.timeWindowStart || stop.timeWindowEnd) {
+      timeWindows.push({
+        startTime: timestampFromRouteTime(stop.timeWindowStart, 0),
+        endTime: timestampFromRouteTime(stop.timeWindowEnd, 23)
+      });
+    }
+
+    return {
+      label: `stop-${index}`,
+      deliveries: [{
+        arrivalWaypoint: { location: { latLng: stop.location } },
+        ...(timeWindows.length ? { timeWindows } : {})
+      }],
+      penaltyCost: Math.max(1, Number(stop.priority || 1)) * 1000000
+    };
+  });
+
+  const response = await fetch(`${googleRouteOptimizationUrl}/projects/${encodeURIComponent(googleCloudProjectId)}:optimizeTours`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: {
+        globalStartTime: '2026-01-01T00:00:00Z',
+        globalEndTime: '2026-01-01T23:59:00Z',
+        vehicles: [{
+          label: 'vehiculo-1',
+          startWaypoint: { location: { latLng: origin.location } },
+          endWaypoint: { location: { latLng: destination.location } }
+        }],
+        shipments
+      },
+      populatePolylines: false
+    })
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) {
+    throw new Error(payload?.error?.message || `Route Optimization respondio con estado HTTP ${response.status}.`);
+  }
+
+  const route = payload?.routes?.[0];
+  const visits = Array.isArray(route?.visits) ? route.visits : [];
+  const orderedMiddle = visits
+    .map((visit) => {
+      const indexFromLabel = String(visit.shipmentLabel || '').match(/^stop-(\d+)$/)?.[1];
+      const index = indexFromLabel !== undefined ? Number(indexFromLabel) : Number(visit.shipmentIndex);
+      return middleStops[index];
+    })
+    .filter(Boolean);
+  const orderedStops = [origin, ...orderedMiddle, destination];
+  const orderedAddresses = orderedStops.map((stop) => stop.address);
+  const metrics = route?.metrics || payload?.metrics || {};
+  const distanceMeters = Number(metrics.travelDistanceMeters || metrics.totalDistanceMeters || 0);
+  const fallbackDistance = await fetchGoogleRouteDistance(orderedAddresses, { optimize: false });
+  const distanceKm = distanceMeters > 0
+    ? Math.round((distanceMeters / 1000 + Number.EPSILON) * 10) / 10
+    : fallbackDistance.distanceKm;
+
+  return {
+    provider: 'google_route_optimization',
+    optimized: true,
+    advancedOptimized: true,
+    distanceKm,
+    distanceText: `${distanceKm.toLocaleString('es-ES')} km`,
+    durationText: route?.metrics?.travelDuration || fallbackDistance.durationText || '',
+    origin: orderedAddresses[0],
+    destination: orderedAddresses[orderedAddresses.length - 1],
+    addresses: orderedAddresses,
+    legs: fallbackDistance.legs || [],
+    constraintsApplied: true
+  };
+}
+
+function shouldUseAdvancedRouteOptimization(routeAddresses, stops, optimize, advanced) {
+  if (!advanced || !optimize || routeAddresses.length < 3) {
+    return false;
+  }
+
+  const normalizedStops = normalizeRouteOptimizationStops(routeAddresses, stops);
+  return normalizedStops.some((stop) => stop.timeWindowStart || stop.timeWindowEnd || Number(stop.priority || 0) > 0);
+}
+
+async function fetchGoogleRouteDistance(addresses, { optimize = false, stops = null, advanced = false } = {}) {
   const routeAddresses = Array.isArray(addresses)
     ? addresses.map((address) => parseAddressParam(address)).filter(Boolean)
     : [];
@@ -1025,7 +1324,19 @@ async function fetchGoogleRouteDistance(addresses, { optimize = false } = {}) {
     throw new Error('La ruta necesita al menos origen y destino.');
   }
 
-  const directionsRoute = await fetchGoogleDirectionsRouteDistance(routeAddresses, optimize);
+  const attemptedAdvancedOptimization = shouldUseAdvancedRouteOptimization(routeAddresses, stops, optimize, advanced);
+  if (attemptedAdvancedOptimization) {
+    try {
+      const optimizedRoute = await fetchGoogleRouteOptimization(routeAddresses, stops);
+      if (optimizedRoute) {
+        return optimizedRoute;
+      }
+    } catch (error) {
+      console.warn('Route Optimization no disponible, se usa Directions:', error?.message || error);
+    }
+  }
+
+  const directionsRoute = await fetchGoogleDirectionsRouteDistance(routeAddresses, attemptedAdvancedOptimization ? false : optimize);
   if (directionsRoute) {
     return directionsRoute;
   }
@@ -1339,6 +1650,7 @@ app.get('/api/maps/status', (_req, res) => {
   res.json({
     provider: 'google_maps',
     distanceEnabled: googleMapsEnabled,
+    routeOptimizationEnabled: googleRouteOptimizationEnabled,
     message: googleMapsEnabled
       ? 'Google Maps para cálculo de km está configurado.'
       : 'Google Maps no está configurado. Define GOOGLE_MAPS_API_KEY en .env.'
@@ -1433,6 +1745,8 @@ app.get('/api/maps/distance', async (req, res) => {
 app.post('/api/maps/route-distance', async (req, res) => {
   const addresses = req.body?.addresses;
   const optimize = Boolean(req.body?.optimize);
+  const advanced = Boolean(req.body?.advanced);
+  const stops = req.body?.stops;
 
   if (!Array.isArray(addresses) || addresses.filter((address) => parseAddressParam(address)).length < 2) {
     res.status(400).json({
@@ -1451,7 +1765,7 @@ app.post('/api/maps/route-distance', async (req, res) => {
   }
 
   try {
-    res.json(await fetchGoogleRouteDistance(addresses, { optimize }));
+    res.json(await fetchGoogleRouteDistance(addresses, { optimize, advanced, stops }));
   } catch (error) {
     res.status(502).json({
       error: 'maps_provider_error',
@@ -1552,7 +1866,8 @@ app.get('/api/health', (_req, res) => {
     requireRealAi,
     maps: {
       provider: 'google_maps',
-      distanceEnabled: googleMapsEnabled
+      distanceEnabled: googleMapsEnabled,
+      routeOptimizationEnabled: googleRouteOptimizationEnabled
     }
   });
 });
