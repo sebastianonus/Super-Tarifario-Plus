@@ -1037,6 +1037,17 @@ async function getGoogleRouteOptimizationAccessToken() {
   return payload.access_token;
 }
 
+async function buildGoogleRouteOptimizationRequestConfig() {
+  if (googleRouteOptimizationAccessToken || googleRouteOptimizationServiceAccountJson) {
+    const accessToken = await getGoogleRouteOptimizationAccessToken();
+    return {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    };
+  }
+
+  throw new Error('Route Optimization no tiene credenciales configuradas.');
+}
+
 async function fetchGoogleDistance(origin, destination) {
   const params = new URLSearchParams({
     origins: origin,
@@ -1227,7 +1238,6 @@ async function fetchGoogleRouteOptimization(routeAddresses, stops) {
   const origin = geocodedStops[0];
   const destination = geocodedStops[geocodedStops.length - 1];
   const middleStops = geocodedStops.slice(1, -1);
-  const accessToken = await getGoogleRouteOptimizationAccessToken();
   const shipments = middleStops.map((stop, index) => {
     const timeWindows = [];
     if (stop.timeWindowStart || stop.timeWindowEnd) {
@@ -1247,10 +1257,11 @@ async function fetchGoogleRouteOptimization(routeAddresses, stops) {
     };
   });
 
+  const requestConfig = await buildGoogleRouteOptimizationRequestConfig();
   const response = await fetch(`${googleRouteOptimizationUrl}/projects/${encodeURIComponent(googleCloudProjectId)}:optimizeTours`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      ...requestConfig.headers,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -1284,8 +1295,13 @@ async function fetchGoogleRouteOptimization(routeAddresses, stops) {
     .filter(Boolean);
   const orderedStops = [origin, ...orderedMiddle, destination];
   const orderedAddresses = orderedStops.map((stop) => stop.address);
-  const metrics = route?.metrics || payload?.metrics || {};
-  const distanceMeters = Number(metrics.travelDistanceMeters || metrics.totalDistanceMeters || 0);
+  const metrics = route?.metrics || route?.routeMetrics || payload?.metrics || payload?.aggregatedMetrics || {};
+  const distanceMeters = Number(
+    metrics.travelDistanceMeters ||
+    metrics.totalDistanceMeters ||
+    metrics.aggregatedRouteMetrics?.travelDistanceMeters ||
+    0
+  );
   const fallbackDistance = await fetchGoogleRouteDistance(orderedAddresses, { optimize: false });
   const distanceKm = distanceMeters > 0
     ? Math.round((distanceMeters / 1000 + Number.EPSILON) * 10) / 10
