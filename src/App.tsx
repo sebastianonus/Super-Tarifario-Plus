@@ -3591,6 +3591,8 @@ function PricingRequestEditor({
   vehicleOptionIndex: VehicleOptionIndex;
   onChange: (request: PricingRequest | null) => void;
 }) {
+  const [isOptimizingRoute, setIsOptimizingRoute] = useState(false);
+
   if (!value) {
     return (
       <div className="agent-card">
@@ -3677,6 +3679,7 @@ function PricingRequestEditor({
       ? routeAddresses
       : [value.originAddress, value.destinationAddress].map((address) => String(address || '').trim()).filter(Boolean);
   const canCalculateDistance = addressesForDistance.length >= 2;
+  const canOptimizeRoute = addressesForDistance.length > 2 && !value.routeHasTimeConstraints;
   const updateFullRoute = (origin: string, stopAddresses: string[], destination: string, patch: Partial<PricingRequest> = {}) => {
     const rawRoute = [origin, ...stopAddresses, destination];
     const hasRouteValue = rawRoute.some((address) => address.trim());
@@ -3758,6 +3761,33 @@ function PricingRequestEditor({
         .join('\n')
     });
   };
+  const handleRouteOptimization = async () => {
+    if (!canOptimizeRoute || isLastMileFamily) {
+      return;
+    }
+
+    setIsOptimizingRoute(true);
+    try {
+      const distance = await calculateRouteDistanceWithMaps(addressesForDistance, true);
+      const calculatedRouteAddresses = distance.addresses ?? addressesForDistance;
+      update({
+        distanceKm: distance.distanceKm,
+        originAddress: distance.origin,
+        destinationAddress: distance.destination,
+        routeAddresses: calculatedRouteAddresses,
+        routeOptimization: true,
+        additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
+        notes: [
+          value.notes,
+          `${texts.assistant.mapsDistanceSource}: ${distance.distanceText}${distance.durationText ? ` · ${distance.durationText}` : ''} · ${texts.assistant.optimizedRoute}`
+        ]
+          .filter(Boolean)
+          .join('\n')
+      });
+    } finally {
+      setIsOptimizingRoute(false);
+    }
+  };
   const handleLastMileEstimatedDistance = async () => {
     const loadZone = String(value.loadZone || '').trim();
     const deliveryZone = String(value.deliveryZone || '').trim();
@@ -3827,6 +3857,9 @@ function PricingRequestEditor({
               <span>{texts.assistant.routeUsedForDistance}</span>
               <strong>{routeAddresses.length || 2} {texts.assistant.stops.toLowerCase()}</strong>
             </div>
+            {Boolean(value.routeOptimization) && routeAddresses.length > 2 && (
+              <p className="route-optimization-note">{texts.assistant.optimizedRouteHelp}</p>
+            )}
             <div className="route-step">
               <span className="route-step-marker">A</span>
               <AddressAutocomplete
@@ -4168,6 +4201,11 @@ function PricingRequestEditor({
           <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateLastMileEstimate : !canCalculateDistance}>
             {texts.assistant.calculateDistance}
           </button>
+          {!isLastMileFamily && addressesForDistance.length > 2 && (
+            <button type="button" className="secondary-button" onClick={handleRouteOptimization} disabled={!canOptimizeRoute || isOptimizingRoute}>
+              {isOptimizingRoute ? texts.assistant.optimizingRoute : texts.assistant.optimizeRoute}
+            </button>
+          )}
           {isDirectFamily && (
             <>
               <label>

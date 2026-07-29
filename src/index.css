@@ -785,6 +785,18 @@ td input {
   color: var(--color-ink);
 }
 
+.route-optimization-note {
+  margin: -2px 0 2px;
+  border-left: 3px solid var(--color-magenta);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 8px 10px;
+}
+
 .route-step {
   position: relative;
   display: grid;
