@@ -139,13 +139,15 @@ const logisticsSystemPrompt =
 
 const routeAwareTariffAnalysisPrompt = [
   tariffAnalysisPrompt,
-  'Si el usuario aporta direcciones, poblaciones o establecimientos, rellena originAddress, destinationAddress y routeAddresses en pricingRequest. routeAddresses debe conservar todas las paradas utiles en orden operativo. Si solo hay una entrega para distribucion, usa destinationAddress como referencia de entrega. No dejes las direcciones solo en summary o serviceDescription.'
+  'Si el usuario aporta direcciones, poblaciones o establecimientos, rellena originAddress, destinationAddress y routeAddresses en pricingRequest. routeAddresses debe conservar todas las paradas utiles en orden operativo. Si solo hay una entrega para distribucion, usa destinationAddress como referencia de entrega. No dejes las direcciones solo en summary o serviceDescription.',
+  'Si cualquier parada tiene hora estricta, cita, franja horaria, horario de recogida/entrega, "antes de", "despues de", "a partir de" o una hora concreta asociada a recogida/entrega, marca routeHasTimeConstraints=true y no propongas routeOptimization=true salvo que el usuario indique explicitamente que se puede reordenar respetando horarios.'
 ].join(' ');
 
 const logisticsRouteExtractionPrompt = [
   'Extrae una ruta ordenada con TODAS las paradas que aparezcan en albaranes, emails, capturas e instrucciones.',
   'Cada direccion encontrada debe convertirse en un item de ruta, no en un resumen generico.',
   'En albaranes, trata campos como ADRECA DE RECOLLIDA, ADRECA LLIURAMENT, DIRECCION DE RECOGIDA, DIRECCION DE ENTREGA, CONTACTE, TELEFONO, HORARI y UNITATS DESCRIPCIO como datos criticos.',
+  'Si una parada incluye hora exacta, cita, franja, "antes de", "despues de", "a partir de", apertura/cierre o cualquier restriccion temporal, rellena horario_desde y/o horario_hasta en esa parada. Esos horarios condicionan el orden de la ruta.',
   'En instrucciones en catalan, "Recollir a X per Y" significa recogida en X y entrega en Y; "lliurar a Y" significa entrega en Y. Cada X e Y debe aparecer como parada separada si es una localidad o direccion.',
   'La expresion "3500 amb plataforma" o "3500 con plataforma" normalmente significa vehiculo de 3500 kg con plataforma, no 3500 bultos ni 3500 kg de mercancia. En ese caso informa vehiculo_recomendado y recurso plataforma, y deja peso_confirmado_kg como null salvo que el documento diga explicitamente peso de la mercancia.',
   'Si hay varios albaranes, consolida paradas sin perder ninguna direccion.',

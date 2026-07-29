@@ -154,6 +154,7 @@
     userInstructionsApplied: 'Indicaciones escritas aplicadas',
     optimizedRoute: 'Ruta optimizada',
     optimizedRouteHelp: 'Google ha reordenado las paradas intermedias para reducir distancia.',
+    routeOptimizationBlockedByTime: 'Hay horarios o citas en la ruta. Se mantiene el orden operativo para respetarlos.',
     routeUsedForDistance: 'Ruta usada para calcular km',
     mapsDistanceError: 'No se pudo calcular la distancia con Google Maps.',
     parameterWeight: 'Peso kg',

@@ -1918,6 +1918,25 @@ function shouldOptimizeRouteFromText(userText: string) {
   return /ruta optima|ruta optimo|optimiza|optimizar|optimizada|menor distancia/.test(normalized);
 }
 
+function hasStrictRouteTimeInstruction(userText: string) {
+  const lines = userText
+    .split(/\n|[.;]/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const timeExpression = /(?:\b(?:[01]?\d|2[0-3])[:.][0-5]\d\b|\b(?:[01]?\d|2[0-3])\s*h(?:oras?)?\b|\b(?:[01]?\d|2[0-3])\s*(?:am|pm)\b)/i;
+  const routeContext = /(?:recog|recoll|entreg|lliur|carga|descarga|parada|ruta|origen|destino|cliente|plataforma|almac[eé]n|llegar|salir|estar|cita|horario|franja|ventana)/i;
+  const strictContext = /(?:estrict|exact[ao]|fij[ao]|cita|horario|franja|ventana|antes de|despu[eé]s de|a partir de|no antes|no despu[eé]s|como tarde|m[aá]ximo|apertura|cierre|a las)/i;
+  const durationOnly = /(?:horas?\s+(?:mozo|ayudante|espera)|(?:mozo|ayudante|espera|jornada|duraci[oó]n).{0,18}\b(?:[01]?\d|2[0-3])\s*h)/i;
+
+  return lines.some((line) => {
+    if (durationOnly.test(line)) {
+      return false;
+    }
+
+    return timeExpression.test(line) && routeContext.test(line) && strictContext.test(line);
+  });
+}
+
 function hasRouteInstruction(userText: string) {
   return /distancia|kil[oó]metros?|km|ruta|trayecto|direcci[oó]n|direcciones|origen|destino|recogida|entrega|salida|inicio|contando todas|todas las direcciones|optimiza/i.test(userText);
 }
@@ -2177,7 +2196,8 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
     text
   );
   const confirmedDistanceKm = extractConfirmedDistanceKm(text);
-  const routeOptimization = shouldOptimizeRouteFromText(text) && !request.routeHasTimeConstraints;
+  const routeHasTimeConstraints = Boolean(request.routeHasTimeConstraints) || hasStrictRouteTimeInstruction(text);
+  const routeOptimization = shouldOptimizeRouteFromText(text) && !routeHasTimeConstraints;
   const needsMozo = normalizedText.includes('mozo') || normalizedText.includes('mosso') || normalizedText.includes('ayudante');
   const mentionsPlatform = normalizedText.includes('plataforma');
   const mentionsCold = normalizedText.includes('frio') || normalizedText.includes('frigor') || normalizedText.includes('refriger');
@@ -2208,6 +2228,7 @@ function applyUserTextToPricingRequest(request: PricingRequest, userText: string
     originAddress: routeAddresses[0] ?? request.originAddress,
     destinationAddress: routeAddresses.length >= 2 ? routeAddresses[routeAddresses.length - 1] : request.destinationAddress,
     additionalStops: routeAddresses.length >= 2 ? Math.max(0, routeAddresses.length - 2) : request.additionalStops,
+    routeHasTimeConstraints,
     routeOptimization,
     distanceKm: confirmedDistanceKm ?? request.distanceKm,
     mozoCount: needsMozo ? request.mozoCount ?? 1 : normalizeHelperFromRequest(request).mozoCount,
@@ -2288,13 +2309,13 @@ async function preparePricingRequestForCalculation(request: PricingRequest, user
   return prepared;
 }
 
-function hasRouteTimeConstraints(analysis?: LogisticsAnalysis) {
+function hasRouteTimeConstraints(analysis?: LogisticsAnalysis, userText = '') {
   return Boolean(
     analysis?.ruta?.some((stop) => {
       const from = String(stop.horario_desde || '').trim();
       const to = String(stop.horario_hasta || '').trim();
       return Boolean(from || to);
-    })
+    }) || hasStrictRouteTimeInstruction(userText)
   );
 }
 
@@ -2305,6 +2326,7 @@ function inferPricingRequestFromLogistics(analysis: LogisticsAnalysis, baseText:
   const request = createDefaultPricingRequest(combinedText);
   const confirmedWeight = analysis.carga?.peso_confirmado_kg;
   const confirmedDistanceKm = extractConfirmedDistanceKm(baseText);
+  const routeHasTimeConstraints = hasRouteTimeConstraints(analysis, baseText);
   const normalizedCombinedText = normalizeText(`${resources}\n${combinedText}`);
   const needsMozo = normalizedCombinedText.includes('mozo') || normalizedCombinedText.includes('mosso') || normalizedCombinedText.includes('ayudante');
 
@@ -2314,8 +2336,8 @@ function inferPricingRequestFromLogistics(analysis: LogisticsAnalysis, baseText:
     originAddress: routeAddresses[0] ?? null,
     destinationAddress: routeAddresses[routeAddresses.length - 1] ?? null,
     routeAddresses,
-    routeHasTimeConstraints: hasRouteTimeConstraints(analysis),
-    routeOptimization: shouldOptimizeRouteFromText(baseText) && !hasRouteTimeConstraints(analysis),
+    routeHasTimeConstraints,
+    routeOptimization: shouldOptimizeRouteFromText(baseText) && !routeHasTimeConstraints,
     distanceKm: confirmedDistanceKm ?? analysis.servicio?.distancia_km ?? null,
     weightKg: typeof confirmedWeight === 'number' ? confirmedWeight : null,
     mozoHours: needsMozo && typeof analysis.servicio?.duracion_horas === 'number' ? analysis.servicio.duracion_horas : request.mozoHours,
@@ -2669,7 +2691,7 @@ function App() {
           const routeAddresses = applyUserRouteCorrections(getRouteAddresses(documentAnalysis.analysis), text);
           if (routeAddresses.length >= 2 && !userConfirmedDistanceKm) {
             try {
-              const routeHasTimeConstraints = hasRouteTimeConstraints(documentAnalysis.analysis);
+              const routeHasTimeConstraints = hasRouteTimeConstraints(documentAnalysis.analysis, requestForAnalysis);
               const routeOptimization = shouldOptimizeRouteFromText(text) && !routeHasTimeConstraints;
               const routeDistance = await calculateRouteDistanceWithMaps(routeAddresses, routeOptimization);
               const calculatedRouteAddresses = routeDistance.addresses ?? routeAddresses;
@@ -2760,7 +2782,8 @@ function App() {
         (prioritizedPricingRequest.distanceKm === null || prioritizedPricingRequest.distanceKm === undefined)
       ) {
         try {
-          const routeOptimization = shouldOptimizeRouteFromText(requestForAnalysis) && !prioritizedPricingRequest.routeHasTimeConstraints;
+          const routeHasTimeConstraints = Boolean(prioritizedPricingRequest.routeHasTimeConstraints) || hasStrictRouteTimeInstruction(requestForAnalysis);
+          const routeOptimization = shouldOptimizeRouteFromText(requestForAnalysis) && !routeHasTimeConstraints;
           const routeDistance = await calculateRouteDistanceWithMaps(finalRouteAddresses, routeOptimization);
           const calculatedRouteAddresses = routeDistance.addresses ?? finalRouteAddresses;
           prioritizedPricingRequest = {
@@ -2769,6 +2792,7 @@ function App() {
             originAddress: routeDistance.origin,
             destinationAddress: routeDistance.destination,
             routeAddresses: calculatedRouteAddresses,
+            routeHasTimeConstraints,
             routeOptimization,
             additionalStops: Math.max(0, calculatedRouteAddresses.length - 2),
             notes: [
@@ -3859,6 +3883,9 @@ function PricingRequestEditor({
             </div>
             {Boolean(value.routeOptimization) && routeAddresses.length > 2 && (
               <p className="route-optimization-note">{texts.assistant.optimizedRouteHelp}</p>
+            )}
+            {Boolean(value.routeHasTimeConstraints) && routeAddresses.length > 2 && (
+              <p className="route-optimization-note">{texts.assistant.routeOptimizationBlockedByTime}</p>
             )}
             <div className="route-step">
               <span className="route-step-marker">A</span>
