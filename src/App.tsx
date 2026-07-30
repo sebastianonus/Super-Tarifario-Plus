@@ -2317,7 +2317,7 @@ async function preparePricingRequestForCalculation(request: PricingRequest, user
   const loadZone = String(prepared.loadZone || '').trim();
   const deliveryZone = String(prepared.deliveryZone || '').trim();
 
-  if (isLastMile && loadZone && deliveryZone && !confirmedDistanceKm) {
+  if (isLastMile && addresses.length < 2 && loadZone && deliveryZone && !confirmedDistanceKm) {
     const estimatedStops = Math.max(0, Number(prepared.estimatedStops ?? prepared.additionalStops ?? 0));
     const distance = await calculateLastMileDistanceEstimate(loadZone, deliveryZone, estimatedStops);
     prepared = {
@@ -2331,7 +2331,7 @@ async function preparePricingRequestForCalculation(request: PricingRequest, user
     };
   }
 
-  if (!isLastMile && addresses.length >= 2 && !confirmedDistanceKm && (hasRouteInstruction(text) || prepared.distanceKm === null || prepared.distanceKm === undefined)) {
+  if (addresses.length >= 2 && !confirmedDistanceKm && (hasRouteInstruction(text) || prepared.routeOptimization || prepared.distanceKm === null || prepared.distanceKm === undefined)) {
     const useAdvancedRouteOptimization = Boolean(prepared.routeOptimization && prepared.routeHasTimeConstraints);
     const distance = await calculateRouteDistanceWithMaps(addresses, Boolean(prepared.routeOptimization), prepared.routeStops ?? null, useAdvancedRouteOptimization);
     const calculatedRouteAddresses = distance.addresses ?? addresses;
@@ -3811,7 +3811,7 @@ function PricingRequestEditor({
     });
   };
   const handleDistanceCalculation = async () => {
-    if (isLastMileFamily) {
+    if (isLastMileFamily && addressesForDistance.length < 2) {
       await handleLastMileEstimatedDistance();
       return;
     }
@@ -3842,7 +3842,7 @@ function PricingRequestEditor({
     });
   };
   const handleRouteOptimization = async () => {
-    if (!canOptimizeRoute || isLastMileFamily) {
+    if (!canOptimizeRoute) {
       return;
     }
 
@@ -3898,7 +3898,7 @@ function PricingRequestEditor({
   const isShipmentFamily = value.family === 'mensajeria';
   const isDistributionFamily = value.family === 'distribucion';
   const isDirectFamily = value.family === 'directos';
-  const showRouteFields = isDirectFamily || routeStopAddressEntries.length > 0;
+  const showRouteFields = isDirectFamily || isLastMileFamily || routeStopAddressEntries.length > 0;
   const showShipmentFields = isShipmentFamily || (isDistributionFamily && value.distributionType === 'paqueteria');
   const showDistributionFields = isDistributionFamily;
   const normalizedDistributionType = normalizeText(value.distributionType);
@@ -3916,7 +3916,7 @@ function PricingRequestEditor({
   const showMozoHours = isDirectFamily && mozoRequirement === 'hours';
   const showMozoCount = isDirectFamily && (mozoRequirement === 'fixed_count' || mozoRequirement === 'hours');
   const showVehicleSchedule = (isDirectFamily || isLastMileFamily) && !isMeteorPricingRequest(value);
-  const showDirectRouteStops = isDirectFamily || routeStopAddressEntries.length > 0;
+  const showDirectRouteStops = isDirectFamily || isLastMileFamily || routeStopAddressEntries.length > 0;
 
   return (
     <div className="agent-card parameter-editor">
@@ -3951,7 +3951,6 @@ function PricingRequestEditor({
                 value={endpointOrigin}
                 onChange={(address) => updateRouteEndpoint('origin', address)}
                 placeholder="Dirección de origen"
-                disabled={isLastMileFamily}
               />
             </div>
             {showDirectRouteStops && (
@@ -3996,7 +3995,6 @@ function PricingRequestEditor({
                 value={endpointDestination}
                 onChange={(address) => updateRouteEndpoint('destination', address)}
                 placeholder="Dirección de destino"
-                disabled={isLastMileFamily}
               />
             </div>
           </div>
@@ -4282,10 +4280,10 @@ function PricingRequestEditor({
       )}
       {(isDirectFamily || isLastMileFamily || showDistributionRouteDistance) && (
         <div className="parameter-toggles">
-          <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateLastMileEstimate : !canCalculateDistance}>
+          <button type="button" className="secondary-button" onClick={handleDistanceCalculation} disabled={isLastMileFamily ? !canCalculateDistance && !canCalculateLastMileEstimate : !canCalculateDistance}>
             {texts.assistant.calculateDistance}
           </button>
-          {!isLastMileFamily && addressesForDistance.length > 2 && (
+          {addressesForDistance.length > 2 && (
             <button type="button" className="secondary-button" onClick={handleRouteOptimization} disabled={!canOptimizeRoute || isOptimizingRoute}>
               {isOptimizingRoute ? texts.assistant.optimizingRoute : texts.assistant.optimizeRoute}
             </button>
@@ -4313,6 +4311,16 @@ function PricingRequestEditor({
                 {texts.assistant.parameterRouteOptimization}
               </label>
             </>
+          )}
+          {!isDirectFamily && addressesForDistance.length > 2 && (
+            <label>
+              <input
+                type="checkbox"
+                checked={Boolean(value.routeOptimization)}
+                onChange={(event) => update({ routeOptimization: event.target.checked })}
+              />
+              {texts.assistant.parameterRouteOptimization}
+            </label>
           )}
         </div>
       )}
