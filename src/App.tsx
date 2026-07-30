@@ -3726,6 +3726,7 @@ function PricingRequestEditor({
   onChange: (request: PricingRequest | null) => void;
 }) {
   const [isOptimizingRoute, setIsOptimizingRoute] = useState(false);
+  const [copiedRouteStopIndex, setCopiedRouteStopIndex] = useState<number | null>(null);
 
   if (!value) {
     return (
@@ -3865,6 +3866,20 @@ function PricingRequestEditor({
     updateFullRoute(endpointOrigin, nextStops, endpointDestination, {
       additionalStops: Math.max(0, Number(value.additionalStops ?? routeStopAddressEntries.length) - 1)
     });
+  };
+  const copyRouteStopAddress = async (index: number, address: string) => {
+    const cleanedAddress = address.trim();
+    if (!cleanedAddress) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(cleanedAddress);
+      setCopiedRouteStopIndex(index);
+      window.setTimeout(() => setCopiedRouteStopIndex((current) => (current === index ? null : current)), 1400);
+    } catch {
+      setCopiedRouteStopIndex(null);
+    }
   };
   const handleDistanceCalculation = async () => {
     if (isLastMileFamily && addressesForDistance.length < 2) {
@@ -4029,14 +4044,25 @@ function PricingRequestEditor({
                             onChange={(nextAddress) => updateRouteStopAddress(index, nextAddress)}
                             placeholder={texts.assistant.extraStopAddressPlaceholder}
                           />
-                          <button
-                            type="button"
-                            className="secondary-button route-stop-remove"
-                            onClick={() => removeRouteStopAddress(index)}
-                            aria-label={`${texts.assistant.removeExtraStopAddress} ${index + 1}`}
-                          >
-                            {texts.assistant.removeExtraStopAddress}
-                          </button>
+                          <div className="route-stop-actions">
+                            <button
+                              type="button"
+                              className="secondary-button route-stop-copy"
+                              onClick={() => copyRouteStopAddress(index, address)}
+                              disabled={!address.trim()}
+                              aria-label={`${texts.assistant.copyExtraStopAddress} ${index + 1}`}
+                            >
+                              {copiedRouteStopIndex === index ? texts.assistant.copiedExtraStopAddress : texts.assistant.copyExtraStopAddress}
+                            </button>
+                            <button
+                              type="button"
+                              className="secondary-button route-stop-remove"
+                              onClick={() => removeRouteStopAddress(index)}
+                              aria-label={`${texts.assistant.removeExtraStopAddress} ${index + 1}`}
+                            >
+                              {texts.assistant.removeExtraStopAddress}
+                            </button>
+                          </div>
                         </div>
                       ))}
                     </div>

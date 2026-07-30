@@ -142,6 +142,8 @@
     parameterExtraStopAddress: 'Parada extra',
     extraStopAddressPlaceholder: 'Dirección de parada intermedia',
     addExtraStopAddress: 'Añadir parada con dirección',
+    copyExtraStopAddress: 'Copiar',
+    copiedExtraStopAddress: 'Copiada',
     removeExtraStopAddress: 'Quitar parada',
     parameterVehicle: 'Vehículo',
     parameterDistance: 'Km reales',

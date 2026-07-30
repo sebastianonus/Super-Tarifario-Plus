@@ -930,6 +930,7 @@ td input {
 }
 
 .route-stop-editor-heading button,
+.route-stop-copy,
 .route-stop-remove {
   min-height: 36px;
   border-radius: 999px;
@@ -947,6 +948,17 @@ td input {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px;
   align-items: end;
+}
+
+.route-stop-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.route-stop-copy {
+  min-width: 82px;
 }
 
 .parameter-toggles {
@@ -1473,8 +1485,15 @@ td input {
   }
 
   .route-stop-editor-heading button,
+  .route-stop-copy,
   .route-stop-remove {
     width: 100%;
+  }
+
+  .route-stop-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 
   .parameter-toggles label {
