@@ -4320,7 +4320,7 @@ function PricingRequestEditor({
 
 const googleMapsMaxIntermediateStops = 9;
 
-function buildGoogleMapsRouteUrl(addresses: string[]) {
+function buildGoogleMapsRouteUrl(addresses: string[], options: { navigate?: boolean } = {}) {
   const cleaned = addresses.map((address) => address.trim()).filter(Boolean);
   if (cleaned.length < 2) {
     return '';
@@ -4336,11 +4336,14 @@ function buildGoogleMapsRouteUrl(addresses: string[]) {
   if (waypoints.length > 0) {
     params.set('waypoints', waypoints.join('|'));
   }
+  if (options.navigate) {
+    params.set('dir_action', 'navigate');
+  }
 
   return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 
-function buildGoogleMapsRouteLinks(addresses: string[]) {
+function buildGoogleMapsRouteLinks(addresses: string[], options: { navigate?: boolean } = {}) {
   const cleaned = addresses.map((address) => String(address || '').trim()).filter(Boolean);
   if (cleaned.length < 2) {
     return [];
@@ -4351,7 +4354,7 @@ function buildGoogleMapsRouteLinks(addresses: string[]) {
   while (startIndex < cleaned.length - 1) {
     const endIndex = Math.min(cleaned.length - 1, startIndex + googleMapsMaxIntermediateStops + 1);
     const segment = cleaned.slice(startIndex, endIndex + 1);
-    const url = buildGoogleMapsRouteUrl(segment);
+    const url = buildGoogleMapsRouteUrl(segment, options);
     if (url) {
       links.push(url);
     }
@@ -4398,7 +4401,9 @@ function QuotePanel({
   const [quoteStatus, setQuoteStatus] = useState('');
   const [routeShareStatus, setRouteShareStatus] = useState('');
   const isProposalMode = documentMode === 'proposal';
-  const routeLinks = buildGoogleMapsRouteLinks(getShareableRouteAddresses(analysis));
+  const routeAddresses = getShareableRouteAddresses(analysis);
+  const routeLinks = buildGoogleMapsRouteLinks(routeAddresses);
+  const routeNavigationLinks = buildGoogleMapsRouteLinks(routeAddresses, { navigate: true });
   const routeShareHelp = routeLinks.length > 1
     ? texts.assistant.googleMapsRouteSplitHelp.replace('{count}', String(routeLinks.length))
     : texts.assistant.googleMapsRouteHelp;
@@ -4511,6 +4516,11 @@ function QuotePanel({
                     {routeShareStatus && <small>{routeShareStatus}</small>}
                   </div>
                   <div className="route-share-actions">
+                    {routeNavigationLinks.length > 0 && (
+                      <a className="button-link" href={routeNavigationLinks[0]} target="_blank" rel="noreferrer">
+                        {texts.assistant.navigateGoogleMapsRoute}
+                      </a>
+                    )}
                     <a className="button-link" href={routeLinks[0]} target="_blank" rel="noreferrer">
                       {texts.assistant.openGoogleMapsRoute}
                     </a>
