@@ -3409,6 +3409,8 @@ function AnalysisPanel({
         onChange={onPricingRequestChange}
       />
 
+      <RouteSharePanel pricingRequest={pricingRequest} />
+
       <div className="agent-footer">
         <span>
           {analysis.clientName} · {analysis.catalogName}
@@ -4364,8 +4366,7 @@ function buildGoogleMapsRouteLinks(addresses: string[], options: { navigate?: bo
   return links;
 }
 
-function getShareableRouteAddresses(analysis: ServiceAnalysis | null) {
-  const request = analysis?.pricingRequest;
+function getShareableRouteAddressesFromRequest(request: PricingRequest | null | undefined) {
   const routeAddresses = Array.isArray(request?.routeAddresses) ? request.routeAddresses : [];
   const fallbackAddresses = [
     request?.originAddress,
@@ -4376,6 +4377,52 @@ function getShareableRouteAddresses(analysis: ServiceAnalysis | null) {
   return (routeAddresses.length >= 2 ? routeAddresses : fallbackAddresses)
     .map((address) => String(address || '').trim())
     .filter(Boolean);
+}
+
+function RouteSharePanel({ pricingRequest }: { pricingRequest: PricingRequest | null }) {
+  const [routeShareStatus, setRouteShareStatus] = useState('');
+  const routeAddresses = getShareableRouteAddressesFromRequest(pricingRequest);
+  const routeLinks = buildGoogleMapsRouteLinks(routeAddresses);
+  const routeNavigationLinks = buildGoogleMapsRouteLinks(routeAddresses, { navigate: true });
+  const routeShareHelp = routeLinks.length > 1
+    ? texts.assistant.googleMapsRouteSplitHelp.replace('{count}', String(routeLinks.length))
+    : texts.assistant.googleMapsRouteHelp;
+
+  if (routeLinks.length === 0) {
+    return null;
+  }
+
+  const handleCopyRouteLinks = async () => {
+    try {
+      await navigator.clipboard.writeText(routeLinks.join('\n'));
+      setRouteShareStatus(routeLinks.length > 1 ? texts.assistant.googleMapsRoutesCopied : texts.assistant.googleMapsRouteCopied);
+    } catch {
+      setRouteShareStatus(texts.assistant.googleMapsRouteCopyError);
+    }
+  };
+
+  return (
+    <div className="route-share-panel">
+      <div>
+        <strong>{texts.assistant.googleMapsRouteTitle}</strong>
+        <span>{routeShareHelp}</span>
+        {routeShareStatus && <small>{routeShareStatus}</small>}
+      </div>
+      <div className="route-share-actions">
+        {routeNavigationLinks.length > 0 && (
+          <a className="button-link" href={routeNavigationLinks[0]} target="_blank" rel="noreferrer">
+            {texts.assistant.navigateGoogleMapsRoute}
+          </a>
+        )}
+        <a className="button-link" href={routeLinks[0]} target="_blank" rel="noreferrer">
+          {texts.assistant.openGoogleMapsRoute}
+        </a>
+        <button type="button" className="secondary-button" onClick={handleCopyRouteLinks}>
+          {texts.assistant.copyGoogleMapsRoute}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function QuotePanel({
@@ -4399,14 +4446,7 @@ function QuotePanel({
   const [quoteSubject, setQuoteSubject] = useState('');
   const [quoteMessage, setQuoteMessage] = useState('');
   const [quoteStatus, setQuoteStatus] = useState('');
-  const [routeShareStatus, setRouteShareStatus] = useState('');
   const isProposalMode = documentMode === 'proposal';
-  const routeAddresses = getShareableRouteAddresses(analysis);
-  const routeLinks = buildGoogleMapsRouteLinks(routeAddresses);
-  const routeNavigationLinks = buildGoogleMapsRouteLinks(routeAddresses, { navigate: true });
-  const routeShareHelp = routeLinks.length > 1
-    ? texts.assistant.googleMapsRouteSplitHelp.replace('{count}', String(routeLinks.length))
-    : texts.assistant.googleMapsRouteHelp;
 
   const openQuoteDraft = () => {
     setQuoteSubject((current) => current || buildQuoteSubject(analysis, displayedClient, displayedTariff, documentMode));
@@ -4421,15 +4461,6 @@ function QuotePanel({
       setQuoteStatus(isProposalMode ? texts.assistant.proposalCopied : texts.assistant.quoteCopied);
     } catch {
       setQuoteStatus(texts.assistant.quoteCopyError);
-    }
-  };
-
-  const handleCopyRouteLinks = async () => {
-    try {
-      await navigator.clipboard.writeText(routeLinks.join('\n'));
-      setRouteShareStatus(routeLinks.length > 1 ? texts.assistant.googleMapsRoutesCopied : texts.assistant.googleMapsRouteCopied);
-    } catch {
-      setRouteShareStatus(texts.assistant.googleMapsRouteCopyError);
     }
   };
 
@@ -4508,28 +4539,6 @@ function QuotePanel({
                 </span>
                 {pricingResult.tariffVersion && <span>Versión tarifario: {pricingResult.tariffVersion}</span>}
               </div>
-              {routeLinks.length > 0 && (
-                <div className="route-share-panel">
-                  <div>
-                    <strong>{texts.assistant.googleMapsRouteTitle}</strong>
-                    <span>{routeShareHelp}</span>
-                    {routeShareStatus && <small>{routeShareStatus}</small>}
-                  </div>
-                  <div className="route-share-actions">
-                    {routeNavigationLinks.length > 0 && (
-                      <a className="button-link" href={routeNavigationLinks[0]} target="_blank" rel="noreferrer">
-                        {texts.assistant.navigateGoogleMapsRoute}
-                      </a>
-                    )}
-                    <a className="button-link" href={routeLinks[0]} target="_blank" rel="noreferrer">
-                      {texts.assistant.openGoogleMapsRoute}
-                    </a>
-                    <button type="button" className="secondary-button" onClick={handleCopyRouteLinks}>
-                      {texts.assistant.copyGoogleMapsRoute}
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           )}
           <div className="table-wrap">
