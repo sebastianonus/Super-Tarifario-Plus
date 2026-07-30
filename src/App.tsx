@@ -215,8 +215,13 @@ const acceptedUploadTypes = [
   'text/plain',
   'image/png',
   'image/jpeg',
+  'image/jpg',
+  'image/pjpeg',
   'image/webp'
 ];
+
+const imageFileExtensions = new Set(['png', 'jpg', 'jpeg', 'webp', 'heic', 'heif']);
+const browserReadableImageExtensions = new Set(['png', 'jpg', 'jpeg', 'webp']);
 
 const defaultData: AppData = {
   catalogs: [
@@ -865,8 +870,13 @@ function extractPackageCount(text: string) {
   return matchValue(text, /(?:unitats|unidades|bultos?|qty|cantidad)\D{0,12}(\d+)/i) || matchValue(text, /\b(\d+)\s*(?:bultos?|paquetes?|unitats|unidades)\b/i);
 }
 
+function getFileExtension(file: File) {
+  return file.name.split('.').pop()?.toLowerCase() ?? '';
+}
+
 function isImageFile(file: File) {
-  return file.type.startsWith('image/');
+  const extension = getFileExtension(file);
+  return file.type.startsWith('image/') || imageFileExtensions.has(extension);
 }
 
 function readFileAsDataUrl(file: File) {
@@ -876,6 +886,51 @@ function readFileAsDataUrl(file: File) {
     reader.onerror = () => reject(reader.error);
     reader.readAsDataURL(file);
   });
+}
+
+function loadImageElement(file: File) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const image = new Image();
+    const objectUrl = URL.createObjectURL(file);
+    image.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      resolve(image);
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error('No se pudo leer la imagen. En móvil, revisa que sea JPG, PNG o WEBP; HEIC/HEIF no siempre se puede procesar desde el navegador.'));
+    };
+    image.src = objectUrl;
+  });
+}
+
+async function readImageForAi(file: File) {
+  const extension = getFileExtension(file);
+  const canBrowserReadImage =
+    acceptedUploadTypes.includes(file.type) ||
+    browserReadableImageExtensions.has(extension) ||
+    (file.type.startsWith('image/') && !['image/heic', 'image/heif'].includes(file.type));
+
+  if (!canBrowserReadImage) {
+    throw new Error('Formato de imagen no compatible para lectura directa. Convierte la foto a JPG/PNG o envía una captura de pantalla.');
+  }
+
+  const image = await loadImageElement(file);
+  const maxSide = 1800;
+  const scale = Math.min(1, maxSide / Math.max(image.naturalWidth || image.width, image.naturalHeight || image.height));
+  const width = Math.max(1, Math.round((image.naturalWidth || image.width) * scale));
+  const height = Math.max(1, Math.round((image.naturalHeight || image.height) * scale));
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d');
+  if (!context) {
+    return readFileAsDataUrl(file);
+  }
+
+  context.drawImage(image, 0, 0, width, height);
+  return canvas.toDataURL('image/jpeg', 0.86);
 }
 
 async function readPdfText(file: File) {
@@ -966,8 +1021,8 @@ async function prepareAttachedDocumentsForAnalysis(documents: AnalyzableDocument
             id: document.id,
             fileName: document.fileName,
             text: texts.assistant.imageTextPending,
-            mimeType: document.mimeType || document.file.type || 'image/png',
-            imageData: await readFileAsDataUrl(document.file),
+            mimeType: 'image/jpeg',
+            imageData: await readImageForAi(document.file),
             size: document.size
           };
         }
@@ -3002,7 +3057,8 @@ function App() {
     }
 
     const documents = files.map((file, index) => {
-      const extension = file.type === 'image/png' ? 'png' : file.type === 'image/jpeg' ? 'jpg' : '';
+      const sourceExtension = getFileExtension(file);
+      const extension = sourceExtension || (file.type === 'image/png' ? 'png' : file.type === 'image/jpeg' ? 'jpg' : '');
       const fallbackName =
         source === 'paste' && isImageFile(file)
           ? `imagen-pegada-${new Date().toISOString().replace(/[:.]/g, '-')}-${index + 1}${extension ? `.${extension}` : ''}`
@@ -3036,7 +3092,7 @@ function App() {
     }
 
     const imageFiles = Array.from(event.clipboardData?.items ?? [])
-      .filter((item) => item.kind === 'file' && (item.type === 'image/png' || item.type === 'image/jpeg'))
+      .filter((item) => item.kind === 'file' && item.type.startsWith('image/'))
       .map((item) => item.getAsFile())
       .filter((file): file is File => Boolean(file));
 
@@ -3283,7 +3339,7 @@ function App() {
                 ref={assistantFileInputRef}
                 className="visually-hidden"
                 type="file"
-                accept=".docx,.pdf,.txt,.png,.jpg,.jpeg,.webp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,image/png,image/jpeg,image/webp"
+                accept=".docx,.pdf,.txt,.png,.jpg,.jpeg,.webp,.heic,.heif,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,image/*"
                 multiple
                 onChange={handleAssistantDocumentUpload}
                 aria-label={texts.assistant.uploadDocument}
