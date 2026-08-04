@@ -125,6 +125,7 @@
     pendingHours: 'horas pendientes',
     agentMissing: 'Datos que faltan',
     agentNothingMissing: 'No veo datos críticos pendientes.',
+    pendingBeforePricing: 'Completa estos datos antes de calcular',
     agentTariffMatch: 'Tarifas que revisaría',
     completeHere: 'Completar aquí',
     editableParameters: 'Parámetros editables para calcular',

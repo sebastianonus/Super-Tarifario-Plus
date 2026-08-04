@@ -3459,13 +3459,23 @@ function AnalysisPanel({
 
       <PricingRequestEditor
         value={pricingRequest}
-        missingData={criticalMissingData}
         catalogs={catalogs}
         vehicleOptionIndex={vehicleOptionIndex}
         onChange={onPricingRequestChange}
       />
 
       <RouteSharePanel pricingRequest={pricingRequest} />
+
+      {criticalMissingData.length > 0 && (
+        <div className="pricing-action-warning" role="alert">
+          <span>{texts.assistant.pendingBeforePricing}</span>
+          <div>
+            {criticalMissingData.map((item) => (
+              <small key={item}>{item}</small>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="agent-footer">
         <span>
@@ -3714,13 +3724,11 @@ function AdminAccessPanel({
 
 function PricingRequestEditor({
   value,
-  missingData,
   catalogs,
   vehicleOptionIndex,
   onChange
 }: {
   value: PricingRequest | null;
-  missingData: string[];
   catalogs: Catalog[];
   vehicleOptionIndex: VehicleOptionIndex;
   onChange: (request: PricingRequest | null) => void;
@@ -3992,16 +4000,6 @@ function PricingRequestEditor({
   return (
     <div className="agent-card parameter-editor">
       <strong>{texts.assistant.editableParameters}</strong>
-      {missingData.length > 0 && (
-        <div className="missing-summary">
-          <span>{texts.assistant.missingData}</span>
-          <div>
-            {missingData.map((item) => (
-              <small key={item}>{item}</small>
-            ))}
-          </div>
-        </div>
-      )}
       <div className="parameter-grid">
         {showRouteFields && (
           <div className="route-flow">

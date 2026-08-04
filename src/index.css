@@ -728,6 +728,38 @@ td input {
   font-weight: 700;
 }
 
+.pricing-action-warning {
+  display: grid;
+  gap: 9px;
+  border: 1px solid rgba(245, 156, 56, 0.58);
+  border-radius: 10px;
+  background: rgba(255, 242, 223, 0.82);
+  padding: 12px;
+  box-shadow: 0 10px 24px rgba(245, 156, 56, 0.12);
+}
+
+.pricing-action-warning > span {
+  color: var(--color-ink);
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.pricing-action-warning div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pricing-action-warning small {
+  border-left: 3px solid var(--color-orange);
+  border-radius: 0 999px 999px 0;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-ink);
+  padding: 7px 10px;
+  font-size: 0.78rem;
+  font-weight: 780;
+}
+
 .parameter-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
